@@ -1,0 +1,91 @@
+B6_GeochemicalProjectTable
+table
+wstring ID
+wstring MainAFMRegionID
+wstring TargetRegionID
+wstring WorkRegionID
+wstring Name
+int SvyMethod
+int SvyLineCount
+Double SvyLineLength
+int SvyPointCount
+wstring SvyInstitute
+wstring Data_ARWID
+wstring DB_ARID
+wstring DB_ARWID
+wstring CS_ARID
+wstring CS_ARWID
+wstring Report_ARID
+wstring Report_ARWID
+wstring CommentInfo
+
+B6_GeocheSvyDataTable
+table
+wstring ID
+wstring ProjectID
+wstring SvyLineID
+wstring SvyPointID
+int SvyMethod
+wstring Survey_ARWID
+int ResultType
+wstring ResultName
+wstring Result_AIID
+wstring Result_ARWID
+wstring CommentInfo
+
+GeochemicalAbnPoint
+point
+wstring ID
+wstring SvyLineID
+wstring TargetFaultID
+wstring TargetFaultSource
+wstring TargetFaultName
+Double Distance
+wstring AbnormalType
+int ShowCode
+wstring CommentInfo
+
+GeochemicalAbnSegment
+line
+wstring ID
+wstring SvyLineID
+wstring TargetFaultID
+wstring TargetFaultSource
+wstring TargetFaultName
+Double Distance1
+Double Distance2
+wstring AbnormalType
+int ShowCode
+wstring CommentInfo
+
+GeochemicalSvyLine
+line
+wstring ID
+wstring ProjectID
+wstring Name
+int SvyMethod
+Single(4) Length
+Double StartLongitude
+Double StartLatitude
+Double EndLongitutde
+Double EndLatitude
+int SvyPointNum
+int InterpolateNum
+int AbnPointNum
+Double MeanValue
+Double SlippageValue
+Double AbnormalBottomValue
+wstring RM_AIID
+wstring RM_ARWID
+int ShowCode
+wstring CommentInfo
+
+GeochemicalSvyPoint
+point
+wstring ID
+wstring FieldID
+wstring SvyLineID
+int SvyMethod
+wstring LabelInfo
+wstring CommentInfo
+

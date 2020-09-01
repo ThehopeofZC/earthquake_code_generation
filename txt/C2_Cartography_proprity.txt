@@ -1,0 +1,51 @@
+CartoAuxLabel
+point
+wstring ID
+wstring LabelInfo
+int ShowCode
+int Ownership
+wstring DataPurpose
+wstring CommentInfo
+
+CartoAuxLine
+line
+wstring ID
+wstring LabelInfo
+int ShowCode
+int Ownership
+wstring DataPurpose
+wstring CommentInfo
+
+CartoAuxPoint
+point
+wstring ID
+wstring LabelInfo
+int ShowCode
+int Ownership
+wstring DataPurpose
+wstring CommentInfo
+
+CartoAuxPolygon
+face
+wstring ID
+wstring LabelInfo
+int ShowCode
+int Ownership
+wstring DataPurpose
+wstring CommentInfo
+
+GeoProfilePoint
+point
+wstring ID
+wstring ProfileLineID
+wstring Name
+int Scale
+wstring CommentInfo
+
+MapSheet
+face
+wstring ID
+wstring SheetNumber
+Double RotationAngle
+wstring CommentInfo
+

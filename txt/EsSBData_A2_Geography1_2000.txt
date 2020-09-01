@@ -1,0 +1,334 @@
+AALL012000
+line
+wstring ID
+wstring ProjectCode
+int GB
+int CHK_ID
+double Shape_Length
+wstring CommentInfo
+
+AALP012000
+point
+wstring ID
+wstring ProjectCode
+wstring NAME
+wstring PINYIN
+int GB
+wstring FONT_CODE
+int CHK_ID
+wstring CHAR_CODE
+wstring CommentInfo
+
+BOUA012000
+face
+wstring ID
+wstring ProjectCode
+wstring TNAME
+int GB
+int CHK_ID
+wstring CNAME
+double TPAC
+double CPAC
+double Shape_Length
+double Shape_Area
+wstring CommentInfo
+
+BOUL012000
+line
+wstring ID
+wstring ProjectCode
+int GB
+int CHK_ID
+double Shape_Length
+wstring CommentInfo
+
+BRGA012000
+face
+wstring ID
+wstring ProjectCode
+wstring NAME
+int GB
+int CHK_ID
+double Shape_Length
+double Shape_Area
+wstring CommentInfo
+
+BRGL012000
+line
+wstring ID
+wstring ProjectCode
+int GB
+int CHK_ID
+double Shape_Length
+wstring CommentInfo
+
+CPTL012000
+line
+wstring ID
+wstring ProjectCode
+int GB
+int CHK_ID
+double Shape_Length
+wstring CommentInfo
+
+CPTP012000
+point
+wstring ID
+wstring ProjectCode
+wstring TEGR
+wstring NAME
+int GB
+int CHK_ID
+double ELEV
+wstring CommentInfo
+
+HFCA012000
+face
+wstring ID
+wstring ProjectCode
+wstring NAME
+int GB
+int CHK_ID
+double Shape_Length
+double Shape_Area
+wstring CommentInfo
+
+HFCL012000
+line
+wstring ID
+wstring ProjectCode
+wstring NAME
+int GB
+int CHK_ID
+double Shape_Length
+wstring CommentInfo
+
+HFCP012000
+point
+wstring ID
+wstring ProjectCode
+wstring NAME
+int GB
+int CHK_ID
+double SYM_ANGLE
+wstring CommentInfo
+
+HYDA012000
+face
+wstring ID
+wstring ProjectCode
+wstring HYDC
+wstring NAME
+int GB
+int CHK_ID
+wstring HYDG
+double Shape_Length
+double Shape_Area
+wstring CommentInfo
+
+HYDL012000
+line
+wstring ID
+wstring ProjectCode
+wstring HYDC
+wstring NAME
+int GB
+int CHK_ID
+wstring HYDG
+double Shape_Length
+wstring CommentInfo
+
+HYDP012000
+point
+wstring ID
+wstring ProjectCode
+wstring NAME
+int GB
+int CHK_ID
+double SYM_ANGLE
+wstring CommentInfo
+
+LFCL012000
+line
+wstring ID
+wstring ProjectCode
+wstring NAME
+int GB
+int CHK_ID
+double Shape_Length
+wstring CommentInfo
+
+LFCP012000
+point
+wstring ID
+wstring ProjectCode
+wstring RN
+wstring NAME
+int GB
+int CHK_ID
+double SYM_ANGLE
+wstring CommentInfo
+
+LRDL012000
+line
+wstring ID
+wstring ProjectCode
+wstring RN
+wstring NAME
+int GB
+wstring RTEG
+int CHK_ID
+double Shape_Length
+wstring CommentInfo
+
+LRRL012000
+line
+wstring ID
+wstring ProjectCode
+wstring RN
+wstring NAME
+int GB
+int CHK_ID
+double Shape_Length
+wstring CommentInfo
+
+PIPL012000
+line
+wstring ID
+wstring ProjectCode
+wstring NAME
+int GB
+int CHK_ID
+double Shape_Length
+wstring CommentInfo
+
+PIPP012000
+point
+wstring ID
+wstring ProjectCode
+wstring NAME
+int CHK_ID
+int GB
+double SYM_ANGLE
+wstring CommentInfo
+
+RESA012000
+face
+wstring ID
+wstring ProjectCode
+int GB
+int CHK_ID
+double Shape_Length
+double Shape_Area
+wstring CommentInfo
+
+RESL012000
+line
+wstring ID
+wstring ProjectCode
+int CHK_ID
+int GB
+double Shape_Length
+wstring CommentInfo
+
+RESP012000
+point
+wstring ID
+wstring ProjectCode
+wstring NAME
+int CHK_ID
+int GB
+double SYM_ANGLE
+wstring CommentInfo
+
+RFCA012000
+face
+wstring ID
+wstring ProjectCode
+wstring NAME
+int CHK_ID
+int GB
+double Shape_Length
+double Shape_Area
+wstring CommentInfo
+
+RFCL012000
+line
+wstring ID
+wstring ProjectCode
+wstring NAME
+int CHK_ID
+int GB
+double Shape_Length
+wstring CommentInfo
+
+RFCP012000
+point
+wstring ID
+wstring ProjectCode
+wstring NAME
+int CHK_ID
+int GB
+double SYM_ANGLE
+wstring CommentInfo
+
+TERA012000
+face
+wstring ID
+wstring ProjectCode
+int CHK_ID
+wstring NAME
+int GB
+double Shape_Length
+double Shape_Area
+wstring CommentInfo
+
+TERL012000
+line
+wstring ID
+wstring ProjectCode
+wstring NAME
+int CHK_ID
+int GB
+double ELEV
+double Shape_Length
+wstring CommentInfo
+
+TERP012000
+point
+wstring ID
+wstring ProjectCode
+wstring NAME
+int CHK_ID
+int GB
+double ELEV
+double SYM_ANGLE
+wstring CommentInfo
+
+VEGA012000
+face
+wstring ID
+wstring ProjectCode
+int CHK_ID
+int GB
+double Shape_Length
+double Shape_Area
+wstring CommentInfo
+
+VEGL012000
+line
+wstring ID
+wstring ProjectCode
+int CHK_ID
+int GB
+double Shape_Length
+wstring CommentInfo
+
+VEGP012000
+point
+wstring ID
+wstring ProjectCode
+int CHK_ID
+int GB
+wstring CommentInfo
+

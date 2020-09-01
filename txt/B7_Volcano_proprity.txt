@@ -1,0 +1,165 @@
+B7_VolcanicDataTable
+table
+wstring ID
+wstring ProjectID
+wstring SamplePointID
+wstring FieldID
+int ElementType
+wstring Name
+wstring SvyResult
+int Reliability
+wstring SampleLayout_AIID
+wstring SampleLayout_ARWID
+wstring Photo_AIID
+wstring Photo_ARWID
+wstring PhotoDesc_ARWID
+wstring CommentInfo
+
+B7_VolcanicSvyProjectTable
+table
+wstring ID
+wstring MainAFMRegionID
+wstring TargetRegionID
+wstring WorkRegionID
+wstring Name
+wstring DeliverPerson
+wstring DeliverInstitute
+wstring ReportDate
+wstring TestApparatus
+int CollectedSampleCount
+int SampleCount
+int MeasuringResultCount
+wstring DeliverReport_ARID
+wstring DeliverReport_ARWID
+wstring TestReport_ARID
+wstring TestReport_ARWID
+wstring Surveyor
+wstring TestInstitute
+wstring ResultReport_ARID
+wstring ResultReport_ARWID
+wstring CommentInfo
+
+B7_VolSvyPtObservationObject
+table
+wstring ID
+wstring VolcanicSvyPtID
+wstring CraterID
+wstring LavaID
+wstring VolcanicConeID
+
+Crater
+point
+wstring ID
+wstring ConeName
+int ConeType
+wstring ConeMorphology
+Double ConeHeight
+Double CraterDepth
+Double InsideSlopeAngle
+Double OutsideSlopeAngle
+Double BottomDiameter
+Double CraterWallsDiameter
+Double CraterDiameter
+int OverfallDirection
+wstring DepositType
+Double DepositThickness
+wstring DepositGranularity
+Double LavaDribletSize
+wstring ConeStructureProfile_AIID
+wstring ConeStructureProfile_ARWID
+wstring RockInclusionType
+int RockInclusionNum
+wstring RockInclusionGranularity
+wstring RockInclusionShape
+wstring RockInclusionOutputState
+wstring Sketch_AIID
+wstring Sketch_ARWID
+wstring Photo_AIID
+wstring Photo_ARWID
+wstring PhotoDesc_ARWID
+wstring Photographer
+wstring CommentInfo
+
+Lava
+face
+wstring ID
+wstring Name
+wstring Type
+wstring Scope
+wstring SurfaceMorphology
+wstring StructureZone
+wstring Unit
+int Age
+wstring Description
+int RockType
+wstring RockName
+wstring RockDescription
+wstring Sketch_AIID
+wstring Sketch_ARWID
+wstring Photo_AIID
+wstring Photo_ARWID
+wstring PhotoDesc_ARWID
+wstring Photographer
+wstring CommentInfo
+
+VolcanicCone
+face
+wstring ID
+wstring ConeName
+int ConeType
+wstring ConeMorphology
+Double ConeHeight
+Double CraterDepth
+Double InsideSlopeAngle
+Double OutsideSlopeAngle
+Double BottomDiameter
+Double CraterWallsDiameter
+Double CraterDiameter
+int OverfallDirection
+wstring DepositType
+Double DepositThickness
+wstring DepositGranularity
+Double LavaDribletSize
+wstring ConeStructureProfile_AIID
+wstring ConeStructureProfile_ARWID
+wstring RockInclusionType
+int RockInclusionNum
+wstring RockInclusionGranularity
+wstring RockInclusionShape
+wstring RockInclusionOutputState
+wstring Sketch_AIID
+wstring Sketch_ARWID
+wstring Photo_AIID
+wstring Photo_ARWID
+wstring PhotoDesc_ARWID
+wstring Photographer
+wstring CommentInfo
+
+VolcanicSvyPoint
+point
+wstring ID
+wstring ProjectID
+wstring FieldID
+wstring LocationName
+wstring SvyDate
+wstring Purpose
+wstring SPCommentInfo
+Double Lon
+Double Lat
+int Elevation
+wstring SvyMethods
+int CollectedSampleCount
+int SampleCount
+int DatingSampleCount
+int IsVocanicCone
+int IsLava
+int IsCrater
+wstring Photo_AIID
+wstring Photo_ARWID
+wstring PhotoDesc_ARWID
+wstring Photographer
+wstring TypicalProfile_ACID
+wstring TypicalProfile_ARWID
+int IsInMap
+wstring CommentInfo
+

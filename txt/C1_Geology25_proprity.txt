@@ -1,0 +1,317 @@
+Basin25
+face
+wstring ID
+wstring BasinName
+int FormationAge
+int MaxDepth
+int Feature
+wstring Photo_AIID
+wstring Photo_ARWID
+int ViewTo
+wstring Photographer
+wstring SymbolMain
+wstring SymbolLow
+wstring SymbolUp
+wstring CommentInfo
+
+Fault25
+line
+wstring ID
+wstring FractureZoneName
+wstring FaultName
+wstring FaultSegmentName
+int Feature
+int StrikeOrientation
+int Strike
+int Dip
+int DipAngle
+Double Length
+Double Width
+int TopDepth
+Double DeformationBeltWidth
+int Age
+wstring Photo_AIID
+wstring Photo_ARWID
+int ViewTo
+wstring Photographer
+wstring StartTimeEst
+Double VDisplaceEst
+Double VDisplaceEr
+Double HDisplaceEst
+Double HDisplaceEr
+Double TDisplaceEst
+Double TDisplaceEr
+Double AveVRate
+Double AveVRateEr
+Double AveHRate
+Double AveHRateEr
+wstring StartTimeLatestRate
+Double LatestVRate
+Double LatestVRateEr
+Double LatestHRate
+Double LatestHRateEr
+Double MaxVRate
+Double MaxVRateEr
+Double MaxHRate
+Double MaxHRateEr
+int EQEventCount
+int MinEQEventRI
+int MaxEQEventRI
+wstring Method
+int MaxRuptureLength
+int AverageRuptureLength
+int ElapseTimeForLatestEQ
+int SlipDepthEst
+int SlipDepthEr
+Double AverageSlipRateEst
+Double AverageSlipRateEr
+Double CreepRateEst
+Double CreepRateEr
+Double CoSeismicMaxSlipEst
+Double CoSeismicMaxSlipEr
+Double CoSeismicAverageSlipEst
+Double CoSeismicAverageSlipEr
+Double LatestCoSeismicSlipEst
+Double LatestCoSeismicSlipEr
+wstring SymbolMain
+wstring SymbolLow
+wstring SymbolUp
+int ShowCode
+wstring CommentInfo
+
+FaultAttitude25
+point
+wstring ID
+wstring FaultID
+wstring FaultSvyID
+int Feature
+int FaultDip
+int FaultDipAngle
+Double LastAngle
+wstring CommentInfo
+
+Fold25
+line
+wstring ID
+wstring FoldName
+int FoldType
+Double Length
+Double Width
+Double FronWingWidth
+Double BackWingWidth
+int IsReversed
+int IsExposed
+wstring AllStratigraphy
+wstring LatestStratigraphy
+int AxisDirection
+Double MaxShotenRate
+Double AveShotenRate
+Double MaxUpliftRate
+Double AveUpliftRate
+wstring FoldDescription
+wstring Photo_AIID
+wstring Photo_ARWID
+int ViewTo
+wstring Photographer
+wstring SymbolMain
+wstring SymbolLow
+wstring SymbolUp
+wstring CommentInfo
+
+FractureBelt25
+line
+wstring ID
+wstring Name
+wstring FormationAge
+int Feature
+Double Length
+Double MaxWidth
+Double StartLongitude
+Double StartLatitude
+Double EndLongitude
+Double EndLatitude
+Double MaxVOffset
+Double MaxHOffset
+Double MaxTOffset
+wstring Photo_AIID
+wstring Photo_ARWID
+int ViewTo
+wstring Photographer
+int ShowCode
+wstring CommentInfo
+
+GeoBoundaryLine25
+line
+wstring ID
+int GeologyBoundaryLine
+wstring CommentInfo
+
+GeomorphyLine25
+line
+wstring ID
+wstring GeomorphyCode
+wstring GeomorphyName
+wstring GeomorphyType
+wstring GeomorphyDescription
+Double Length
+Double Width
+Double Height
+Double MaxVerticalOffset
+Double MaxHorizontalOffset
+Double MaxTensionalOffset
+wstring Feature
+int FormationAge
+int IsSurfaceRuptureBelt
+wstring FractureBeltID
+int FractureType
+wstring Photo_AIID
+wstring Photo_ARWID
+int ViewTo
+wstring Photographer
+wstring SymbolMain
+wstring SymbolLow
+wstring SymbolUp
+wstring CommentInfo
+
+GeomorphyPoint25
+point
+wstring ID
+wstring GeomorSvyPtID
+wstring GeomorphyCode
+wstring GeomorphyName
+wstring GeomorphyType
+Double Length
+Double width
+Double Height
+Double VerticalOffset
+Double HorizontalOffset
+Double TensionalOffset
+wstring Feature
+int GeomorphyLnDirection
+int FormationAge
+int IsSurfaceRuptureBelt
+wstring FractureBeltID
+int FractureType
+wstring Photo_AIID
+wstring Photo_ARWID
+int ViewTo
+wstring Photographer
+wstring TypicalProfile_AIID
+wstring TypicalProfile_ARWID
+wstring Sketch_AIID
+wstring Sketch_ARWID
+wstring SymbolMain
+wstring SymbolLow
+wstring SymbolUp
+Double LastAngle
+wstring CommentInfo
+
+GeomorphyPolygon25
+face
+wstring ID
+wstring GeomorphyCode
+wstring GeomorphyName
+wstring GeomorphyType
+wstring GeomorphyDescription
+Double Length
+Double width
+Double Height
+Double MaxVerticalOffset
+Double MaxHorizontalOffset
+Double MaxTensionalOffset
+wstring Feature
+int FormationAge
+int IsSurfaceRuptureBelt
+wstring FractureBeltID
+int FractureType
+wstring Photo_AIID
+wstring Photo_ARWID
+int ViewTo
+wstring Photographer
+wstring SymbolMain
+wstring SymbolLow
+wstring SymbolUp
+wstring CommentInfo
+
+GeotectonicUnit25
+face
+wstring ID
+wstring Name
+int TectonicLevel
+wstring nsb1
+wstring nsb2
+wstring nsb3
+int ShowCode
+wstring CommentInfo
+
+NeotectonicUnit25
+face
+wstring ID
+wstring Name
+int TectonicLevel
+wstring nsb1
+wstring nsb2
+wstring nsb3
+int ShowCode
+wstring CommentInfo
+
+Rock25
+face
+wstring ID
+wstring RockName
+int Symbol
+int QDHO
+wstring Description
+wstring SymbolMain
+wstring SymbolUp
+wstring SymbolLow
+wstring CommentInfo
+
+StraAttitude25
+point
+wstring ID
+wstring ColStraAttiID
+wstring StraSvyPtID
+int StraDip
+int StraDipAngle
+int IsReversed
+Double LastAngle
+wstring CommentInfo
+
+StraIsoline25
+line
+wstring ID
+wstring StraiName
+int StraiValue
+int ShowCode
+wstring CommentInfo
+
+Stratigraphy25
+face
+wstring ID
+wstring StratigraphyName
+int Symbol
+wstring SedimentaryFacies
+wstring Thickness
+wstring Description
+wstring SymbolMain
+wstring SymbolUp
+wstring SymbolLow
+wstring CommentInfo
+
+Uplift25
+face
+wstring ID
+wstring UpliftName
+int FormationAge
+int Height
+wstring Feature
+wstring Photo_AIID
+wstring Photo_ARWID
+int ViewTo
+wstring Photographer
+wstring SymbolMain
+wstring SymbolLow
+wstring SymbolUp
+wstring CommentInfo
+

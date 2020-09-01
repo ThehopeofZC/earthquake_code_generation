@@ -1,0 +1,64 @@
+CollectedCrustIsoline
+line
+wstring ID
+int Depth
+wstring DepthName
+int ShowCode
+wstring CommentInfo
+
+CollectedGeophySvyLine
+line
+wstring ID
+wstring Name
+wstring CollectedLineSource
+wstring Purpose
+int SvyMethod
+int StartMilestoneNum
+int EndMilestoneNum
+Double Length
+wstring ResultName
+wstring ExpData_ARWID
+wstring ResultMap_ARWID
+wstring ResultMap_AIID
+wstring FaultPtProfile_AIID
+wstring FaultPtProfile_ARWID
+int ShowCode
+wstring CommentInfo
+
+CollectedGMInterpretationLine
+line
+wstring ID
+wstring Code
+wstring FaultName
+wstring InterpretationAccordingG
+wstring InterpretationAccordingM
+wstring FaultDepth
+wstring FaultAge
+wstring CommentInfo
+
+CollectedGravityMagnetic
+face
+wstring ID
+wstring DataSource
+wstring TimeSpan
+wstring DataContent
+wstring GM_AIID
+wstring GM_ARWID
+wstring GM_Metadata_ARWID
+wstring DataType
+wstring Description
+wstring CommentInfo
+
+CollectedRegionDeformation
+face
+wstring ID
+wstring DataSource
+wstring TimeSpan
+wstring DataContent
+wstring Deformation_AIID
+wstring Deformation_ARWID
+wstring Defor_Metadata_ARWID
+wstring DataType
+wstring Description
+wstring CommentInfo
+

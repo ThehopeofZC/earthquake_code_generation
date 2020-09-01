@@ -1,0 +1,138 @@
+CollectedStraAttitude
+point
+wstring ID
+int IsReversed
+int StraDip
+int StraDipAngle
+Double LastAngle
+wstring CommentInfo
+
+CollectedTrench
+point
+wstring ID
+wstring TargetFaultID
+wstring TargetFaultSource
+wstring TargetFaultName
+wstring Name
+Double Lon
+Double Lat
+Double Elevation
+int TrenchStrike
+wstring LocationName
+wstring GeomophEnv
+wstring Photo_AIID
+wstring Photo_ARWID
+int ViewTo
+int ExposedStratumCount
+int EQEventCount
+int LatestEQPeroidEst
+int LatestEQPeroidEr
+wstring Profile1_AIID
+wstring Profile1_ARWID
+wstring Profile1Comment_ARID
+wstring Profile1Comment_ARWID
+wstring Profile1Photo_AIID
+wstring Profile1Photo_ARWID
+wstring Profile2_AIID
+wstring Profile2_ARWID
+wstring Profile2Comment_ARID
+wstring Profile2Comment_ARWID
+wstring Profile2Photo_AIID
+wstring Profile2Photo_ARWID
+wstring Description
+Double LastAngle
+wstring CommentInfo
+
+GeoBoundaryLine1Pre
+line
+wstring ID
+int GeologyBoundaryLine
+wstring CommentInfo
+
+GeoBoundaryLine25Pre
+line
+wstring ID
+int GeologyBoundaryLine
+wstring CommentInfo
+
+GeoBoundaryLine5Pre
+line
+wstring ID
+int GeologyBoundaryLine
+wstring CommentInfo
+
+Rock1Pre
+face
+wstring ID
+wstring RockName
+int Symbol
+int QDHO
+wstring Description
+wstring SymbolMain
+wstring SymbolLow
+wstring SymbolUp
+wstring CommentInfo
+
+Rock25Pre
+face
+wstring ID
+wstring RockName
+int Symbol
+int QDHO
+wstring Description
+wstring SymbolMain
+wstring SymbolLow
+wstring SymbolUp
+wstring CommentInfo
+
+Rock5Pre
+face
+wstring ID
+wstring RockName
+int Symbol
+int QDHO
+wstring Description
+wstring SymbolMain
+wstring SymbolLow
+wstring SymbolUp
+wstring CommentInfo
+
+Stratigraphy1Pre
+face
+wstring ID
+wstring StratigraphyName
+int Symbol
+wstring SedimentaryFacies
+wstring Thickness
+wstring Description
+wstring SymbolMain
+wstring SymbolLow
+wstring SymbolUp
+wstring CommentInfo
+
+Stratigraphy25Pre
+face
+wstring ID
+wstring StratigraphyName
+int Symbol
+wstring SedimentaryFacies
+wstring Thickness
+wstring Description
+wstring SymbolMain
+wstring SymbolLow
+wstring SymbolUp
+wstring CommentInfo
+
+Stratigraphy5Pre
+face
+wstring ID
+wstring StratigraphyName
+int Symbol
+wstring SedimentaryFacies
+wstring Thickness
+wstring Description
+wstring SymbolMain
+wstring SymbolLow
+wstring SymbolUp
+wstring CommentInfo
+

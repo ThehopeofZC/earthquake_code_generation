@@ -1,0 +1,104 @@
+B3_DrillProjectTable
+table
+wstring ID
+wstring MainAFMRegionID
+wstring TargetRegionID
+wstring WorkRegionID
+wstring Name
+int DrillCount
+Double DrillLength
+int GeophyWellNum
+int CollectedSampleCount
+int SampleCount
+int DatingSampleCount
+wstring DrillInstitute
+wstring DB_ARID
+wstring DB_ARWID
+wstring CS_ARID
+wstring CS_ARWID
+wstring Report_ARID
+wstring Report_ARWID
+wstring CommentInfo
+
+DrillFaultPoint
+point
+wstring ID
+wstring DrillProfileID
+wstring FieldID
+wstring SvyMethod
+wstring TopDepth
+wstring TopAge
+wstring LastAge
+Double LastInterfaceDisplace
+int ViewDirection
+int ViewClination
+int FaultType
+wstring FaultPointDescription
+wstring CommentInfo
+
+DrillHole
+point
+wstring ID
+wstring ProjectID
+wstring ProfileID
+wstring FieldID
+wstring Purpose
+wstring DrillDate
+wstring LocationName
+int DrillSource
+Double Lon
+Double Lat
+Double Elevation
+Double Depth
+Double CoreTotalThickness
+Double SurSoilNoCountedThickness
+Double HoloceneThickness
+Double UpPleiThickness
+Double MidPleiThickness
+Double LowPleiThickness
+Double PrePleiThickness
+int CollectedSampleCount
+int SampleCount
+int DatingSampleCount
+int IsGeophyWell
+int CollectedEnviromentSampleCount
+int EnviromentSampleCount
+int TestedEnviromentSampleCount
+wstring ColumnChart_AIID
+wstring ColumnChart_ARWID
+wstring CorePhoto_AIID
+wstring CorePhoto_ARWID
+wstring DrillingLog_ARID
+wstring DrillingLog_ARWID
+wstring HydroRecord_AIID
+wstring HydroRecord_ARWID
+wstring GeologySmplRec_AIID
+wstring GeologySmplRec_ARWID
+wstring DepthCheck_AIID
+wstring DepthCheck_ARWID
+wstring WellClination_AIID
+wstring WellClination_ARWID
+wstring CoreCatalog_AIID
+wstring CoreCatalog_ARWID
+wstring SealDesignReport_ARID
+wstring SealDesignReport_ARWID
+wstring SealCheck_ARID
+wstring SealCheck_ARWID
+wstring CommentInfo
+
+DrillProfile
+line
+wstring ID
+wstring ProjectID
+wstring TargetFaultID
+wstring TargetFaultSource
+wstring TargetFaultName
+wstring Name
+wstring LocationName
+int DrillingHoleCount
+Double Length
+int FaultPointCount
+wstring HoleSection_AIID
+wstring HoleSection_ARWID
+wstring CommentInfo
+

@@ -1,0 +1,120 @@
+B5_GeophyRgnHasGeophyPt
+table
+wstring ID
+wstring GeophyRgnID
+wstring GeophyPtID
+
+B5_GeophySvyDataTable
+table
+wstring ID
+wstring ProjectID
+wstring SvyRegionID
+wstring SvyLineID
+wstring SvyPointID
+int SvyMethod
+wstring Survey_ARWID
+int ResultType
+wstring ResultName
+wstring Result_AIID
+wstring Result_ARWID
+wstring CommentInfo
+
+B5_GeophySvyProjectTable
+table
+wstring ID
+wstring MainAFMRegionID
+wstring TargetRegionID
+wstring WorkRegionID
+wstring HugeVolumeDataID
+wstring Name
+int SvyMethod
+int SvyLineCount
+Double SvyLineLength
+int SvyPointCount
+wstring SvyInstitute
+wstring SvyDataStorageInstitution
+wstring SvyDataContactPerson
+wstring SvyDataContactPhone
+wstring SurveyCommentInfo
+wstring DB_ARID
+wstring DB_ARWID
+wstring CS_ARID
+wstring CS_ARWID
+wstring Report_ARID
+wstring Report_ARWID
+wstring CommentInfo
+
+GeophySvyFaultPoint
+point
+wstring ID
+wstring SvyLineID
+wstring TargetFaultID
+wstring TargetFaultSource
+wstring TargetFaultName
+Double MeasureLength
+Double Lon
+Double Lat
+wstring M0Depth
+wstring M0
+int Age0
+int ViewDirection
+int ViewClination
+int FaultType
+int Reliability
+wstring FaultDescription
+int ShowCode
+wstring CommentInfo
+
+GeophySvyLine
+line
+wstring ID
+wstring ProjectID
+wstring FieldID
+wstring Name
+wstring Purpose
+int SvyMethod
+int StartMilestoneNum
+int EndMilestoneNum
+Double Length
+wstring ResultName
+wstring ExpData_ARWID
+wstring ResultMap_ARWID
+wstring ResultMap_AIID
+wstring FaultPtProfile_AIID
+wstring FaultPtProfile_ARWID
+int ShowCode
+wstring CommentInfo
+
+GeophySvyPoint
+point
+wstring ID
+wstring SvyLineID
+wstring FieldID
+int SvyMethod
+wstring SvyPointDescription
+int MilestoneNum
+Double Lon
+Double Lat
+Double Elevation
+wstring LabelInfo
+wstring CommentInfo
+
+GeophySvyRegion
+face
+wstring ID
+wstring ProjectID
+wstring FieldID
+wstring Name
+wstring Purpose
+int SvyMethod
+wstring ResultName
+wstring ExpData_ARWID
+wstring ThreeDimensionalView_ARWID
+wstring ThreeDimensionalView_AIID
+wstring HorizontalSlices_AIID
+wstring VerticalSlices_AIID
+wstring FaultInterpreResult_AIID
+wstring FaultInterpreResult_ARWID
+int ShowCode
+wstring CommentInfo
+

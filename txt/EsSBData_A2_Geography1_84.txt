@@ -1,0 +1,318 @@
+AALL0184
+line
+wstring ID
+wstring ProjectCode
+int GB
+double SHAPE_Length
+wstring CommentInfo
+
+AALP0184
+point
+wstring ID
+wstring ProjectCode
+int GB
+wstring NAME
+wstring PINYIN
+wstring CHAR_CODE
+wstring FONT_CODE
+wstring CommentInfo
+
+BOUA0184
+face
+wstring ID
+wstring ProjectCode
+int GB
+int TPAC
+wstring TNAME
+int CPAC
+wstring CNAME
+double SHAPE_Length
+double SHAPE_Area
+wstring CommentInfo
+
+BOUL0184
+line
+wstring ID
+wstring ProjectCode
+int GB
+double SHAPE_Length
+wstring CommentInfo
+
+BOUP0184
+point
+wstring ID
+wstring ProjectCode
+int GB
+wstring BNO
+wstring CommentInfo
+
+BRGA0184
+face
+wstring ID
+wstring ProjectCode
+int GB
+wstring NAME
+double SHAPE_Length
+double SHAPE_Area
+wstring CommentInfo
+
+BRGL0184
+line
+wstring ID
+wstring ProjectCode
+int GB
+double SHAPE_Length
+wstring CommentInfo
+
+BRGP0184
+point
+wstring ID
+wstring ProjectCode
+int GB
+wstring NAME
+wstring CommentInfo
+
+CPTL0184
+line
+wstring ID
+wstring ProjectCode
+int GB
+double SHAPE_Length
+wstring CommentInfo
+
+CPTP0184
+point
+wstring ID
+wstring ProjectCode
+int GB
+wstring TEGR
+double ELEV
+wstring NAME
+wstring CommentInfo
+
+HFCA0184
+face
+wstring ID
+wstring ProjectCode
+int GB
+wstring NAME
+double SHAPE_Length
+double SHAPE_Area
+wstring CommentInfo
+
+HFCL0184
+line
+wstring ID
+wstring ProjectCode
+int GB
+wstring NAME
+double SHAPE_Length
+wstring CommentInfo
+
+HFCP0184
+point
+wstring ID
+wstring ProjectCode
+int GB
+wstring NAME
+double SYM_ANGLE
+wstring CommentInfo
+
+HYDA0184
+face
+wstring ID
+wstring ProjectCode
+int GB
+wstring HYDC
+wstring NAME
+wstring HYDG
+double SHAPE_Length
+double SHAPE_Area
+wstring CommentInfo
+
+HYDL0184
+line
+wstring ID
+wstring ProjectCode
+int GB
+wstring HYDC
+wstring NAME
+wstring HYDG
+double SHAPE_Length
+wstring CommentInfo
+
+HYDP0184
+point
+wstring ID
+wstring ProjectCode
+int GB
+wstring NAME
+double SYM_ANGLE
+wstring CommentInfo
+
+LFCL0184
+line
+wstring ID
+wstring ProjectCode
+int GB
+wstring NAME
+double SHAPE_Length
+wstring CommentInfo
+
+LFCP0184
+point
+wstring ID
+wstring ProjectCode
+int GB
+wstring RN
+wstring NAME
+double SYM_ANGLE
+wstring CommentInfo
+
+LRDL0184
+line
+wstring ID
+wstring ProjectCode
+int GB
+wstring RN
+wstring NAME
+wstring RTEG
+double SHAPE_Length
+wstring CommentInfo
+
+LRRL0184
+line
+wstring ID
+wstring ProjectCode
+int GB
+wstring RN
+wstring NAME
+double SHAPE_Length
+wstring CommentInfo
+
+PIPL0184
+line
+wstring ID
+wstring ProjectCode
+int GB
+wstring NAME
+double SHAPE_Length
+wstring CommentInfo
+
+PIPP0184
+point
+wstring ID
+wstring ProjectCode
+int GB
+wstring NAME
+double SYM_ANGLE
+wstring CommentInfo
+
+RESA0184
+face
+wstring ID
+wstring ProjectCode
+int GB
+double SHAPE_Length
+double SHAPE_Area
+wstring CommentInfo
+
+RESL0184
+line
+wstring ID
+wstring ProjectCode
+int GB
+double SHAPE_Length
+wstring CommentInfo
+
+RESP0184
+point
+wstring ID
+wstring ProjectCode
+int GB
+wstring NAME
+double SYM_ANGLE
+wstring CommentInfo
+
+RFCA0184
+face
+wstring ID
+wstring ProjectCode
+int GB
+wstring NAME
+double SHAPE_Length
+double SHAPE_Area
+wstring CommentInfo
+
+RFCL0184
+line
+wstring ID
+wstring ProjectCode
+int GB
+wstring NAME
+double SHAPE_Length
+wstring CommentInfo
+
+RFCP0184
+point
+wstring ID
+wstring ProjectCode
+int GB
+wstring NAME
+double SYM_ANGLE
+wstring CommentInfo
+
+TERA0184
+face
+wstring ID
+wstring ProjectCode
+int GB
+wstring NAME
+double SHAPE_Length
+double SHAPE_Area
+wstring CommentInfo
+
+TERL0184
+line
+wstring ID
+wstring ProjectCode
+int GB
+double ELEV
+wstring NAME
+double SHAPE_Length
+wstring CommentInfo
+
+TERP0184
+point
+wstring ID
+wstring ProjectCode
+int GB
+double ELEV
+wstring NAME
+double SYM_ANGLE
+wstring CommentInfo
+
+VEGA0184
+face
+wstring ID
+wstring ProjectCode
+int GB
+double SHAPE_Length
+double SHAPE_Area
+wstring CommentInfo
+
+VEGL0184
+line
+wstring ID
+wstring ProjectCode
+int GB
+double SHAPE_Length
+wstring CommentInfo
+
+VEGP0184
+point
+wstring ID
+wstring ProjectCode
+int GB
+wstring CommentInfo
+
