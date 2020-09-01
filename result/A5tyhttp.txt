@@ -1,0 +1,44 @@
+def api_add_CollectedStraAttitude(url, sid, points, IDs, IsReverseds, StraDips, StraDipAngles, LastAngles, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'IsReverseds':IsReverseds, 'StraDips':StraDips, 'StraDipAngles':StraDipAngles, 'LastAngles':LastAngles, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_CollectedTrench(url, sid, points, IDs, TargetFaultIDs, TargetFaultSources, TargetFaultNames, Names, Lons, Lats, Elevations, TrenchStrikes, LocationNames, GeomophEnvs, Photo_AIIDs, Photo_ARWIDs, ViewTos, ExposedStratumCounts, EQEventCounts, LatestEQPeroidEsts, LatestEQPeroidErs, Profile1_AIIDs, Profile1_ARWIDs, Profile1Comment_ARIDs, Profile1Comment_ARWIDs, Profile1Photo_AIIDs, Profile1Photo_ARWIDs, Profile2_AIIDs, Profile2_ARWIDs, Profile2Comment_ARIDs, Profile2Comment_ARWIDs, Profile2Photo_AIIDs, Profile2Photo_ARWIDs, Descriptions, LastAngles, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'TargetFaultIDs':TargetFaultIDs, 'TargetFaultSources':TargetFaultSources, 'TargetFaultNames':TargetFaultNames, 'Names':Names, 'Lons':Lons, 'Lats':Lats, 'Elevations':Elevations, 'TrenchStrikes':TrenchStrikes, 'LocationNames':LocationNames, 'GeomophEnvs':GeomophEnvs, 'Photo_AIIDs':Photo_AIIDs, 'Photo_ARWIDs':Photo_ARWIDs, 'ViewTos':ViewTos, 'ExposedStratumCounts':ExposedStratumCounts, 'EQEventCounts':EQEventCounts, 'LatestEQPeroidEsts':LatestEQPeroidEsts, 'LatestEQPeroidErs':LatestEQPeroidErs, 'Profile1_AIIDs':Profile1_AIIDs, 'Profile1_ARWIDs':Profile1_ARWIDs, 'Profile1Comment_ARIDs':Profile1Comment_ARIDs, 'Profile1Comment_ARWIDs':Profile1Comment_ARWIDs, 'Profile1Photo_AIIDs':Profile1Photo_AIIDs, 'Profile1Photo_ARWIDs':Profile1Photo_ARWIDs, 'Profile2_AIIDs':Profile2_AIIDs, 'Profile2_ARWIDs':Profile2_ARWIDs, 'Profile2Comment_ARIDs':Profile2Comment_ARIDs, 'Profile2Comment_ARWIDs':Profile2Comment_ARWIDs, 'Profile2Photo_AIIDs':Profile2Photo_AIIDs, 'Profile2Photo_ARWIDs':Profile2Photo_ARWIDs, 'Descriptions':Descriptions, 'LastAngles':LastAngles, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_GeoBoundaryLine1Pre(url, sid, lines, IDs, GeologyBoundaryLines, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'GeologyBoundaryLines':GeologyBoundaryLines, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_GeoBoundaryLine25Pre(url, sid, lines, IDs, GeologyBoundaryLines, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'GeologyBoundaryLines':GeologyBoundaryLines, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_GeoBoundaryLine5Pre(url, sid, lines, IDs, GeologyBoundaryLines, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'GeologyBoundaryLines':GeologyBoundaryLines, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_Rock1Pre(url, sid, faces, IDs, RockNames, Symbols, QDHOs, Descriptions, SymbolMains, SymbolLows, SymbolUps, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'RockNames':RockNames, 'Symbols':Symbols, 'QDHOs':QDHOs, 'Descriptions':Descriptions, 'SymbolMains':SymbolMains, 'SymbolLows':SymbolLows, 'SymbolUps':SymbolUps, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_Rock25Pre(url, sid, faces, IDs, RockNames, Symbols, QDHOs, Descriptions, SymbolMains, SymbolLows, SymbolUps, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'RockNames':RockNames, 'Symbols':Symbols, 'QDHOs':QDHOs, 'Descriptions':Descriptions, 'SymbolMains':SymbolMains, 'SymbolLows':SymbolLows, 'SymbolUps':SymbolUps, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_Rock5Pre(url, sid, faces, IDs, RockNames, Symbols, QDHOs, Descriptions, SymbolMains, SymbolLows, SymbolUps, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'RockNames':RockNames, 'Symbols':Symbols, 'QDHOs':QDHOs, 'Descriptions':Descriptions, 'SymbolMains':SymbolMains, 'SymbolLows':SymbolLows, 'SymbolUps':SymbolUps, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_Stratigraphy1Pre(url, sid, faces, IDs, StratigraphyNames, Symbols, SedimentaryFaciess, Thicknesss, Descriptions, SymbolMains, SymbolLows, SymbolUps, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'StratigraphyNames':StratigraphyNames, 'Symbols':Symbols, 'SedimentaryFaciess':SedimentaryFaciess, 'Thicknesss':Thicknesss, 'Descriptions':Descriptions, 'SymbolMains':SymbolMains, 'SymbolLows':SymbolLows, 'SymbolUps':SymbolUps, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_Stratigraphy25Pre(url, sid, faces, IDs, StratigraphyNames, Symbols, SedimentaryFaciess, Thicknesss, Descriptions, SymbolMains, SymbolLows, SymbolUps, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'StratigraphyNames':StratigraphyNames, 'Symbols':Symbols, 'SedimentaryFaciess':SedimentaryFaciess, 'Thicknesss':Thicknesss, 'Descriptions':Descriptions, 'SymbolMains':SymbolMains, 'SymbolLows':SymbolLows, 'SymbolUps':SymbolUps, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_Stratigraphy5Pre(url, sid, faces, IDs, StratigraphyNames, Symbols, SedimentaryFaciess, Thicknesss, Descriptions, SymbolMains, SymbolLows, SymbolUps, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'StratigraphyNames':StratigraphyNames, 'Symbols':Symbols, 'SedimentaryFaciess':SedimentaryFaciess, 'Thicknesss':Thicknesss, 'Descriptions':Descriptions, 'SymbolMains':SymbolMains, 'SymbolLows':SymbolLows, 'SymbolUps':SymbolUps, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+

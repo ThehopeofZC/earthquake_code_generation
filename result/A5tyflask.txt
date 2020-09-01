@@ -1,0 +1,193 @@
+@app.route('/mysql/seismological_bureau/add_CollectedStraAttitude/', methods = ['POST'])
+def add_CollectedStraAttitude():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	points = data["points"]
+	IDs = data["IDs"]
+	IsReverseds = data["IsReverseds"]
+	StraDips = data["StraDips"]
+	StraDipAngles = data["StraDipAngles"]
+	LastAngles = data["LastAngles"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_CollectedStraAttitude(sid, points, IDs, IsReverseds, StraDips, StraDipAngles, LastAngles, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_CollectedTrench/', methods = ['POST'])
+def add_CollectedTrench():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	points = data["points"]
+	IDs = data["IDs"]
+	TargetFaultIDs = data["TargetFaultIDs"]
+	TargetFaultSources = data["TargetFaultSources"]
+	TargetFaultNames = data["TargetFaultNames"]
+	Names = data["Names"]
+	Lons = data["Lons"]
+	Lats = data["Lats"]
+	Elevations = data["Elevations"]
+	TrenchStrikes = data["TrenchStrikes"]
+	LocationNames = data["LocationNames"]
+	GeomophEnvs = data["GeomophEnvs"]
+	Photo_AIIDs = data["Photo_AIIDs"]
+	Photo_ARWIDs = data["Photo_ARWIDs"]
+	ViewTos = data["ViewTos"]
+	ExposedStratumCounts = data["ExposedStratumCounts"]
+	EQEventCounts = data["EQEventCounts"]
+	LatestEQPeroidEsts = data["LatestEQPeroidEsts"]
+	LatestEQPeroidErs = data["LatestEQPeroidErs"]
+	Profile1_AIIDs = data["Profile1_AIIDs"]
+	Profile1_ARWIDs = data["Profile1_ARWIDs"]
+	Profile1Comment_ARIDs = data["Profile1Comment_ARIDs"]
+	Profile1Comment_ARWIDs = data["Profile1Comment_ARWIDs"]
+	Profile1Photo_AIIDs = data["Profile1Photo_AIIDs"]
+	Profile1Photo_ARWIDs = data["Profile1Photo_ARWIDs"]
+	Profile2_AIIDs = data["Profile2_AIIDs"]
+	Profile2_ARWIDs = data["Profile2_ARWIDs"]
+	Profile2Comment_ARIDs = data["Profile2Comment_ARIDs"]
+	Profile2Comment_ARWIDs = data["Profile2Comment_ARWIDs"]
+	Profile2Photo_AIIDs = data["Profile2Photo_AIIDs"]
+	Profile2Photo_ARWIDs = data["Profile2Photo_ARWIDs"]
+	Descriptions = data["Descriptions"]
+	LastAngles = data["LastAngles"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_CollectedTrench(sid, points, IDs, TargetFaultIDs, TargetFaultSources, TargetFaultNames, Names, Lons, Lats, Elevations, TrenchStrikes, LocationNames, GeomophEnvs, Photo_AIIDs, Photo_ARWIDs, ViewTos, ExposedStratumCounts, EQEventCounts, LatestEQPeroidEsts, LatestEQPeroidErs, Profile1_AIIDs, Profile1_ARWIDs, Profile1Comment_ARIDs, Profile1Comment_ARWIDs, Profile1Photo_AIIDs, Profile1Photo_ARWIDs, Profile2_AIIDs, Profile2_ARWIDs, Profile2Comment_ARIDs, Profile2Comment_ARWIDs, Profile2Photo_AIIDs, Profile2Photo_ARWIDs, Descriptions, LastAngles, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_GeoBoundaryLine1Pre/', methods = ['POST'])
+def add_GeoBoundaryLine1Pre():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	GeologyBoundaryLines = data["GeologyBoundaryLines"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_GeoBoundaryLine1Pre(sid, lines, IDs, GeologyBoundaryLines, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_GeoBoundaryLine25Pre/', methods = ['POST'])
+def add_GeoBoundaryLine25Pre():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	GeologyBoundaryLines = data["GeologyBoundaryLines"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_GeoBoundaryLine25Pre(sid, lines, IDs, GeologyBoundaryLines, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_GeoBoundaryLine5Pre/', methods = ['POST'])
+def add_GeoBoundaryLine5Pre():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	GeologyBoundaryLines = data["GeologyBoundaryLines"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_GeoBoundaryLine5Pre(sid, lines, IDs, GeologyBoundaryLines, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_Rock1Pre/', methods = ['POST'])
+def add_Rock1Pre():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	faces = data["faces"]
+	IDs = data["IDs"]
+	RockNames = data["RockNames"]
+	Symbols = data["Symbols"]
+	QDHOs = data["QDHOs"]
+	Descriptions = data["Descriptions"]
+	SymbolMains = data["SymbolMains"]
+	SymbolLows = data["SymbolLows"]
+	SymbolUps = data["SymbolUps"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_Rock1Pre(sid, faces, IDs, RockNames, Symbols, QDHOs, Descriptions, SymbolMains, SymbolLows, SymbolUps, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_Rock25Pre/', methods = ['POST'])
+def add_Rock25Pre():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	faces = data["faces"]
+	IDs = data["IDs"]
+	RockNames = data["RockNames"]
+	Symbols = data["Symbols"]
+	QDHOs = data["QDHOs"]
+	Descriptions = data["Descriptions"]
+	SymbolMains = data["SymbolMains"]
+	SymbolLows = data["SymbolLows"]
+	SymbolUps = data["SymbolUps"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_Rock25Pre(sid, faces, IDs, RockNames, Symbols, QDHOs, Descriptions, SymbolMains, SymbolLows, SymbolUps, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_Rock5Pre/', methods = ['POST'])
+def add_Rock5Pre():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	faces = data["faces"]
+	IDs = data["IDs"]
+	RockNames = data["RockNames"]
+	Symbols = data["Symbols"]
+	QDHOs = data["QDHOs"]
+	Descriptions = data["Descriptions"]
+	SymbolMains = data["SymbolMains"]
+	SymbolLows = data["SymbolLows"]
+	SymbolUps = data["SymbolUps"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_Rock5Pre(sid, faces, IDs, RockNames, Symbols, QDHOs, Descriptions, SymbolMains, SymbolLows, SymbolUps, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_Stratigraphy1Pre/', methods = ['POST'])
+def add_Stratigraphy1Pre():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	faces = data["faces"]
+	IDs = data["IDs"]
+	StratigraphyNames = data["StratigraphyNames"]
+	Symbols = data["Symbols"]
+	SedimentaryFaciess = data["SedimentaryFaciess"]
+	Thicknesss = data["Thicknesss"]
+	Descriptions = data["Descriptions"]
+	SymbolMains = data["SymbolMains"]
+	SymbolLows = data["SymbolLows"]
+	SymbolUps = data["SymbolUps"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_Stratigraphy1Pre(sid, faces, IDs, StratigraphyNames, Symbols, SedimentaryFaciess, Thicknesss, Descriptions, SymbolMains, SymbolLows, SymbolUps, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_Stratigraphy25Pre/', methods = ['POST'])
+def add_Stratigraphy25Pre():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	faces = data["faces"]
+	IDs = data["IDs"]
+	StratigraphyNames = data["StratigraphyNames"]
+	Symbols = data["Symbols"]
+	SedimentaryFaciess = data["SedimentaryFaciess"]
+	Thicknesss = data["Thicknesss"]
+	Descriptions = data["Descriptions"]
+	SymbolMains = data["SymbolMains"]
+	SymbolLows = data["SymbolLows"]
+	SymbolUps = data["SymbolUps"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_Stratigraphy25Pre(sid, faces, IDs, StratigraphyNames, Symbols, SedimentaryFaciess, Thicknesss, Descriptions, SymbolMains, SymbolLows, SymbolUps, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_Stratigraphy5Pre/', methods = ['POST'])
+def add_Stratigraphy5Pre():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	faces = data["faces"]
+	IDs = data["IDs"]
+	StratigraphyNames = data["StratigraphyNames"]
+	Symbols = data["Symbols"]
+	SedimentaryFaciess = data["SedimentaryFaciess"]
+	Thicknesss = data["Thicknesss"]
+	Descriptions = data["Descriptions"]
+	SymbolMains = data["SymbolMains"]
+	SymbolLows = data["SymbolLows"]
+	SymbolUps = data["SymbolUps"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_Stratigraphy5Pre(sid, faces, IDs, StratigraphyNames, Symbols, SedimentaryFaciess, Thicknesss, Descriptions, SymbolMains, SymbolLows, SymbolUps, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
