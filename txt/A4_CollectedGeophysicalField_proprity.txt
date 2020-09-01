@@ -15,7 +15,7 @@ wstring Purpose
 int SvyMethod
 int StartMilestoneNum
 int EndMilestoneNum
-Double Length
+double Length
 wstring ResultName
 wstring ExpData_ARWID
 wstring ResultMap_ARWID

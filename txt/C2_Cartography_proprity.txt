@@ -46,6 +46,6 @@ MapSheet
 face
 wstring ID
 wstring SheetNumber
-Double RotationAngle
+double RotationAngle
 wstring CommentInfo
 

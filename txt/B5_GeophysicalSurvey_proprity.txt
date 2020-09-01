@@ -29,7 +29,7 @@ wstring HugeVolumeDataID
 wstring Name
 int SvyMethod
 int SvyLineCount
-Double SvyLineLength
+double SvyLineLength
 int SvyPointCount
 wstring SvyInstitute
 wstring SvyDataStorageInstitution
@@ -51,9 +51,9 @@ wstring SvyLineID
 wstring TargetFaultID
 wstring TargetFaultSource
 wstring TargetFaultName
-Double MeasureLength
-Double Lon
-Double Lat
+double MeasureLength
+double Lon
+double Lat
 wstring M0Depth
 wstring M0
 int Age0
@@ -75,7 +75,7 @@ wstring Purpose
 int SvyMethod
 int StartMilestoneNum
 int EndMilestoneNum
-Double Length
+double Length
 wstring ResultName
 wstring ExpData_ARWID
 wstring ResultMap_ARWID
@@ -93,9 +93,9 @@ wstring FieldID
 int SvyMethod
 wstring SvyPointDescription
 int MilestoneNum
-Double Lon
-Double Lat
-Double Elevation
+double Lon
+double Lat
+double Elevation
 wstring LabelInfo
 wstring CommentInfo
 

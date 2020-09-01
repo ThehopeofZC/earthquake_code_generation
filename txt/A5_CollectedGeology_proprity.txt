@@ -4,7 +4,7 @@ wstring ID
 int IsReversed
 int StraDip
 int StraDipAngle
-Double LastAngle
+double LastAngle
 wstring CommentInfo
 
 CollectedTrench
@@ -14,9 +14,9 @@ wstring TargetFaultID
 wstring TargetFaultSource
 wstring TargetFaultName
 wstring Name
-Double Lon
-Double Lat
-Double Elevation
+double Lon
+double Lat
+double Elevation
 int TrenchStrike
 wstring LocationName
 wstring GeomophEnv
@@ -40,7 +40,7 @@ wstring Profile2Comment_ARWID
 wstring Profile2Photo_AIID
 wstring Profile2Photo_ARWID
 wstring Description
-Double LastAngle
+double LastAngle
 wstring CommentInfo
 
 GeoBoundaryLine1Pre
