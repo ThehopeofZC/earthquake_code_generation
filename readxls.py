@@ -43,7 +43,7 @@ for t in filedir:
             elif ltype[i][0:1]=='I':
                 ltype[i]='int'
             elif ltype[i][0:6]=='Double':
-                ltype[i]='Double'
+                ltype[i]='double'
             elif ltype[i][0:5]=='Small':
                 ltype[i]='int'
             elif ltype[i][:4]=='Date':
