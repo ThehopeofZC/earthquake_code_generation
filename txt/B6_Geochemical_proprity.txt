@@ -56,6 +56,7 @@ double Distance1
 double Distance2
 wstring AbnormalType
 int ShowCode
+double Shape_Length
 wstring CommentInfo
 
 GeochemicalSvyLine
@@ -78,6 +79,7 @@ double AbnormalBottomValue
 wstring RM_AIID
 wstring RM_ARWID
 int ShowCode
+double Shape_Length
 wstring CommentInfo
 
 GeochemicalSvyPoint

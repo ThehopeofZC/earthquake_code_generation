@@ -100,6 +100,8 @@ wstring Photo_AIID
 wstring Photo_ARWID
 wstring PhotoDesc_ARWID
 wstring Photographer
+double SHAPE_Length
+double SHAPE_Area
 wstring CommentInfo
 
 VolcanicCone
@@ -133,6 +135,8 @@ wstring Photo_AIID
 wstring Photo_ARWID
 wstring PhotoDesc_ARWID
 wstring Photographer
+double SHAPE_Length
+double SHAPE_Area
 wstring CommentInfo
 
 VolcanicSvyPoint
