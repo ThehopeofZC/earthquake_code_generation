@@ -1,4 +1,4 @@
-B3_DrillProjectTable
+DrillProjectTable
 table
 wstring ID
 wstring MainAFMRegionID

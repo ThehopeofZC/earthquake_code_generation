@@ -1,10 +1,10 @@
-B5_GeophyRgnHasGeophyPt
+GeophyRgnHasGeophyPt
 table
 wstring ID
 wstring GeophyRgnID
 wstring GeophyPtID
 
-B5_GeophySvyDataTable
+GeophySvyDataTable
 table
 wstring ID
 wstring ProjectID
@@ -19,7 +19,7 @@ wstring Result_AIID
 wstring Result_ARWID
 wstring CommentInfo
 
-B5_GeophySvyProjectTable
+GeophySvyProjectTable
 table
 wstring ID
 wstring MainAFMRegionID
