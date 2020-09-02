@@ -97,7 +97,7 @@ for t in fileList:
 
     #生成EsTEMySQLAPI.cpp的url和func声明
     for name in tableName:
-        output += "const char* func_add_"+name+"t = \"api_add_"+name+"\";\n"
+        output += "const char* func_add_"+name+" = \"api_add_"+name+"\";\n"
     output+='\n'
     for name in tableName:
         output += "const char* url_add_"+name+" = \"http://localhost:5000/mysql/seismological_bureau/add_"+name+"/\";\n"
@@ -165,7 +165,7 @@ for t in fileList:
             output += "int nPolylineNum = int("+vec+"[idx]._baseinfo._polygon.size());\n"
             output += "int nPolylinePtNumTotal = 0;\nint nPolylineEleCount = 0;\nvector<int> vecPolylinePtNum;\nvecPolylinePtNum.resize(nPolylineNum);\n"
             output += "for(int idxLine=0; idxLine<nPolylineNum; idxLine++)\n{\n"
-            output += "vecPolylinePtNum[idxLine] = int("+vec+"[idx]._baseinfo._polyline[idxLine].size());\n"
+            output += "vecPolylinePtNum[idxLine] = int("+vec+"[idx]._baseinfo._polygon[idxLine].size());\n"
             output += "nPolylinePtNumTotal += vecPolylinePtNum[idxLine];\n}\nPyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);\n"
             output += "PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue(\"i\", nPolylineNum));\nnPolylineEleCount++;\n"
             output += "for(int idxLine=0; idxLine<nPolylineNum; idxLine++)\n{\nPyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue(\"i\", vecPolylinePtNum[idxLine]));\n"
@@ -179,7 +179,10 @@ for t in fileList:
         for attribute in attrs[i]:
             output += "PyTuple_SetItem(pyTuple"+attribute[1]+"s, idx, "
             if attribute[0]=='wstring':
-                output += "StringToPy(WstringToString("+vec+"[idx]._baseinfo._"+attribute[1]+")));\n"
+                output += "StringToPy(WstringToString("+vec+"[idx]"
+                if attribute[1]=="ID" or attribute[1]=="CommentInfo":#修改为ID段和CommentInfo段需要单加._baseinfo
+                    output += "._baseinfo"
+                output += "._"+attribute[1]+")));\n"
             elif attribute[0]=='double':
                 output += "PyFloat_FromDouble("+vec+"[idx]._"+attribute[1]+"));\n"
             elif attribute[0]=='int':
