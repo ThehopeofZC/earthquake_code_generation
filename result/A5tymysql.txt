@@ -10,17 +10,17 @@ bool EXPORTTEMYSQLAPI EsAddStratigraphy1PreToNetDB(const int nSId, const vector<
 bool EXPORTTEMYSQLAPI EsAddStratigraphy25PreToNetDB(const int nSId, const vector<_STRATIGRAPHY25PRE>& vec_Stratigraphy25Pre);
 bool EXPORTTEMYSQLAPI EsAddStratigraphy5PreToNetDB(const int nSId, const vector<_STRATIGRAPHY5PRE>& vec_Stratigraphy5Pre);
 
-const char* func_add_CollectedStraAttitudet = "api_add_CollectedStraAttitude";
-const char* func_add_CollectedTrencht = "api_add_CollectedTrench";
-const char* func_add_GeoBoundaryLine1Pret = "api_add_GeoBoundaryLine1Pre";
-const char* func_add_GeoBoundaryLine25Pret = "api_add_GeoBoundaryLine25Pre";
-const char* func_add_GeoBoundaryLine5Pret = "api_add_GeoBoundaryLine5Pre";
-const char* func_add_Rock1Pret = "api_add_Rock1Pre";
-const char* func_add_Rock25Pret = "api_add_Rock25Pre";
-const char* func_add_Rock5Pret = "api_add_Rock5Pre";
-const char* func_add_Stratigraphy1Pret = "api_add_Stratigraphy1Pre";
-const char* func_add_Stratigraphy25Pret = "api_add_Stratigraphy25Pre";
-const char* func_add_Stratigraphy5Pret = "api_add_Stratigraphy5Pre";
+const char* func_add_CollectedStraAttitude = "api_add_CollectedStraAttitude";
+const char* func_add_CollectedTrench = "api_add_CollectedTrench";
+const char* func_add_GeoBoundaryLine1Pre = "api_add_GeoBoundaryLine1Pre";
+const char* func_add_GeoBoundaryLine25Pre = "api_add_GeoBoundaryLine25Pre";
+const char* func_add_GeoBoundaryLine5Pre = "api_add_GeoBoundaryLine5Pre";
+const char* func_add_Rock1Pre = "api_add_Rock1Pre";
+const char* func_add_Rock25Pre = "api_add_Rock25Pre";
+const char* func_add_Rock5Pre = "api_add_Rock5Pre";
+const char* func_add_Stratigraphy1Pre = "api_add_Stratigraphy1Pre";
+const char* func_add_Stratigraphy25Pre = "api_add_Stratigraphy25Pre";
+const char* func_add_Stratigraphy5Pre = "api_add_Stratigraphy5Pre";
 
 const char* url_add_CollectedStraAttitude = "http://localhost:5000/mysql/seismological_bureau/add_CollectedStraAttitude/";
 const char* url_add_CollectedTrench = "http://localhost:5000/mysql/seismological_bureau/add_CollectedTrench/";

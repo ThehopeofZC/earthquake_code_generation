@@ -70,7 +70,7 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_AALL012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_AALL012000[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_AALL012000[idx]._ProjectCode)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_AALL012000[idx]._GB));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_AALL012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_AALL012000[idx]._Shape_Length));
@@ -142,13 +142,13 @@ PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_AALP012000[idx]._baseinf
 PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_AALP012000[idx]._baseinfo._point._z));
 PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_AALP012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_AALP012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_AALP012000[idx]._baseinfo._NAME)));
-PyTuple_SetItem(pyTuplePINYINs, idx, StringToPy(WstringToString(vec_AALP012000[idx]._baseinfo._PINYIN)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_AALP012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_AALP012000[idx]._NAME)));
+PyTuple_SetItem(pyTuplePINYINs, idx, StringToPy(WstringToString(vec_AALP012000[idx]._PINYIN)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_AALP012000[idx]._GB));
-PyTuple_SetItem(pyTupleFONT_CODEs, idx, StringToPy(WstringToString(vec_AALP012000[idx]._baseinfo._FONT_CODE)));
+PyTuple_SetItem(pyTupleFONT_CODEs, idx, StringToPy(WstringToString(vec_AALP012000[idx]._FONT_CODE)));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_AALP012000[idx]._CHK_ID));
-PyTuple_SetItem(pyTupleCHAR_CODEs, idx, StringToPy(WstringToString(vec_AALP012000[idx]._baseinfo._CHAR_CODE)));
+PyTuple_SetItem(pyTupleCHAR_CODEs, idx, StringToPy(WstringToString(vec_AALP012000[idx]._CHAR_CODE)));
 PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_AALP012000[idx]._baseinfo._CommentInfo)));
 }
 PyTuple_SetItem(args, 0, pyTupleURL);
@@ -223,7 +223,7 @@ vector<int> vecPolylinePtNum;
 vecPolylinePtNum.resize(nPolylineNum);
 for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
 {
-vecPolylinePtNum[idxLine] = int(vec_BOUA012000[idx]._baseinfo._polyline[idxLine].size());
+vecPolylinePtNum[idxLine] = int(vec_BOUA012000[idx]._baseinfo._polygon[idxLine].size());
 nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
 }
 PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
@@ -248,11 +248,11 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_BOUA012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_BOUA012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleTNAMEs, idx, StringToPy(WstringToString(vec_BOUA012000[idx]._baseinfo._TNAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_BOUA012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleTNAMEs, idx, StringToPy(WstringToString(vec_BOUA012000[idx]._TNAME)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_BOUA012000[idx]._GB));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_BOUA012000[idx]._CHK_ID));
-PyTuple_SetItem(pyTupleCNAMEs, idx, StringToPy(WstringToString(vec_BOUA012000[idx]._baseinfo._CNAME)));
+PyTuple_SetItem(pyTupleCNAMEs, idx, StringToPy(WstringToString(vec_BOUA012000[idx]._CNAME)));
 PyTuple_SetItem(pyTupleTPACs, idx, PyFloat_FromDouble(vec_BOUA012000[idx]._TPAC));
 PyTuple_SetItem(pyTupleCPACs, idx, PyFloat_FromDouble(vec_BOUA012000[idx]._CPAC));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_BOUA012000[idx]._Shape_Length));
@@ -353,7 +353,7 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_BOUL012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_BOUL012000[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_BOUL012000[idx]._ProjectCode)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_BOUL012000[idx]._GB));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_BOUL012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_BOUL012000[idx]._Shape_Length));
@@ -425,7 +425,7 @@ vector<int> vecPolylinePtNum;
 vecPolylinePtNum.resize(nPolylineNum);
 for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
 {
-vecPolylinePtNum[idxLine] = int(vec_BRGA012000[idx]._baseinfo._polyline[idxLine].size());
+vecPolylinePtNum[idxLine] = int(vec_BRGA012000[idx]._baseinfo._polygon[idxLine].size());
 nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
 }
 PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
@@ -450,8 +450,8 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_BRGA012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_BRGA012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_BRGA012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_BRGA012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_BRGA012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_BRGA012000[idx]._GB));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_BRGA012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_BRGA012000[idx]._Shape_Length));
@@ -549,7 +549,7 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_BRGL012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_BRGL012000[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_BRGL012000[idx]._ProjectCode)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_BRGL012000[idx]._GB));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_BRGL012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_BRGL012000[idx]._Shape_Length));
@@ -644,7 +644,7 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_CPTL012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_CPTL012000[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_CPTL012000[idx]._ProjectCode)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_CPTL012000[idx]._GB));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_CPTL012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_CPTL012000[idx]._Shape_Length));
@@ -715,9 +715,9 @@ PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_CPTP012000[idx]._baseinf
 PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_CPTP012000[idx]._baseinfo._point._z));
 PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_CPTP012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_CPTP012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleTEGRs, idx, StringToPy(WstringToString(vec_CPTP012000[idx]._baseinfo._TEGR)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_CPTP012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_CPTP012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleTEGRs, idx, StringToPy(WstringToString(vec_CPTP012000[idx]._TEGR)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_CPTP012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_CPTP012000[idx]._GB));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_CPTP012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleELEVs, idx, PyFloat_FromDouble(vec_CPTP012000[idx]._ELEV));
@@ -791,7 +791,7 @@ vector<int> vecPolylinePtNum;
 vecPolylinePtNum.resize(nPolylineNum);
 for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
 {
-vecPolylinePtNum[idxLine] = int(vec_HFCA012000[idx]._baseinfo._polyline[idxLine].size());
+vecPolylinePtNum[idxLine] = int(vec_HFCA012000[idx]._baseinfo._polygon[idxLine].size());
 nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
 }
 PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
@@ -816,8 +816,8 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_HFCA012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_HFCA012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_HFCA012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_HFCA012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_HFCA012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_HFCA012000[idx]._GB));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_HFCA012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_HFCA012000[idx]._Shape_Length));
@@ -916,8 +916,8 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_HFCL012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_HFCL012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_HFCL012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_HFCL012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_HFCL012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_HFCL012000[idx]._GB));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_HFCL012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_HFCL012000[idx]._Shape_Length));
@@ -988,8 +988,8 @@ PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_HFCP012000[idx]._baseinf
 PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_HFCP012000[idx]._baseinfo._point._z));
 PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_HFCP012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_HFCP012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_HFCP012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_HFCP012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_HFCP012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_HFCP012000[idx]._GB));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_HFCP012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleSYM_ANGLEs, idx, PyFloat_FromDouble(vec_HFCP012000[idx]._SYM_ANGLE));
@@ -1064,7 +1064,7 @@ vector<int> vecPolylinePtNum;
 vecPolylinePtNum.resize(nPolylineNum);
 for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
 {
-vecPolylinePtNum[idxLine] = int(vec_HYDA012000[idx]._baseinfo._polyline[idxLine].size());
+vecPolylinePtNum[idxLine] = int(vec_HYDA012000[idx]._baseinfo._polygon[idxLine].size());
 nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
 }
 PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
@@ -1089,12 +1089,12 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_HYDA012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_HYDA012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleHYDCs, idx, StringToPy(WstringToString(vec_HYDA012000[idx]._baseinfo._HYDC)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_HYDA012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_HYDA012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleHYDCs, idx, StringToPy(WstringToString(vec_HYDA012000[idx]._HYDC)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_HYDA012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_HYDA012000[idx]._GB));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_HYDA012000[idx]._CHK_ID));
-PyTuple_SetItem(pyTupleHYDGs, idx, StringToPy(WstringToString(vec_HYDA012000[idx]._baseinfo._HYDG)));
+PyTuple_SetItem(pyTupleHYDGs, idx, StringToPy(WstringToString(vec_HYDA012000[idx]._HYDG)));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_HYDA012000[idx]._Shape_Length));
 PyTuple_SetItem(pyTupleShape_Areas, idx, PyFloat_FromDouble(vec_HYDA012000[idx]._Shape_Area));
 PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_HYDA012000[idx]._baseinfo._CommentInfo)));
@@ -1195,12 +1195,12 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_HYDL012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_HYDL012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleHYDCs, idx, StringToPy(WstringToString(vec_HYDL012000[idx]._baseinfo._HYDC)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_HYDL012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_HYDL012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleHYDCs, idx, StringToPy(WstringToString(vec_HYDL012000[idx]._HYDC)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_HYDL012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_HYDL012000[idx]._GB));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_HYDL012000[idx]._CHK_ID));
-PyTuple_SetItem(pyTupleHYDGs, idx, StringToPy(WstringToString(vec_HYDL012000[idx]._baseinfo._HYDG)));
+PyTuple_SetItem(pyTupleHYDGs, idx, StringToPy(WstringToString(vec_HYDL012000[idx]._HYDG)));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_HYDL012000[idx]._Shape_Length));
 PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_HYDL012000[idx]._baseinfo._CommentInfo)));
 }
@@ -1271,8 +1271,8 @@ PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_HYDP012000[idx]._baseinf
 PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_HYDP012000[idx]._baseinfo._point._z));
 PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_HYDP012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_HYDP012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_HYDP012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_HYDP012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_HYDP012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_HYDP012000[idx]._GB));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_HYDP012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleSYM_ANGLEs, idx, PyFloat_FromDouble(vec_HYDP012000[idx]._SYM_ANGLE));
@@ -1369,8 +1369,8 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_LFCL012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_LFCL012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_LFCL012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_LFCL012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_LFCL012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_LFCL012000[idx]._GB));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_LFCL012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_LFCL012000[idx]._Shape_Length));
@@ -1442,9 +1442,9 @@ PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_LFCP012000[idx]._baseinf
 PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_LFCP012000[idx]._baseinfo._point._z));
 PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_LFCP012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_LFCP012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleRNs, idx, StringToPy(WstringToString(vec_LFCP012000[idx]._baseinfo._RN)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_LFCP012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_LFCP012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleRNs, idx, StringToPy(WstringToString(vec_LFCP012000[idx]._RN)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_LFCP012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_LFCP012000[idx]._GB));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_LFCP012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleSYM_ANGLEs, idx, PyFloat_FromDouble(vec_LFCP012000[idx]._SYM_ANGLE));
@@ -1544,11 +1544,11 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_LRDL012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_LRDL012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleRNs, idx, StringToPy(WstringToString(vec_LRDL012000[idx]._baseinfo._RN)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_LRDL012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_LRDL012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleRNs, idx, StringToPy(WstringToString(vec_LRDL012000[idx]._RN)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_LRDL012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_LRDL012000[idx]._GB));
-PyTuple_SetItem(pyTupleRTEGs, idx, StringToPy(WstringToString(vec_LRDL012000[idx]._baseinfo._RTEG)));
+PyTuple_SetItem(pyTupleRTEGs, idx, StringToPy(WstringToString(vec_LRDL012000[idx]._RTEG)));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_LRDL012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_LRDL012000[idx]._Shape_Length));
 PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_LRDL012000[idx]._baseinfo._CommentInfo)));
@@ -1647,9 +1647,9 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_LRRL012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_LRRL012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleRNs, idx, StringToPy(WstringToString(vec_LRRL012000[idx]._baseinfo._RN)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_LRRL012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_LRRL012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleRNs, idx, StringToPy(WstringToString(vec_LRRL012000[idx]._RN)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_LRRL012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_LRRL012000[idx]._GB));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_LRRL012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_LRRL012000[idx]._Shape_Length));
@@ -1747,8 +1747,8 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_PIPL012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_PIPL012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_PIPL012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_PIPL012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_PIPL012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_PIPL012000[idx]._GB));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_PIPL012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_PIPL012000[idx]._Shape_Length));
@@ -1819,8 +1819,8 @@ PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_PIPP012000[idx]._baseinf
 PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_PIPP012000[idx]._baseinfo._point._z));
 PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_PIPP012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_PIPP012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_PIPP012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_PIPP012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_PIPP012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_PIPP012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_PIPP012000[idx]._GB));
 PyTuple_SetItem(pyTupleSYM_ANGLEs, idx, PyFloat_FromDouble(vec_PIPP012000[idx]._SYM_ANGLE));
@@ -1892,7 +1892,7 @@ vector<int> vecPolylinePtNum;
 vecPolylinePtNum.resize(nPolylineNum);
 for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
 {
-vecPolylinePtNum[idxLine] = int(vec_RESA012000[idx]._baseinfo._polyline[idxLine].size());
+vecPolylinePtNum[idxLine] = int(vec_RESA012000[idx]._baseinfo._polygon[idxLine].size());
 nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
 }
 PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
@@ -1917,7 +1917,7 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_RESA012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_RESA012000[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_RESA012000[idx]._ProjectCode)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_RESA012000[idx]._GB));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_RESA012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_RESA012000[idx]._Shape_Length));
@@ -2014,7 +2014,7 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_RESL012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_RESL012000[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_RESL012000[idx]._ProjectCode)));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_RESL012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_RESL012000[idx]._GB));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_RESL012000[idx]._Shape_Length));
@@ -2084,8 +2084,8 @@ PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_RESP012000[idx]._baseinf
 PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_RESP012000[idx]._baseinfo._point._z));
 PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_RESP012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_RESP012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_RESP012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_RESP012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_RESP012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_RESP012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_RESP012000[idx]._GB));
 PyTuple_SetItem(pyTupleSYM_ANGLEs, idx, PyFloat_FromDouble(vec_RESP012000[idx]._SYM_ANGLE));
@@ -2158,7 +2158,7 @@ vector<int> vecPolylinePtNum;
 vecPolylinePtNum.resize(nPolylineNum);
 for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
 {
-vecPolylinePtNum[idxLine] = int(vec_RFCA012000[idx]._baseinfo._polyline[idxLine].size());
+vecPolylinePtNum[idxLine] = int(vec_RFCA012000[idx]._baseinfo._polygon[idxLine].size());
 nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
 }
 PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
@@ -2183,8 +2183,8 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_RFCA012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_RFCA012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_RFCA012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_RFCA012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_RFCA012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_RFCA012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_RFCA012000[idx]._GB));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_RFCA012000[idx]._Shape_Length));
@@ -2283,8 +2283,8 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_RFCL012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_RFCL012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_RFCL012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_RFCL012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_RFCL012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_RFCL012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_RFCL012000[idx]._GB));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_RFCL012000[idx]._Shape_Length));
@@ -2355,8 +2355,8 @@ PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_RFCP012000[idx]._baseinf
 PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_RFCP012000[idx]._baseinfo._point._z));
 PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_RFCP012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_RFCP012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_RFCP012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_RFCP012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_RFCP012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_RFCP012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_RFCP012000[idx]._GB));
 PyTuple_SetItem(pyTupleSYM_ANGLEs, idx, PyFloat_FromDouble(vec_RFCP012000[idx]._SYM_ANGLE));
@@ -2429,7 +2429,7 @@ vector<int> vecPolylinePtNum;
 vecPolylinePtNum.resize(nPolylineNum);
 for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
 {
-vecPolylinePtNum[idxLine] = int(vec_TERA012000[idx]._baseinfo._polyline[idxLine].size());
+vecPolylinePtNum[idxLine] = int(vec_TERA012000[idx]._baseinfo._polygon[idxLine].size());
 nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
 }
 PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
@@ -2454,9 +2454,9 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_TERA012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_TERA012000[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_TERA012000[idx]._ProjectCode)));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_TERA012000[idx]._CHK_ID));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_TERA012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_TERA012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_TERA012000[idx]._GB));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_TERA012000[idx]._Shape_Length));
 PyTuple_SetItem(pyTupleShape_Areas, idx, PyFloat_FromDouble(vec_TERA012000[idx]._Shape_Area));
@@ -2555,8 +2555,8 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_TERL012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_TERL012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_TERL012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_TERL012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_TERL012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_TERL012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_TERL012000[idx]._GB));
 PyTuple_SetItem(pyTupleELEVs, idx, PyFloat_FromDouble(vec_TERL012000[idx]._ELEV));
@@ -2630,8 +2630,8 @@ PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_TERP012000[idx]._baseinf
 PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_TERP012000[idx]._baseinfo._point._z));
 PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_TERP012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_TERP012000[idx]._baseinfo._ProjectCode)));
-PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_TERP012000[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_TERP012000[idx]._ProjectCode)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_TERP012000[idx]._NAME)));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_TERP012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_TERP012000[idx]._GB));
 PyTuple_SetItem(pyTupleELEVs, idx, PyFloat_FromDouble(vec_TERP012000[idx]._ELEV));
@@ -2705,7 +2705,7 @@ vector<int> vecPolylinePtNum;
 vecPolylinePtNum.resize(nPolylineNum);
 for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
 {
-vecPolylinePtNum[idxLine] = int(vec_VEGA012000[idx]._baseinfo._polyline[idxLine].size());
+vecPolylinePtNum[idxLine] = int(vec_VEGA012000[idx]._baseinfo._polygon[idxLine].size());
 nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
 }
 PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
@@ -2730,7 +2730,7 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_VEGA012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_VEGA012000[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_VEGA012000[idx]._ProjectCode)));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_VEGA012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_VEGA012000[idx]._GB));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_VEGA012000[idx]._Shape_Length));
@@ -2827,7 +2827,7 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_VEGL012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_VEGL012000[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_VEGL012000[idx]._ProjectCode)));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_VEGL012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_VEGL012000[idx]._GB));
 PyTuple_SetItem(pyTupleShape_Lengths, idx, PyFloat_FromDouble(vec_VEGL012000[idx]._Shape_Length));
@@ -2895,7 +2895,7 @@ PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_VEGP012000[idx]._baseinf
 PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_VEGP012000[idx]._baseinfo._point._z));
 PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_VEGP012000[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_VEGP012000[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_VEGP012000[idx]._ProjectCode)));
 PyTuple_SetItem(pyTupleCHK_IDs, idx, Py_BuildValue("i", vec_VEGP012000[idx]._CHK_ID));
 PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_VEGP012000[idx]._GB));
 PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_VEGP012000[idx]._baseinfo._CommentInfo)));

@@ -6,13 +6,13 @@ bool EXPORTTEMYSQLAPI EsAddGeophySvyLineToNetDB(const int nSId, const vector<_GE
 bool EXPORTTEMYSQLAPI EsAddGeophySvyPointToNetDB(const int nSId, const vector<_GEOPHYSVYPOINT>& vec_GeophySvyPoint);
 bool EXPORTTEMYSQLAPI EsAddGeophySvyRegionToNetDB(const int nSId, const vector<_GEOPHYSVYREGION>& vec_GeophySvyRegion);
 
-const char* func_add_B5_GeophyRgnHasGeophyPtt = "api_add_B5_GeophyRgnHasGeophyPt";
-const char* func_add_B5_GeophySvyDataTablet = "api_add_B5_GeophySvyDataTable";
-const char* func_add_B5_GeophySvyProjectTablet = "api_add_B5_GeophySvyProjectTable";
-const char* func_add_GeophySvyFaultPointt = "api_add_GeophySvyFaultPoint";
-const char* func_add_GeophySvyLinet = "api_add_GeophySvyLine";
-const char* func_add_GeophySvyPointt = "api_add_GeophySvyPoint";
-const char* func_add_GeophySvyRegiont = "api_add_GeophySvyRegion";
+const char* func_add_B5_GeophyRgnHasGeophyPt = "api_add_B5_GeophyRgnHasGeophyPt";
+const char* func_add_B5_GeophySvyDataTable = "api_add_B5_GeophySvyDataTable";
+const char* func_add_B5_GeophySvyProjectTable = "api_add_B5_GeophySvyProjectTable";
+const char* func_add_GeophySvyFaultPoint = "api_add_GeophySvyFaultPoint";
+const char* func_add_GeophySvyLine = "api_add_GeophySvyLine";
+const char* func_add_GeophySvyPoint = "api_add_GeophySvyPoint";
+const char* func_add_GeophySvyRegion = "api_add_GeophySvyRegion";
 
 const char* url_add_B5_GeophyRgnHasGeophyPt = "http://localhost:5000/mysql/seismological_bureau/add_B5_GeophyRgnHasGeophyPt/";
 const char* url_add_B5_GeophySvyDataTable = "http://localhost:5000/mysql/seismological_bureau/add_B5_GeophySvyDataTable/";

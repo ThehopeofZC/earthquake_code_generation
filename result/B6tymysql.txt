@@ -5,12 +5,12 @@ bool EXPORTTEMYSQLAPI EsAddGeochemicalAbnSegmentToNetDB(const int nSId, const ve
 bool EXPORTTEMYSQLAPI EsAddGeochemicalSvyLineToNetDB(const int nSId, const vector<_GEOCHEMICALSVYLINE>& vec_GeochemicalSvyLine);
 bool EXPORTTEMYSQLAPI EsAddGeochemicalSvyPointToNetDB(const int nSId, const vector<_GEOCHEMICALSVYPOINT>& vec_GeochemicalSvyPoint);
 
-const char* func_add_B6_GeochemicalProjectTablet = "api_add_B6_GeochemicalProjectTable";
-const char* func_add_B6_GeocheSvyDataTablet = "api_add_B6_GeocheSvyDataTable";
-const char* func_add_GeochemicalAbnPointt = "api_add_GeochemicalAbnPoint";
-const char* func_add_GeochemicalAbnSegmentt = "api_add_GeochemicalAbnSegment";
-const char* func_add_GeochemicalSvyLinet = "api_add_GeochemicalSvyLine";
-const char* func_add_GeochemicalSvyPointt = "api_add_GeochemicalSvyPoint";
+const char* func_add_B6_GeochemicalProjectTable = "api_add_B6_GeochemicalProjectTable";
+const char* func_add_B6_GeocheSvyDataTable = "api_add_B6_GeocheSvyDataTable";
+const char* func_add_GeochemicalAbnPoint = "api_add_GeochemicalAbnPoint";
+const char* func_add_GeochemicalAbnSegment = "api_add_GeochemicalAbnSegment";
+const char* func_add_GeochemicalSvyLine = "api_add_GeochemicalSvyLine";
+const char* func_add_GeochemicalSvyPoint = "api_add_GeochemicalSvyPoint";
 
 const char* url_add_B6_GeochemicalProjectTable = "http://localhost:5000/mysql/seismological_bureau/add_B6_GeochemicalProjectTable/";
 const char* url_add_B6_GeocheSvyDataTable = "http://localhost:5000/mysql/seismological_bureau/add_B6_GeocheSvyDataTable/";

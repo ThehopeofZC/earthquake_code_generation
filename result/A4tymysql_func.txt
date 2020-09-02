@@ -70,7 +70,7 @@ nPolylineEleCount++;
 PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_CollectedCrustIsoline[idx]._baseinfo._ID)));
 PyTuple_SetItem(pyTupleDepths, idx, Py_BuildValue("i", vec_CollectedCrustIsoline[idx]._Depth));
-PyTuple_SetItem(pyTupleDepthNames, idx, StringToPy(WstringToString(vec_CollectedCrustIsoline[idx]._baseinfo._DepthName)));
+PyTuple_SetItem(pyTupleDepthNames, idx, StringToPy(WstringToString(vec_CollectedCrustIsoline[idx]._DepthName)));
 PyTuple_SetItem(pyTupleShowCodes, idx, Py_BuildValue("i", vec_CollectedCrustIsoline[idx]._ShowCode));
 PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_CollectedCrustIsoline[idx]._baseinfo._CommentInfo)));
 }
@@ -172,19 +172,19 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_CollectedGeophySvyLine[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleNames, idx, StringToPy(WstringToString(vec_CollectedGeophySvyLine[idx]._baseinfo._Name)));
-PyTuple_SetItem(pyTupleCollectedLineSources, idx, StringToPy(WstringToString(vec_CollectedGeophySvyLine[idx]._baseinfo._CollectedLineSource)));
-PyTuple_SetItem(pyTuplePurposes, idx, StringToPy(WstringToString(vec_CollectedGeophySvyLine[idx]._baseinfo._Purpose)));
+PyTuple_SetItem(pyTupleNames, idx, StringToPy(WstringToString(vec_CollectedGeophySvyLine[idx]._Name)));
+PyTuple_SetItem(pyTupleCollectedLineSources, idx, StringToPy(WstringToString(vec_CollectedGeophySvyLine[idx]._CollectedLineSource)));
+PyTuple_SetItem(pyTuplePurposes, idx, StringToPy(WstringToString(vec_CollectedGeophySvyLine[idx]._Purpose)));
 PyTuple_SetItem(pyTupleSvyMethods, idx, Py_BuildValue("i", vec_CollectedGeophySvyLine[idx]._SvyMethod));
 PyTuple_SetItem(pyTupleStartMilestoneNums, idx, Py_BuildValue("i", vec_CollectedGeophySvyLine[idx]._StartMilestoneNum));
 PyTuple_SetItem(pyTupleEndMilestoneNums, idx, Py_BuildValue("i", vec_CollectedGeophySvyLine[idx]._EndMilestoneNum));
 PyTuple_SetItem(pyTupleLengths, idx, PyFloat_FromDouble(vec_CollectedGeophySvyLine[idx]._Length));
-PyTuple_SetItem(pyTupleResultNames, idx, StringToPy(WstringToString(vec_CollectedGeophySvyLine[idx]._baseinfo._ResultName)));
-PyTuple_SetItem(pyTupleExpData_ARWIDs, idx, StringToPy(WstringToString(vec_CollectedGeophySvyLine[idx]._baseinfo._ExpData_ARWID)));
-PyTuple_SetItem(pyTupleResultMap_ARWIDs, idx, StringToPy(WstringToString(vec_CollectedGeophySvyLine[idx]._baseinfo._ResultMap_ARWID)));
-PyTuple_SetItem(pyTupleResultMap_AIIDs, idx, StringToPy(WstringToString(vec_CollectedGeophySvyLine[idx]._baseinfo._ResultMap_AIID)));
-PyTuple_SetItem(pyTupleFaultPtProfile_AIIDs, idx, StringToPy(WstringToString(vec_CollectedGeophySvyLine[idx]._baseinfo._FaultPtProfile_AIID)));
-PyTuple_SetItem(pyTupleFaultPtProfile_ARWIDs, idx, StringToPy(WstringToString(vec_CollectedGeophySvyLine[idx]._baseinfo._FaultPtProfile_ARWID)));
+PyTuple_SetItem(pyTupleResultNames, idx, StringToPy(WstringToString(vec_CollectedGeophySvyLine[idx]._ResultName)));
+PyTuple_SetItem(pyTupleExpData_ARWIDs, idx, StringToPy(WstringToString(vec_CollectedGeophySvyLine[idx]._ExpData_ARWID)));
+PyTuple_SetItem(pyTupleResultMap_ARWIDs, idx, StringToPy(WstringToString(vec_CollectedGeophySvyLine[idx]._ResultMap_ARWID)));
+PyTuple_SetItem(pyTupleResultMap_AIIDs, idx, StringToPy(WstringToString(vec_CollectedGeophySvyLine[idx]._ResultMap_AIID)));
+PyTuple_SetItem(pyTupleFaultPtProfile_AIIDs, idx, StringToPy(WstringToString(vec_CollectedGeophySvyLine[idx]._FaultPtProfile_AIID)));
+PyTuple_SetItem(pyTupleFaultPtProfile_ARWIDs, idx, StringToPy(WstringToString(vec_CollectedGeophySvyLine[idx]._FaultPtProfile_ARWID)));
 PyTuple_SetItem(pyTupleShowCodes, idx, Py_BuildValue("i", vec_CollectedGeophySvyLine[idx]._ShowCode));
 PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_CollectedGeophySvyLine[idx]._baseinfo._CommentInfo)));
 }
@@ -289,12 +289,12 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_CollectedGMInterpretationLine[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleCodes, idx, StringToPy(WstringToString(vec_CollectedGMInterpretationLine[idx]._baseinfo._Code)));
-PyTuple_SetItem(pyTupleFaultNames, idx, StringToPy(WstringToString(vec_CollectedGMInterpretationLine[idx]._baseinfo._FaultName)));
-PyTuple_SetItem(pyTupleInterpretationAccordingGs, idx, StringToPy(WstringToString(vec_CollectedGMInterpretationLine[idx]._baseinfo._InterpretationAccordingG)));
-PyTuple_SetItem(pyTupleInterpretationAccordingMs, idx, StringToPy(WstringToString(vec_CollectedGMInterpretationLine[idx]._baseinfo._InterpretationAccordingM)));
-PyTuple_SetItem(pyTupleFaultDepths, idx, StringToPy(WstringToString(vec_CollectedGMInterpretationLine[idx]._baseinfo._FaultDepth)));
-PyTuple_SetItem(pyTupleFaultAges, idx, StringToPy(WstringToString(vec_CollectedGMInterpretationLine[idx]._baseinfo._FaultAge)));
+PyTuple_SetItem(pyTupleCodes, idx, StringToPy(WstringToString(vec_CollectedGMInterpretationLine[idx]._Code)));
+PyTuple_SetItem(pyTupleFaultNames, idx, StringToPy(WstringToString(vec_CollectedGMInterpretationLine[idx]._FaultName)));
+PyTuple_SetItem(pyTupleInterpretationAccordingGs, idx, StringToPy(WstringToString(vec_CollectedGMInterpretationLine[idx]._InterpretationAccordingG)));
+PyTuple_SetItem(pyTupleInterpretationAccordingMs, idx, StringToPy(WstringToString(vec_CollectedGMInterpretationLine[idx]._InterpretationAccordingM)));
+PyTuple_SetItem(pyTupleFaultDepths, idx, StringToPy(WstringToString(vec_CollectedGMInterpretationLine[idx]._FaultDepth)));
+PyTuple_SetItem(pyTupleFaultAges, idx, StringToPy(WstringToString(vec_CollectedGMInterpretationLine[idx]._FaultAge)));
 PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_CollectedGMInterpretationLine[idx]._baseinfo._CommentInfo)));
 }
 PyTuple_SetItem(args, 0, pyTupleURL);
@@ -367,7 +367,7 @@ vector<int> vecPolylinePtNum;
 vecPolylinePtNum.resize(nPolylineNum);
 for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
 {
-vecPolylinePtNum[idxLine] = int(vec_CollectedGravityMagnetic[idx]._baseinfo._polyline[idxLine].size());
+vecPolylinePtNum[idxLine] = int(vec_CollectedGravityMagnetic[idx]._baseinfo._polygon[idxLine].size());
 nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
 }
 PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
@@ -392,14 +392,14 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_CollectedGravityMagnetic[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleDataSources, idx, StringToPy(WstringToString(vec_CollectedGravityMagnetic[idx]._baseinfo._DataSource)));
-PyTuple_SetItem(pyTupleTimeSpans, idx, StringToPy(WstringToString(vec_CollectedGravityMagnetic[idx]._baseinfo._TimeSpan)));
-PyTuple_SetItem(pyTupleDataContents, idx, StringToPy(WstringToString(vec_CollectedGravityMagnetic[idx]._baseinfo._DataContent)));
-PyTuple_SetItem(pyTupleGM_AIIDs, idx, StringToPy(WstringToString(vec_CollectedGravityMagnetic[idx]._baseinfo._GM_AIID)));
-PyTuple_SetItem(pyTupleGM_ARWIDs, idx, StringToPy(WstringToString(vec_CollectedGravityMagnetic[idx]._baseinfo._GM_ARWID)));
-PyTuple_SetItem(pyTupleGM_Metadata_ARWIDs, idx, StringToPy(WstringToString(vec_CollectedGravityMagnetic[idx]._baseinfo._GM_Metadata_ARWID)));
-PyTuple_SetItem(pyTupleDataTypes, idx, StringToPy(WstringToString(vec_CollectedGravityMagnetic[idx]._baseinfo._DataType)));
-PyTuple_SetItem(pyTupleDescriptions, idx, StringToPy(WstringToString(vec_CollectedGravityMagnetic[idx]._baseinfo._Description)));
+PyTuple_SetItem(pyTupleDataSources, idx, StringToPy(WstringToString(vec_CollectedGravityMagnetic[idx]._DataSource)));
+PyTuple_SetItem(pyTupleTimeSpans, idx, StringToPy(WstringToString(vec_CollectedGravityMagnetic[idx]._TimeSpan)));
+PyTuple_SetItem(pyTupleDataContents, idx, StringToPy(WstringToString(vec_CollectedGravityMagnetic[idx]._DataContent)));
+PyTuple_SetItem(pyTupleGM_AIIDs, idx, StringToPy(WstringToString(vec_CollectedGravityMagnetic[idx]._GM_AIID)));
+PyTuple_SetItem(pyTupleGM_ARWIDs, idx, StringToPy(WstringToString(vec_CollectedGravityMagnetic[idx]._GM_ARWID)));
+PyTuple_SetItem(pyTupleGM_Metadata_ARWIDs, idx, StringToPy(WstringToString(vec_CollectedGravityMagnetic[idx]._GM_Metadata_ARWID)));
+PyTuple_SetItem(pyTupleDataTypes, idx, StringToPy(WstringToString(vec_CollectedGravityMagnetic[idx]._DataType)));
+PyTuple_SetItem(pyTupleDescriptions, idx, StringToPy(WstringToString(vec_CollectedGravityMagnetic[idx]._Description)));
 PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_CollectedGravityMagnetic[idx]._baseinfo._CommentInfo)));
 }
 PyTuple_SetItem(args, 0, pyTupleURL);
@@ -474,7 +474,7 @@ vector<int> vecPolylinePtNum;
 vecPolylinePtNum.resize(nPolylineNum);
 for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
 {
-vecPolylinePtNum[idxLine] = int(vec_CollectedRegionDeformation[idx]._baseinfo._polyline[idxLine].size());
+vecPolylinePtNum[idxLine] = int(vec_CollectedRegionDeformation[idx]._baseinfo._polygon[idxLine].size());
 nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
 }
 PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
@@ -499,14 +499,14 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_CollectedRegionDeformation[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleDataSources, idx, StringToPy(WstringToString(vec_CollectedRegionDeformation[idx]._baseinfo._DataSource)));
-PyTuple_SetItem(pyTupleTimeSpans, idx, StringToPy(WstringToString(vec_CollectedRegionDeformation[idx]._baseinfo._TimeSpan)));
-PyTuple_SetItem(pyTupleDataContents, idx, StringToPy(WstringToString(vec_CollectedRegionDeformation[idx]._baseinfo._DataContent)));
-PyTuple_SetItem(pyTupleDeformation_AIIDs, idx, StringToPy(WstringToString(vec_CollectedRegionDeformation[idx]._baseinfo._Deformation_AIID)));
-PyTuple_SetItem(pyTupleDeformation_ARWIDs, idx, StringToPy(WstringToString(vec_CollectedRegionDeformation[idx]._baseinfo._Deformation_ARWID)));
-PyTuple_SetItem(pyTupleDefor_Metadata_ARWIDs, idx, StringToPy(WstringToString(vec_CollectedRegionDeformation[idx]._baseinfo._Defor_Metadata_ARWID)));
-PyTuple_SetItem(pyTupleDataTypes, idx, StringToPy(WstringToString(vec_CollectedRegionDeformation[idx]._baseinfo._DataType)));
-PyTuple_SetItem(pyTupleDescriptions, idx, StringToPy(WstringToString(vec_CollectedRegionDeformation[idx]._baseinfo._Description)));
+PyTuple_SetItem(pyTupleDataSources, idx, StringToPy(WstringToString(vec_CollectedRegionDeformation[idx]._DataSource)));
+PyTuple_SetItem(pyTupleTimeSpans, idx, StringToPy(WstringToString(vec_CollectedRegionDeformation[idx]._TimeSpan)));
+PyTuple_SetItem(pyTupleDataContents, idx, StringToPy(WstringToString(vec_CollectedRegionDeformation[idx]._DataContent)));
+PyTuple_SetItem(pyTupleDeformation_AIIDs, idx, StringToPy(WstringToString(vec_CollectedRegionDeformation[idx]._Deformation_AIID)));
+PyTuple_SetItem(pyTupleDeformation_ARWIDs, idx, StringToPy(WstringToString(vec_CollectedRegionDeformation[idx]._Deformation_ARWID)));
+PyTuple_SetItem(pyTupleDefor_Metadata_ARWIDs, idx, StringToPy(WstringToString(vec_CollectedRegionDeformation[idx]._Defor_Metadata_ARWID)));
+PyTuple_SetItem(pyTupleDataTypes, idx, StringToPy(WstringToString(vec_CollectedRegionDeformation[idx]._DataType)));
+PyTuple_SetItem(pyTupleDescriptions, idx, StringToPy(WstringToString(vec_CollectedRegionDeformation[idx]._Description)));
 PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_CollectedRegionDeformation[idx]._baseinfo._CommentInfo)));
 }
 PyTuple_SetItem(args, 0, pyTupleURL);

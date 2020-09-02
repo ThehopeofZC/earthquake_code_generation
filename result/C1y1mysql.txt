@@ -13,20 +13,20 @@ bool EXPORTTEMYSQLAPI EsAddStraIsoline1ToNetDB(const int nSId, const vector<_STR
 bool EXPORTTEMYSQLAPI EsAddStratigraphy1ToNetDB(const int nSId, const vector<_STRATIGRAPHY1>& vec_Stratigraphy1);
 bool EXPORTTEMYSQLAPI EsAddUplift1ToNetDB(const int nSId, const vector<_UPLIFT1>& vec_Uplift1);
 
-const char* func_add_Basin1t = "api_add_Basin1";
-const char* func_add_Fault1t = "api_add_Fault1";
-const char* func_add_FaultAttitude1t = "api_add_FaultAttitude1";
-const char* func_add_Fold1t = "api_add_Fold1";
-const char* func_add_FractureBelt1t = "api_add_FractureBelt1";
-const char* func_add_GeoBoundaryLine1t = "api_add_GeoBoundaryLine1";
-const char* func_add_GeomorphyLine1t = "api_add_GeomorphyLine1";
-const char* func_add_GeomorphyPoint1t = "api_add_GeomorphyPoint1";
-const char* func_add_GeomorphyPolygon1t = "api_add_GeomorphyPolygon1";
-const char* func_add_Rock1t = "api_add_Rock1";
-const char* func_add_StraAttitude1t = "api_add_StraAttitude1";
-const char* func_add_StraIsoline1t = "api_add_StraIsoline1";
-const char* func_add_Stratigraphy1t = "api_add_Stratigraphy1";
-const char* func_add_Uplift1t = "api_add_Uplift1";
+const char* func_add_Basin1 = "api_add_Basin1";
+const char* func_add_Fault1 = "api_add_Fault1";
+const char* func_add_FaultAttitude1 = "api_add_FaultAttitude1";
+const char* func_add_Fold1 = "api_add_Fold1";
+const char* func_add_FractureBelt1 = "api_add_FractureBelt1";
+const char* func_add_GeoBoundaryLine1 = "api_add_GeoBoundaryLine1";
+const char* func_add_GeomorphyLine1 = "api_add_GeomorphyLine1";
+const char* func_add_GeomorphyPoint1 = "api_add_GeomorphyPoint1";
+const char* func_add_GeomorphyPolygon1 = "api_add_GeomorphyPolygon1";
+const char* func_add_Rock1 = "api_add_Rock1";
+const char* func_add_StraAttitude1 = "api_add_StraAttitude1";
+const char* func_add_StraIsoline1 = "api_add_StraIsoline1";
+const char* func_add_Stratigraphy1 = "api_add_Stratigraphy1";
+const char* func_add_Uplift1 = "api_add_Uplift1";
 
 const char* url_add_Basin1 = "http://localhost:5000/mysql/seismological_bureau/add_Basin1/";
 const char* url_add_Fault1 = "http://localhost:5000/mysql/seismological_bureau/add_Fault1/";

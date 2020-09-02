@@ -15,22 +15,22 @@ bool EXPORTTEMYSQLAPI EsAddStraIsoline25ToNetDB(const int nSId, const vector<_ST
 bool EXPORTTEMYSQLAPI EsAddStratigraphy25ToNetDB(const int nSId, const vector<_STRATIGRAPHY25>& vec_Stratigraphy25);
 bool EXPORTTEMYSQLAPI EsAddUplift25ToNetDB(const int nSId, const vector<_UPLIFT25>& vec_Uplift25);
 
-const char* func_add_Basin25t = "api_add_Basin25";
-const char* func_add_Fault25t = "api_add_Fault25";
-const char* func_add_FaultAttitude25t = "api_add_FaultAttitude25";
-const char* func_add_Fold25t = "api_add_Fold25";
-const char* func_add_FractureBelt25t = "api_add_FractureBelt25";
-const char* func_add_GeoBoundaryLine25t = "api_add_GeoBoundaryLine25";
-const char* func_add_GeomorphyLine25t = "api_add_GeomorphyLine25";
-const char* func_add_GeomorphyPoint25t = "api_add_GeomorphyPoint25";
-const char* func_add_GeomorphyPolygon25t = "api_add_GeomorphyPolygon25";
-const char* func_add_GeotectonicUnit25t = "api_add_GeotectonicUnit25";
-const char* func_add_NeotectonicUnit25t = "api_add_NeotectonicUnit25";
-const char* func_add_Rock25t = "api_add_Rock25";
-const char* func_add_StraAttitude25t = "api_add_StraAttitude25";
-const char* func_add_StraIsoline25t = "api_add_StraIsoline25";
-const char* func_add_Stratigraphy25t = "api_add_Stratigraphy25";
-const char* func_add_Uplift25t = "api_add_Uplift25";
+const char* func_add_Basin25 = "api_add_Basin25";
+const char* func_add_Fault25 = "api_add_Fault25";
+const char* func_add_FaultAttitude25 = "api_add_FaultAttitude25";
+const char* func_add_Fold25 = "api_add_Fold25";
+const char* func_add_FractureBelt25 = "api_add_FractureBelt25";
+const char* func_add_GeoBoundaryLine25 = "api_add_GeoBoundaryLine25";
+const char* func_add_GeomorphyLine25 = "api_add_GeomorphyLine25";
+const char* func_add_GeomorphyPoint25 = "api_add_GeomorphyPoint25";
+const char* func_add_GeomorphyPolygon25 = "api_add_GeomorphyPolygon25";
+const char* func_add_GeotectonicUnit25 = "api_add_GeotectonicUnit25";
+const char* func_add_NeotectonicUnit25 = "api_add_NeotectonicUnit25";
+const char* func_add_Rock25 = "api_add_Rock25";
+const char* func_add_StraAttitude25 = "api_add_StraAttitude25";
+const char* func_add_StraIsoline25 = "api_add_StraIsoline25";
+const char* func_add_Stratigraphy25 = "api_add_Stratigraphy25";
+const char* func_add_Uplift25 = "api_add_Uplift25";
 
 const char* url_add_Basin25 = "http://localhost:5000/mysql/seismological_bureau/add_Basin25/";
 const char* url_add_Fault25 = "http://localhost:5000/mysql/seismological_bureau/add_Fault25/";

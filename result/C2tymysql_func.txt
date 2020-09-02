@@ -44,10 +44,10 @@ PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_CartoAuxLabel[idx]._base
 PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_CartoAuxLabel[idx]._baseinfo._point._z));
 PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_CartoAuxLabel[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleLabelInfos, idx, StringToPy(WstringToString(vec_CartoAuxLabel[idx]._baseinfo._LabelInfo)));
+PyTuple_SetItem(pyTupleLabelInfos, idx, StringToPy(WstringToString(vec_CartoAuxLabel[idx]._LabelInfo)));
 PyTuple_SetItem(pyTupleShowCodes, idx, Py_BuildValue("i", vec_CartoAuxLabel[idx]._ShowCode));
 PyTuple_SetItem(pyTupleOwnerships, idx, Py_BuildValue("i", vec_CartoAuxLabel[idx]._Ownership));
-PyTuple_SetItem(pyTupleDataPurposes, idx, StringToPy(WstringToString(vec_CartoAuxLabel[idx]._baseinfo._DataPurpose)));
+PyTuple_SetItem(pyTupleDataPurposes, idx, StringToPy(WstringToString(vec_CartoAuxLabel[idx]._DataPurpose)));
 PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_CartoAuxLabel[idx]._baseinfo._CommentInfo)));
 }
 PyTuple_SetItem(args, 0, pyTupleURL);
@@ -139,10 +139,10 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_CartoAuxLine[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleLabelInfos, idx, StringToPy(WstringToString(vec_CartoAuxLine[idx]._baseinfo._LabelInfo)));
+PyTuple_SetItem(pyTupleLabelInfos, idx, StringToPy(WstringToString(vec_CartoAuxLine[idx]._LabelInfo)));
 PyTuple_SetItem(pyTupleShowCodes, idx, Py_BuildValue("i", vec_CartoAuxLine[idx]._ShowCode));
 PyTuple_SetItem(pyTupleOwnerships, idx, Py_BuildValue("i", vec_CartoAuxLine[idx]._Ownership));
-PyTuple_SetItem(pyTupleDataPurposes, idx, StringToPy(WstringToString(vec_CartoAuxLine[idx]._baseinfo._DataPurpose)));
+PyTuple_SetItem(pyTupleDataPurposes, idx, StringToPy(WstringToString(vec_CartoAuxLine[idx]._DataPurpose)));
 PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_CartoAuxLine[idx]._baseinfo._CommentInfo)));
 }
 PyTuple_SetItem(args, 0, pyTupleURL);
@@ -208,10 +208,10 @@ PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_CartoAuxPoint[idx]._base
 PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_CartoAuxPoint[idx]._baseinfo._point._z));
 PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_CartoAuxPoint[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleLabelInfos, idx, StringToPy(WstringToString(vec_CartoAuxPoint[idx]._baseinfo._LabelInfo)));
+PyTuple_SetItem(pyTupleLabelInfos, idx, StringToPy(WstringToString(vec_CartoAuxPoint[idx]._LabelInfo)));
 PyTuple_SetItem(pyTupleShowCodes, idx, Py_BuildValue("i", vec_CartoAuxPoint[idx]._ShowCode));
 PyTuple_SetItem(pyTupleOwnerships, idx, Py_BuildValue("i", vec_CartoAuxPoint[idx]._Ownership));
-PyTuple_SetItem(pyTupleDataPurposes, idx, StringToPy(WstringToString(vec_CartoAuxPoint[idx]._baseinfo._DataPurpose)));
+PyTuple_SetItem(pyTupleDataPurposes, idx, StringToPy(WstringToString(vec_CartoAuxPoint[idx]._DataPurpose)));
 PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_CartoAuxPoint[idx]._baseinfo._CommentInfo)));
 }
 PyTuple_SetItem(args, 0, pyTupleURL);
@@ -278,7 +278,7 @@ vector<int> vecPolylinePtNum;
 vecPolylinePtNum.resize(nPolylineNum);
 for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
 {
-vecPolylinePtNum[idxLine] = int(vec_CartoAuxPolygon[idx]._baseinfo._polyline[idxLine].size());
+vecPolylinePtNum[idxLine] = int(vec_CartoAuxPolygon[idx]._baseinfo._polygon[idxLine].size());
 nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
 }
 PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
@@ -303,10 +303,10 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_CartoAuxPolygon[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleLabelInfos, idx, StringToPy(WstringToString(vec_CartoAuxPolygon[idx]._baseinfo._LabelInfo)));
+PyTuple_SetItem(pyTupleLabelInfos, idx, StringToPy(WstringToString(vec_CartoAuxPolygon[idx]._LabelInfo)));
 PyTuple_SetItem(pyTupleShowCodes, idx, Py_BuildValue("i", vec_CartoAuxPolygon[idx]._ShowCode));
 PyTuple_SetItem(pyTupleOwnerships, idx, Py_BuildValue("i", vec_CartoAuxPolygon[idx]._Ownership));
-PyTuple_SetItem(pyTupleDataPurposes, idx, StringToPy(WstringToString(vec_CartoAuxPolygon[idx]._baseinfo._DataPurpose)));
+PyTuple_SetItem(pyTupleDataPurposes, idx, StringToPy(WstringToString(vec_CartoAuxPolygon[idx]._DataPurpose)));
 PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_CartoAuxPolygon[idx]._baseinfo._CommentInfo)));
 }
 PyTuple_SetItem(args, 0, pyTupleURL);
@@ -371,8 +371,8 @@ PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_GeoProfilePoint[idx]._ba
 PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_GeoProfilePoint[idx]._baseinfo._point._z));
 PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_GeoProfilePoint[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleProfileLineIDs, idx, StringToPy(WstringToString(vec_GeoProfilePoint[idx]._baseinfo._ProfileLineID)));
-PyTuple_SetItem(pyTupleNames, idx, StringToPy(WstringToString(vec_GeoProfilePoint[idx]._baseinfo._Name)));
+PyTuple_SetItem(pyTupleProfileLineIDs, idx, StringToPy(WstringToString(vec_GeoProfilePoint[idx]._ProfileLineID)));
+PyTuple_SetItem(pyTupleNames, idx, StringToPy(WstringToString(vec_GeoProfilePoint[idx]._Name)));
 PyTuple_SetItem(pyTupleScales, idx, Py_BuildValue("i", vec_GeoProfilePoint[idx]._Scale));
 PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_GeoProfilePoint[idx]._baseinfo._CommentInfo)));
 }
@@ -437,7 +437,7 @@ vector<int> vecPolylinePtNum;
 vecPolylinePtNum.resize(nPolylineNum);
 for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
 {
-vecPolylinePtNum[idxLine] = int(vec_MapSheet[idx]._baseinfo._polyline[idxLine].size());
+vecPolylinePtNum[idxLine] = int(vec_MapSheet[idx]._baseinfo._polygon[idxLine].size());
 nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
 }
 PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
@@ -462,7 +462,7 @@ nPolylineEleCount++;
 }
 PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
 PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_MapSheet[idx]._baseinfo._ID)));
-PyTuple_SetItem(pyTupleSheetNumbers, idx, StringToPy(WstringToString(vec_MapSheet[idx]._baseinfo._SheetNumber)));
+PyTuple_SetItem(pyTupleSheetNumbers, idx, StringToPy(WstringToString(vec_MapSheet[idx]._SheetNumber)));
 PyTuple_SetItem(pyTupleRotationAngles, idx, PyFloat_FromDouble(vec_MapSheet[idx]._RotationAngle));
 PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_MapSheet[idx]._baseinfo._CommentInfo)));
 }
