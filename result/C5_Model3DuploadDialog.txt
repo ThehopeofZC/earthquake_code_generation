@@ -1,0 +1,216 @@
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadAnisotropySeismic()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取地震波各向异性...\r\n");
+	vector<_ANISOTROPYSEISMIC> vec_AnisotropySeismic;
+	if(!obReader.EsGetAnisotropySeismic(vec_AnisotropySeismic))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地震波各向异性获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地震波各向异性获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传地震波各向异性...\r\n");
+	if(!EsAddAnisotropySeismicToNetDB(m_nSId, vec_AnisotropySeismic))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地震波各向异性上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地震波各向异性上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadFaultSurfModelMetadataTbl()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取断层面模型元数据表...\r\n");
+	vector<_FAULTSURFMODELMETADATATBL> vec_FaultSurfModelMetadataTbl;
+	if(!obReader.EsGetFaultSurfModelMetadataTbl(vec_FaultSurfModelMetadataTbl))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("断层面模型元数据表获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("断层面模型元数据表获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传断层面模型元数据表...\r\n");
+	if(!EsAddFaultSurfModelMetadataTblToNetDB(m_nSId, vec_FaultSurfModelMetadataTbl))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("断层面模型元数据表上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("断层面模型元数据表上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadModelFromProject()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取模型与项目实施工程关联表...\r\n");
+	vector<_MODELFROMPROJECT> vec_ModelFromProject;
+	if(!obReader.EsGetModelFromProject(vec_ModelFromProject))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("模型与项目实施工程关联表获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("模型与项目实施工程关联表获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传模型与项目实施工程关联表...\r\n");
+	if(!EsAddModelFromProjectToNetDB(m_nSId, vec_ModelFromProject))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("模型与项目实施工程关联表上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("模型与项目实施工程关联表上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadElectricalStructure()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取电性结构...\r\n");
+	vector<_ELECTRICALSTRUCTURE> vec_ElectricalStructure;
+	if(!obReader.EsGetElectricalStructure(vec_ElectricalStructure))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("电性结构获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("电性结构获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传电性结构...\r\n");
+	if(!EsAddElectricalStructureToNetDB(m_nSId, vec_ElectricalStructure))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("电性结构上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("电性结构上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadFaultSurface()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取断层面...\r\n");
+	vector<_FAULTSURFACE> vec_FaultSurface;
+	if(!obReader.EsGetFaultSurface(vec_FaultSurface))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("断层面获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("断层面获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传断层面...\r\n");
+	if(!EsAddFaultSurfaceToNetDB(m_nSId, vec_FaultSurface))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("断层面上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("断层面上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadMohoSurfaceMesh()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取莫霍面网格离散点...\r\n");
+	vector<_MOHOSURFACEMESH> vec_MohoSurfaceMesh;
+	if(!obReader.EsGetMohoSurfaceMesh(vec_MohoSurfaceMesh))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("莫霍面网格离散点获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("莫霍面网格离散点获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传莫霍面网格离散点...\r\n");
+	if(!EsAddMohoSurfaceMeshToNetDB(m_nSId, vec_MohoSurfaceMesh))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("莫霍面网格离散点上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("莫霍面网格离散点上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadMohoSurfaceNative()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取莫霍面...\r\n");
+	vector<_MOHOSURFACENATIVE> vec_MohoSurfaceNative;
+	if(!obReader.EsGetMohoSurfaceNative(vec_MohoSurfaceNative))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("莫霍面获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("莫霍面获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传莫霍面...\r\n");
+	if(!EsAddMohoSurfaceNativeToNetDB(m_nSId, vec_MohoSurfaceNative))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("莫霍面上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("莫霍面上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadRheologicalStructure()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取流变结构...\r\n");
+	vector<_RHEOLOGICALSTRUCTURE> vec_RheologicalStructure;
+	if(!obReader.EsGetRheologicalStructure(vec_RheologicalStructure))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("流变结构获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("流变结构获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传流变结构...\r\n");
+	if(!EsAddRheologicalStructureToNetDB(m_nSId, vec_RheologicalStructure))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("流变结构上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("流变结构上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadSurfaceDeformation()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取地表形变...\r\n");
+	vector<_SURFACEDEFORMATION> vec_SurfaceDeformation;
+	if(!obReader.EsGetSurfaceDeformation(vec_SurfaceDeformation))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地表形变获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地表形变获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传地表形变...\r\n");
+	if(!EsAddSurfaceDeformationToNetDB(m_nSId, vec_SurfaceDeformation))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地表形变上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地表形变上传成功！\r\n");
+	return true;
+}

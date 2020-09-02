@@ -1,0 +1,1961 @@
+bool EsAddBasin25ToNetDB(const int nSId, const vector<_BASIN25>& vec_Basin25)
+{
+if(vec_Basin25.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_Basin25.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_Basin25);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(16);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolygons = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleBasinNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleFormationAges = PyTuple_New(nRecordNum);
+PyObject* pyTupleMaxDepths = PyTuple_New(nRecordNum);
+PyObject* pyTupleFeatures = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleViewTos = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhotographers = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolMains = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolLows = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolUps = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_Basin25));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_Basin25[idx]._baseinfo._polygon.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_Basin25[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_Basin25[idx]._baseinfo._polygon[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_Basin25[idx]._baseinfo._polygon[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_Basin25[idx]._baseinfo._polygon[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_Basin25[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleBasinNames, idx, StringToPy(WstringToString(vec_Basin25[idx]._baseinfo._BasinName)));
+PyTuple_SetItem(pyTupleFormationAges, idx, Py_BuildValue("i", vec_Basin25[idx]._FormationAge));
+PyTuple_SetItem(pyTupleMaxDepths, idx, Py_BuildValue("i", vec_Basin25[idx]._MaxDepth));
+PyTuple_SetItem(pyTupleFeatures, idx, Py_BuildValue("i", vec_Basin25[idx]._Feature));
+PyTuple_SetItem(pyTuplePhoto_AIIDs, idx, StringToPy(WstringToString(vec_Basin25[idx]._baseinfo._Photo_AIID)));
+PyTuple_SetItem(pyTuplePhoto_ARWIDs, idx, StringToPy(WstringToString(vec_Basin25[idx]._baseinfo._Photo_ARWID)));
+PyTuple_SetItem(pyTupleViewTos, idx, Py_BuildValue("i", vec_Basin25[idx]._ViewTo));
+PyTuple_SetItem(pyTuplePhotographers, idx, StringToPy(WstringToString(vec_Basin25[idx]._baseinfo._Photographer)));
+PyTuple_SetItem(pyTupleSymbolMains, idx, StringToPy(WstringToString(vec_Basin25[idx]._baseinfo._SymbolMain)));
+PyTuple_SetItem(pyTupleSymbolLows, idx, StringToPy(WstringToString(vec_Basin25[idx]._baseinfo._SymbolLow)));
+PyTuple_SetItem(pyTupleSymbolUps, idx, StringToPy(WstringToString(vec_Basin25[idx]._baseinfo._SymbolUp)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_Basin25[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolygons);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleBasinNames);
+PyTuple_SetItem(args, 5, pyTupleFormationAges);
+PyTuple_SetItem(args, 6, pyTupleMaxDepths);
+PyTuple_SetItem(args, 7, pyTupleFeatures);
+PyTuple_SetItem(args, 8, pyTuplePhoto_AIIDs);
+PyTuple_SetItem(args, 9, pyTuplePhoto_ARWIDs);
+PyTuple_SetItem(args, 10, pyTupleViewTos);
+PyTuple_SetItem(args, 11, pyTuplePhotographers);
+PyTuple_SetItem(args, 12, pyTupleSymbolMains);
+PyTuple_SetItem(args, 13, pyTupleSymbolLows);
+PyTuple_SetItem(args, 14, pyTupleSymbolUps);
+PyTuple_SetItem(args, 15, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddFault25ToNetDB(const int nSId, const vector<_FAULT25>& vec_Fault25)
+{
+if(vec_Fault25.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_Fault25.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_Fault25);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(65);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleFractureZoneNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleFaultNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleFaultSegmentNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleFeatures = PyTuple_New(nRecordNum);
+PyObject* pyTupleStrikeOrientations = PyTuple_New(nRecordNum);
+PyObject* pyTupleStrikes = PyTuple_New(nRecordNum);
+PyObject* pyTupleDips = PyTuple_New(nRecordNum);
+PyObject* pyTupleDipAngles = PyTuple_New(nRecordNum);
+PyObject* pyTupleLengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleWidths = PyTuple_New(nRecordNum);
+PyObject* pyTupleTopDepths = PyTuple_New(nRecordNum);
+PyObject* pyTupleDeformationBeltWidths = PyTuple_New(nRecordNum);
+PyObject* pyTupleAges = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleViewTos = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhotographers = PyTuple_New(nRecordNum);
+PyObject* pyTupleStartTimeEsts = PyTuple_New(nRecordNum);
+PyObject* pyTupleVDisplaceEsts = PyTuple_New(nRecordNum);
+PyObject* pyTupleVDisplaceErs = PyTuple_New(nRecordNum);
+PyObject* pyTupleHDisplaceEsts = PyTuple_New(nRecordNum);
+PyObject* pyTupleHDisplaceErs = PyTuple_New(nRecordNum);
+PyObject* pyTupleTDisplaceEsts = PyTuple_New(nRecordNum);
+PyObject* pyTupleTDisplaceErs = PyTuple_New(nRecordNum);
+PyObject* pyTupleAveVRates = PyTuple_New(nRecordNum);
+PyObject* pyTupleAveVRateErs = PyTuple_New(nRecordNum);
+PyObject* pyTupleAveHRates = PyTuple_New(nRecordNum);
+PyObject* pyTupleAveHRateErs = PyTuple_New(nRecordNum);
+PyObject* pyTupleStartTimeLatestRates = PyTuple_New(nRecordNum);
+PyObject* pyTupleLatestVRates = PyTuple_New(nRecordNum);
+PyObject* pyTupleLatestVRateErs = PyTuple_New(nRecordNum);
+PyObject* pyTupleLatestHRates = PyTuple_New(nRecordNum);
+PyObject* pyTupleLatestHRateErs = PyTuple_New(nRecordNum);
+PyObject* pyTupleMaxVRates = PyTuple_New(nRecordNum);
+PyObject* pyTupleMaxVRateErs = PyTuple_New(nRecordNum);
+PyObject* pyTupleMaxHRates = PyTuple_New(nRecordNum);
+PyObject* pyTupleMaxHRateErs = PyTuple_New(nRecordNum);
+PyObject* pyTupleEQEventCounts = PyTuple_New(nRecordNum);
+PyObject* pyTupleMinEQEventRIs = PyTuple_New(nRecordNum);
+PyObject* pyTupleMaxEQEventRIs = PyTuple_New(nRecordNum);
+PyObject* pyTupleMethods = PyTuple_New(nRecordNum);
+PyObject* pyTupleMaxRuptureLengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleAverageRuptureLengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleElapseTimeForLatestEQs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSlipDepthEsts = PyTuple_New(nRecordNum);
+PyObject* pyTupleSlipDepthErs = PyTuple_New(nRecordNum);
+PyObject* pyTupleAverageSlipRateEsts = PyTuple_New(nRecordNum);
+PyObject* pyTupleAverageSlipRateErs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCreepRateEsts = PyTuple_New(nRecordNum);
+PyObject* pyTupleCreepRateErs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCoSeismicMaxSlipEsts = PyTuple_New(nRecordNum);
+PyObject* pyTupleCoSeismicMaxSlipErs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCoSeismicAverageSlipEsts = PyTuple_New(nRecordNum);
+PyObject* pyTupleCoSeismicAverageSlipErs = PyTuple_New(nRecordNum);
+PyObject* pyTupleLatestCoSeismicSlipEsts = PyTuple_New(nRecordNum);
+PyObject* pyTupleLatestCoSeismicSlipErs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolMains = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolLows = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolUps = PyTuple_New(nRecordNum);
+PyObject* pyTupleShowCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_Fault25));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_Fault25[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_Fault25[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_Fault25[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_Fault25[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_Fault25[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_Fault25[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleFractureZoneNames, idx, StringToPy(WstringToString(vec_Fault25[idx]._baseinfo._FractureZoneName)));
+PyTuple_SetItem(pyTupleFaultNames, idx, StringToPy(WstringToString(vec_Fault25[idx]._baseinfo._FaultName)));
+PyTuple_SetItem(pyTupleFaultSegmentNames, idx, StringToPy(WstringToString(vec_Fault25[idx]._baseinfo._FaultSegmentName)));
+PyTuple_SetItem(pyTupleFeatures, idx, Py_BuildValue("i", vec_Fault25[idx]._Feature));
+PyTuple_SetItem(pyTupleStrikeOrientations, idx, Py_BuildValue("i", vec_Fault25[idx]._StrikeOrientation));
+PyTuple_SetItem(pyTupleStrikes, idx, Py_BuildValue("i", vec_Fault25[idx]._Strike));
+PyTuple_SetItem(pyTupleDips, idx, Py_BuildValue("i", vec_Fault25[idx]._Dip));
+PyTuple_SetItem(pyTupleDipAngles, idx, Py_BuildValue("i", vec_Fault25[idx]._DipAngle));
+PyTuple_SetItem(pyTupleLengths, idx, PyFloat_FromDouble(vec_Fault25[idx]._Length));
+PyTuple_SetItem(pyTupleWidths, idx, PyFloat_FromDouble(vec_Fault25[idx]._Width));
+PyTuple_SetItem(pyTupleTopDepths, idx, Py_BuildValue("i", vec_Fault25[idx]._TopDepth));
+PyTuple_SetItem(pyTupleDeformationBeltWidths, idx, PyFloat_FromDouble(vec_Fault25[idx]._DeformationBeltWidth));
+PyTuple_SetItem(pyTupleAges, idx, Py_BuildValue("i", vec_Fault25[idx]._Age));
+PyTuple_SetItem(pyTuplePhoto_AIIDs, idx, StringToPy(WstringToString(vec_Fault25[idx]._baseinfo._Photo_AIID)));
+PyTuple_SetItem(pyTuplePhoto_ARWIDs, idx, StringToPy(WstringToString(vec_Fault25[idx]._baseinfo._Photo_ARWID)));
+PyTuple_SetItem(pyTupleViewTos, idx, Py_BuildValue("i", vec_Fault25[idx]._ViewTo));
+PyTuple_SetItem(pyTuplePhotographers, idx, StringToPy(WstringToString(vec_Fault25[idx]._baseinfo._Photographer)));
+PyTuple_SetItem(pyTupleStartTimeEsts, idx, StringToPy(WstringToString(vec_Fault25[idx]._baseinfo._StartTimeEst)));
+PyTuple_SetItem(pyTupleVDisplaceEsts, idx, PyFloat_FromDouble(vec_Fault25[idx]._VDisplaceEst));
+PyTuple_SetItem(pyTupleVDisplaceErs, idx, PyFloat_FromDouble(vec_Fault25[idx]._VDisplaceEr));
+PyTuple_SetItem(pyTupleHDisplaceEsts, idx, PyFloat_FromDouble(vec_Fault25[idx]._HDisplaceEst));
+PyTuple_SetItem(pyTupleHDisplaceErs, idx, PyFloat_FromDouble(vec_Fault25[idx]._HDisplaceEr));
+PyTuple_SetItem(pyTupleTDisplaceEsts, idx, PyFloat_FromDouble(vec_Fault25[idx]._TDisplaceEst));
+PyTuple_SetItem(pyTupleTDisplaceErs, idx, PyFloat_FromDouble(vec_Fault25[idx]._TDisplaceEr));
+PyTuple_SetItem(pyTupleAveVRates, idx, PyFloat_FromDouble(vec_Fault25[idx]._AveVRate));
+PyTuple_SetItem(pyTupleAveVRateErs, idx, PyFloat_FromDouble(vec_Fault25[idx]._AveVRateEr));
+PyTuple_SetItem(pyTupleAveHRates, idx, PyFloat_FromDouble(vec_Fault25[idx]._AveHRate));
+PyTuple_SetItem(pyTupleAveHRateErs, idx, PyFloat_FromDouble(vec_Fault25[idx]._AveHRateEr));
+PyTuple_SetItem(pyTupleStartTimeLatestRates, idx, StringToPy(WstringToString(vec_Fault25[idx]._baseinfo._StartTimeLatestRate)));
+PyTuple_SetItem(pyTupleLatestVRates, idx, PyFloat_FromDouble(vec_Fault25[idx]._LatestVRate));
+PyTuple_SetItem(pyTupleLatestVRateErs, idx, PyFloat_FromDouble(vec_Fault25[idx]._LatestVRateEr));
+PyTuple_SetItem(pyTupleLatestHRates, idx, PyFloat_FromDouble(vec_Fault25[idx]._LatestHRate));
+PyTuple_SetItem(pyTupleLatestHRateErs, idx, PyFloat_FromDouble(vec_Fault25[idx]._LatestHRateEr));
+PyTuple_SetItem(pyTupleMaxVRates, idx, PyFloat_FromDouble(vec_Fault25[idx]._MaxVRate));
+PyTuple_SetItem(pyTupleMaxVRateErs, idx, PyFloat_FromDouble(vec_Fault25[idx]._MaxVRateEr));
+PyTuple_SetItem(pyTupleMaxHRates, idx, PyFloat_FromDouble(vec_Fault25[idx]._MaxHRate));
+PyTuple_SetItem(pyTupleMaxHRateErs, idx, PyFloat_FromDouble(vec_Fault25[idx]._MaxHRateEr));
+PyTuple_SetItem(pyTupleEQEventCounts, idx, Py_BuildValue("i", vec_Fault25[idx]._EQEventCount));
+PyTuple_SetItem(pyTupleMinEQEventRIs, idx, Py_BuildValue("i", vec_Fault25[idx]._MinEQEventRI));
+PyTuple_SetItem(pyTupleMaxEQEventRIs, idx, Py_BuildValue("i", vec_Fault25[idx]._MaxEQEventRI));
+PyTuple_SetItem(pyTupleMethods, idx, StringToPy(WstringToString(vec_Fault25[idx]._baseinfo._Method)));
+PyTuple_SetItem(pyTupleMaxRuptureLengths, idx, Py_BuildValue("i", vec_Fault25[idx]._MaxRuptureLength));
+PyTuple_SetItem(pyTupleAverageRuptureLengths, idx, Py_BuildValue("i", vec_Fault25[idx]._AverageRuptureLength));
+PyTuple_SetItem(pyTupleElapseTimeForLatestEQs, idx, Py_BuildValue("i", vec_Fault25[idx]._ElapseTimeForLatestEQ));
+PyTuple_SetItem(pyTupleSlipDepthEsts, idx, Py_BuildValue("i", vec_Fault25[idx]._SlipDepthEst));
+PyTuple_SetItem(pyTupleSlipDepthErs, idx, Py_BuildValue("i", vec_Fault25[idx]._SlipDepthEr));
+PyTuple_SetItem(pyTupleAverageSlipRateEsts, idx, PyFloat_FromDouble(vec_Fault25[idx]._AverageSlipRateEst));
+PyTuple_SetItem(pyTupleAverageSlipRateErs, idx, PyFloat_FromDouble(vec_Fault25[idx]._AverageSlipRateEr));
+PyTuple_SetItem(pyTupleCreepRateEsts, idx, PyFloat_FromDouble(vec_Fault25[idx]._CreepRateEst));
+PyTuple_SetItem(pyTupleCreepRateErs, idx, PyFloat_FromDouble(vec_Fault25[idx]._CreepRateEr));
+PyTuple_SetItem(pyTupleCoSeismicMaxSlipEsts, idx, PyFloat_FromDouble(vec_Fault25[idx]._CoSeismicMaxSlipEst));
+PyTuple_SetItem(pyTupleCoSeismicMaxSlipErs, idx, PyFloat_FromDouble(vec_Fault25[idx]._CoSeismicMaxSlipEr));
+PyTuple_SetItem(pyTupleCoSeismicAverageSlipEsts, idx, PyFloat_FromDouble(vec_Fault25[idx]._CoSeismicAverageSlipEst));
+PyTuple_SetItem(pyTupleCoSeismicAverageSlipErs, idx, PyFloat_FromDouble(vec_Fault25[idx]._CoSeismicAverageSlipEr));
+PyTuple_SetItem(pyTupleLatestCoSeismicSlipEsts, idx, PyFloat_FromDouble(vec_Fault25[idx]._LatestCoSeismicSlipEst));
+PyTuple_SetItem(pyTupleLatestCoSeismicSlipErs, idx, PyFloat_FromDouble(vec_Fault25[idx]._LatestCoSeismicSlipEr));
+PyTuple_SetItem(pyTupleSymbolMains, idx, StringToPy(WstringToString(vec_Fault25[idx]._baseinfo._SymbolMain)));
+PyTuple_SetItem(pyTupleSymbolLows, idx, StringToPy(WstringToString(vec_Fault25[idx]._baseinfo._SymbolLow)));
+PyTuple_SetItem(pyTupleSymbolUps, idx, StringToPy(WstringToString(vec_Fault25[idx]._baseinfo._SymbolUp)));
+PyTuple_SetItem(pyTupleShowCodes, idx, Py_BuildValue("i", vec_Fault25[idx]._ShowCode));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_Fault25[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleFractureZoneNames);
+PyTuple_SetItem(args, 5, pyTupleFaultNames);
+PyTuple_SetItem(args, 6, pyTupleFaultSegmentNames);
+PyTuple_SetItem(args, 7, pyTupleFeatures);
+PyTuple_SetItem(args, 8, pyTupleStrikeOrientations);
+PyTuple_SetItem(args, 9, pyTupleStrikes);
+PyTuple_SetItem(args, 10, pyTupleDips);
+PyTuple_SetItem(args, 11, pyTupleDipAngles);
+PyTuple_SetItem(args, 12, pyTupleLengths);
+PyTuple_SetItem(args, 13, pyTupleWidths);
+PyTuple_SetItem(args, 14, pyTupleTopDepths);
+PyTuple_SetItem(args, 15, pyTupleDeformationBeltWidths);
+PyTuple_SetItem(args, 16, pyTupleAges);
+PyTuple_SetItem(args, 17, pyTuplePhoto_AIIDs);
+PyTuple_SetItem(args, 18, pyTuplePhoto_ARWIDs);
+PyTuple_SetItem(args, 19, pyTupleViewTos);
+PyTuple_SetItem(args, 20, pyTuplePhotographers);
+PyTuple_SetItem(args, 21, pyTupleStartTimeEsts);
+PyTuple_SetItem(args, 22, pyTupleVDisplaceEsts);
+PyTuple_SetItem(args, 23, pyTupleVDisplaceErs);
+PyTuple_SetItem(args, 24, pyTupleHDisplaceEsts);
+PyTuple_SetItem(args, 25, pyTupleHDisplaceErs);
+PyTuple_SetItem(args, 26, pyTupleTDisplaceEsts);
+PyTuple_SetItem(args, 27, pyTupleTDisplaceErs);
+PyTuple_SetItem(args, 28, pyTupleAveVRates);
+PyTuple_SetItem(args, 29, pyTupleAveVRateErs);
+PyTuple_SetItem(args, 30, pyTupleAveHRates);
+PyTuple_SetItem(args, 31, pyTupleAveHRateErs);
+PyTuple_SetItem(args, 32, pyTupleStartTimeLatestRates);
+PyTuple_SetItem(args, 33, pyTupleLatestVRates);
+PyTuple_SetItem(args, 34, pyTupleLatestVRateErs);
+PyTuple_SetItem(args, 35, pyTupleLatestHRates);
+PyTuple_SetItem(args, 36, pyTupleLatestHRateErs);
+PyTuple_SetItem(args, 37, pyTupleMaxVRates);
+PyTuple_SetItem(args, 38, pyTupleMaxVRateErs);
+PyTuple_SetItem(args, 39, pyTupleMaxHRates);
+PyTuple_SetItem(args, 40, pyTupleMaxHRateErs);
+PyTuple_SetItem(args, 41, pyTupleEQEventCounts);
+PyTuple_SetItem(args, 42, pyTupleMinEQEventRIs);
+PyTuple_SetItem(args, 43, pyTupleMaxEQEventRIs);
+PyTuple_SetItem(args, 44, pyTupleMethods);
+PyTuple_SetItem(args, 45, pyTupleMaxRuptureLengths);
+PyTuple_SetItem(args, 46, pyTupleAverageRuptureLengths);
+PyTuple_SetItem(args, 47, pyTupleElapseTimeForLatestEQs);
+PyTuple_SetItem(args, 48, pyTupleSlipDepthEsts);
+PyTuple_SetItem(args, 49, pyTupleSlipDepthErs);
+PyTuple_SetItem(args, 50, pyTupleAverageSlipRateEsts);
+PyTuple_SetItem(args, 51, pyTupleAverageSlipRateErs);
+PyTuple_SetItem(args, 52, pyTupleCreepRateEsts);
+PyTuple_SetItem(args, 53, pyTupleCreepRateErs);
+PyTuple_SetItem(args, 54, pyTupleCoSeismicMaxSlipEsts);
+PyTuple_SetItem(args, 55, pyTupleCoSeismicMaxSlipErs);
+PyTuple_SetItem(args, 56, pyTupleCoSeismicAverageSlipEsts);
+PyTuple_SetItem(args, 57, pyTupleCoSeismicAverageSlipErs);
+PyTuple_SetItem(args, 58, pyTupleLatestCoSeismicSlipEsts);
+PyTuple_SetItem(args, 59, pyTupleLatestCoSeismicSlipErs);
+PyTuple_SetItem(args, 60, pyTupleSymbolMains);
+PyTuple_SetItem(args, 61, pyTupleSymbolLows);
+PyTuple_SetItem(args, 62, pyTupleSymbolUps);
+PyTuple_SetItem(args, 63, pyTupleShowCodes);
+PyTuple_SetItem(args, 64, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddFaultAttitude25ToNetDB(const int nSId, const vector<_FAULTATTITUDE25>& vec_FaultAttitude25)
+{
+if(vec_FaultAttitude25.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_FaultAttitude25.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_FaultAttitude25);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(11);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleFaultIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleFaultSvyIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleFeatures = PyTuple_New(nRecordNum);
+PyObject* pyTupleFaultDips = PyTuple_New(nRecordNum);
+PyObject* pyTupleFaultDipAngles = PyTuple_New(nRecordNum);
+PyObject* pyTupleLastAngles = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_FaultAttitude25));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_FaultAttitude25[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_FaultAttitude25[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_FaultAttitude25[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_FaultAttitude25[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleFaultIDs, idx, StringToPy(WstringToString(vec_FaultAttitude25[idx]._baseinfo._FaultID)));
+PyTuple_SetItem(pyTupleFaultSvyIDs, idx, StringToPy(WstringToString(vec_FaultAttitude25[idx]._baseinfo._FaultSvyID)));
+PyTuple_SetItem(pyTupleFeatures, idx, Py_BuildValue("i", vec_FaultAttitude25[idx]._Feature));
+PyTuple_SetItem(pyTupleFaultDips, idx, Py_BuildValue("i", vec_FaultAttitude25[idx]._FaultDip));
+PyTuple_SetItem(pyTupleFaultDipAngles, idx, Py_BuildValue("i", vec_FaultAttitude25[idx]._FaultDipAngle));
+PyTuple_SetItem(pyTupleLastAngles, idx, PyFloat_FromDouble(vec_FaultAttitude25[idx]._LastAngle));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_FaultAttitude25[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleFaultIDs);
+PyTuple_SetItem(args, 5, pyTupleFaultSvyIDs);
+PyTuple_SetItem(args, 6, pyTupleFeatures);
+PyTuple_SetItem(args, 7, pyTupleFaultDips);
+PyTuple_SetItem(args, 8, pyTupleFaultDipAngles);
+PyTuple_SetItem(args, 9, pyTupleLastAngles);
+PyTuple_SetItem(args, 10, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddFold25ToNetDB(const int nSId, const vector<_FOLD25>& vec_Fold25)
+{
+if(vec_Fold25.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_Fold25.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_Fold25);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(28);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleFoldNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleFoldTypes = PyTuple_New(nRecordNum);
+PyObject* pyTupleLengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleWidths = PyTuple_New(nRecordNum);
+PyObject* pyTupleFronWingWidths = PyTuple_New(nRecordNum);
+PyObject* pyTupleBackWingWidths = PyTuple_New(nRecordNum);
+PyObject* pyTupleIsReverseds = PyTuple_New(nRecordNum);
+PyObject* pyTupleIsExposeds = PyTuple_New(nRecordNum);
+PyObject* pyTupleAllStratigraphys = PyTuple_New(nRecordNum);
+PyObject* pyTupleLatestStratigraphys = PyTuple_New(nRecordNum);
+PyObject* pyTupleAxisDirections = PyTuple_New(nRecordNum);
+PyObject* pyTupleMaxShotenRates = PyTuple_New(nRecordNum);
+PyObject* pyTupleAveShotenRates = PyTuple_New(nRecordNum);
+PyObject* pyTupleMaxUpliftRates = PyTuple_New(nRecordNum);
+PyObject* pyTupleAveUpliftRates = PyTuple_New(nRecordNum);
+PyObject* pyTupleFoldDescriptions = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleViewTos = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhotographers = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolMains = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolLows = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolUps = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_Fold25));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_Fold25[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_Fold25[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_Fold25[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_Fold25[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_Fold25[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_Fold25[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleFoldNames, idx, StringToPy(WstringToString(vec_Fold25[idx]._baseinfo._FoldName)));
+PyTuple_SetItem(pyTupleFoldTypes, idx, Py_BuildValue("i", vec_Fold25[idx]._FoldType));
+PyTuple_SetItem(pyTupleLengths, idx, PyFloat_FromDouble(vec_Fold25[idx]._Length));
+PyTuple_SetItem(pyTupleWidths, idx, PyFloat_FromDouble(vec_Fold25[idx]._Width));
+PyTuple_SetItem(pyTupleFronWingWidths, idx, PyFloat_FromDouble(vec_Fold25[idx]._FronWingWidth));
+PyTuple_SetItem(pyTupleBackWingWidths, idx, PyFloat_FromDouble(vec_Fold25[idx]._BackWingWidth));
+PyTuple_SetItem(pyTupleIsReverseds, idx, Py_BuildValue("i", vec_Fold25[idx]._IsReversed));
+PyTuple_SetItem(pyTupleIsExposeds, idx, Py_BuildValue("i", vec_Fold25[idx]._IsExposed));
+PyTuple_SetItem(pyTupleAllStratigraphys, idx, StringToPy(WstringToString(vec_Fold25[idx]._baseinfo._AllStratigraphy)));
+PyTuple_SetItem(pyTupleLatestStratigraphys, idx, StringToPy(WstringToString(vec_Fold25[idx]._baseinfo._LatestStratigraphy)));
+PyTuple_SetItem(pyTupleAxisDirections, idx, Py_BuildValue("i", vec_Fold25[idx]._AxisDirection));
+PyTuple_SetItem(pyTupleMaxShotenRates, idx, PyFloat_FromDouble(vec_Fold25[idx]._MaxShotenRate));
+PyTuple_SetItem(pyTupleAveShotenRates, idx, PyFloat_FromDouble(vec_Fold25[idx]._AveShotenRate));
+PyTuple_SetItem(pyTupleMaxUpliftRates, idx, PyFloat_FromDouble(vec_Fold25[idx]._MaxUpliftRate));
+PyTuple_SetItem(pyTupleAveUpliftRates, idx, PyFloat_FromDouble(vec_Fold25[idx]._AveUpliftRate));
+PyTuple_SetItem(pyTupleFoldDescriptions, idx, StringToPy(WstringToString(vec_Fold25[idx]._baseinfo._FoldDescription)));
+PyTuple_SetItem(pyTuplePhoto_AIIDs, idx, StringToPy(WstringToString(vec_Fold25[idx]._baseinfo._Photo_AIID)));
+PyTuple_SetItem(pyTuplePhoto_ARWIDs, idx, StringToPy(WstringToString(vec_Fold25[idx]._baseinfo._Photo_ARWID)));
+PyTuple_SetItem(pyTupleViewTos, idx, Py_BuildValue("i", vec_Fold25[idx]._ViewTo));
+PyTuple_SetItem(pyTuplePhotographers, idx, StringToPy(WstringToString(vec_Fold25[idx]._baseinfo._Photographer)));
+PyTuple_SetItem(pyTupleSymbolMains, idx, StringToPy(WstringToString(vec_Fold25[idx]._baseinfo._SymbolMain)));
+PyTuple_SetItem(pyTupleSymbolLows, idx, StringToPy(WstringToString(vec_Fold25[idx]._baseinfo._SymbolLow)));
+PyTuple_SetItem(pyTupleSymbolUps, idx, StringToPy(WstringToString(vec_Fold25[idx]._baseinfo._SymbolUp)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_Fold25[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleFoldNames);
+PyTuple_SetItem(args, 5, pyTupleFoldTypes);
+PyTuple_SetItem(args, 6, pyTupleLengths);
+PyTuple_SetItem(args, 7, pyTupleWidths);
+PyTuple_SetItem(args, 8, pyTupleFronWingWidths);
+PyTuple_SetItem(args, 9, pyTupleBackWingWidths);
+PyTuple_SetItem(args, 10, pyTupleIsReverseds);
+PyTuple_SetItem(args, 11, pyTupleIsExposeds);
+PyTuple_SetItem(args, 12, pyTupleAllStratigraphys);
+PyTuple_SetItem(args, 13, pyTupleLatestStratigraphys);
+PyTuple_SetItem(args, 14, pyTupleAxisDirections);
+PyTuple_SetItem(args, 15, pyTupleMaxShotenRates);
+PyTuple_SetItem(args, 16, pyTupleAveShotenRates);
+PyTuple_SetItem(args, 17, pyTupleMaxUpliftRates);
+PyTuple_SetItem(args, 18, pyTupleAveUpliftRates);
+PyTuple_SetItem(args, 19, pyTupleFoldDescriptions);
+PyTuple_SetItem(args, 20, pyTuplePhoto_AIIDs);
+PyTuple_SetItem(args, 21, pyTuplePhoto_ARWIDs);
+PyTuple_SetItem(args, 22, pyTupleViewTos);
+PyTuple_SetItem(args, 23, pyTuplePhotographers);
+PyTuple_SetItem(args, 24, pyTupleSymbolMains);
+PyTuple_SetItem(args, 25, pyTupleSymbolLows);
+PyTuple_SetItem(args, 26, pyTupleSymbolUps);
+PyTuple_SetItem(args, 27, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddFractureBelt25ToNetDB(const int nSId, const vector<_FRACTUREBELT25>& vec_FractureBelt25)
+{
+if(vec_FractureBelt25.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_FractureBelt25.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_FractureBelt25);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(22);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleFormationAges = PyTuple_New(nRecordNum);
+PyObject* pyTupleFeatures = PyTuple_New(nRecordNum);
+PyObject* pyTupleLengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleMaxWidths = PyTuple_New(nRecordNum);
+PyObject* pyTupleStartLongitudes = PyTuple_New(nRecordNum);
+PyObject* pyTupleStartLatitudes = PyTuple_New(nRecordNum);
+PyObject* pyTupleEndLongitudes = PyTuple_New(nRecordNum);
+PyObject* pyTupleEndLatitudes = PyTuple_New(nRecordNum);
+PyObject* pyTupleMaxVOffsets = PyTuple_New(nRecordNum);
+PyObject* pyTupleMaxHOffsets = PyTuple_New(nRecordNum);
+PyObject* pyTupleMaxTOffsets = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleViewTos = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhotographers = PyTuple_New(nRecordNum);
+PyObject* pyTupleShowCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_FractureBelt25));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_FractureBelt25[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_FractureBelt25[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_FractureBelt25[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_FractureBelt25[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_FractureBelt25[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_FractureBelt25[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleNames, idx, StringToPy(WstringToString(vec_FractureBelt25[idx]._baseinfo._Name)));
+PyTuple_SetItem(pyTupleFormationAges, idx, StringToPy(WstringToString(vec_FractureBelt25[idx]._baseinfo._FormationAge)));
+PyTuple_SetItem(pyTupleFeatures, idx, Py_BuildValue("i", vec_FractureBelt25[idx]._Feature));
+PyTuple_SetItem(pyTupleLengths, idx, PyFloat_FromDouble(vec_FractureBelt25[idx]._Length));
+PyTuple_SetItem(pyTupleMaxWidths, idx, PyFloat_FromDouble(vec_FractureBelt25[idx]._MaxWidth));
+PyTuple_SetItem(pyTupleStartLongitudes, idx, PyFloat_FromDouble(vec_FractureBelt25[idx]._StartLongitude));
+PyTuple_SetItem(pyTupleStartLatitudes, idx, PyFloat_FromDouble(vec_FractureBelt25[idx]._StartLatitude));
+PyTuple_SetItem(pyTupleEndLongitudes, idx, PyFloat_FromDouble(vec_FractureBelt25[idx]._EndLongitude));
+PyTuple_SetItem(pyTupleEndLatitudes, idx, PyFloat_FromDouble(vec_FractureBelt25[idx]._EndLatitude));
+PyTuple_SetItem(pyTupleMaxVOffsets, idx, PyFloat_FromDouble(vec_FractureBelt25[idx]._MaxVOffset));
+PyTuple_SetItem(pyTupleMaxHOffsets, idx, PyFloat_FromDouble(vec_FractureBelt25[idx]._MaxHOffset));
+PyTuple_SetItem(pyTupleMaxTOffsets, idx, PyFloat_FromDouble(vec_FractureBelt25[idx]._MaxTOffset));
+PyTuple_SetItem(pyTuplePhoto_AIIDs, idx, StringToPy(WstringToString(vec_FractureBelt25[idx]._baseinfo._Photo_AIID)));
+PyTuple_SetItem(pyTuplePhoto_ARWIDs, idx, StringToPy(WstringToString(vec_FractureBelt25[idx]._baseinfo._Photo_ARWID)));
+PyTuple_SetItem(pyTupleViewTos, idx, Py_BuildValue("i", vec_FractureBelt25[idx]._ViewTo));
+PyTuple_SetItem(pyTuplePhotographers, idx, StringToPy(WstringToString(vec_FractureBelt25[idx]._baseinfo._Photographer)));
+PyTuple_SetItem(pyTupleShowCodes, idx, Py_BuildValue("i", vec_FractureBelt25[idx]._ShowCode));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_FractureBelt25[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleNames);
+PyTuple_SetItem(args, 5, pyTupleFormationAges);
+PyTuple_SetItem(args, 6, pyTupleFeatures);
+PyTuple_SetItem(args, 7, pyTupleLengths);
+PyTuple_SetItem(args, 8, pyTupleMaxWidths);
+PyTuple_SetItem(args, 9, pyTupleStartLongitudes);
+PyTuple_SetItem(args, 10, pyTupleStartLatitudes);
+PyTuple_SetItem(args, 11, pyTupleEndLongitudes);
+PyTuple_SetItem(args, 12, pyTupleEndLatitudes);
+PyTuple_SetItem(args, 13, pyTupleMaxVOffsets);
+PyTuple_SetItem(args, 14, pyTupleMaxHOffsets);
+PyTuple_SetItem(args, 15, pyTupleMaxTOffsets);
+PyTuple_SetItem(args, 16, pyTuplePhoto_AIIDs);
+PyTuple_SetItem(args, 17, pyTuplePhoto_ARWIDs);
+PyTuple_SetItem(args, 18, pyTupleViewTos);
+PyTuple_SetItem(args, 19, pyTuplePhotographers);
+PyTuple_SetItem(args, 20, pyTupleShowCodes);
+PyTuple_SetItem(args, 21, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddGeoBoundaryLine25ToNetDB(const int nSId, const vector<_GEOBOUNDARYLINE25>& vec_GeoBoundaryLine25)
+{
+if(vec_GeoBoundaryLine25.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_GeoBoundaryLine25.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_GeoBoundaryLine25);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(6);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleGeologyBoundaryLines = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_GeoBoundaryLine25));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_GeoBoundaryLine25[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_GeoBoundaryLine25[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_GeoBoundaryLine25[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_GeoBoundaryLine25[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_GeoBoundaryLine25[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_GeoBoundaryLine25[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleGeologyBoundaryLines, idx, Py_BuildValue("i", vec_GeoBoundaryLine25[idx]._GeologyBoundaryLine));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_GeoBoundaryLine25[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleGeologyBoundaryLines);
+PyTuple_SetItem(args, 5, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddGeomorphyLine25ToNetDB(const int nSId, const vector<_GEOMORPHYLINE25>& vec_GeomorphyLine25)
+{
+if(vec_GeomorphyLine25.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_GeomorphyLine25.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_GeomorphyLine25);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(27);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleGeomorphyCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGeomorphyNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleGeomorphyTypes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGeomorphyDescriptions = PyTuple_New(nRecordNum);
+PyObject* pyTupleLengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleWidths = PyTuple_New(nRecordNum);
+PyObject* pyTupleHeights = PyTuple_New(nRecordNum);
+PyObject* pyTupleMaxVerticalOffsets = PyTuple_New(nRecordNum);
+PyObject* pyTupleMaxHorizontalOffsets = PyTuple_New(nRecordNum);
+PyObject* pyTupleMaxTensionalOffsets = PyTuple_New(nRecordNum);
+PyObject* pyTupleFeatures = PyTuple_New(nRecordNum);
+PyObject* pyTupleFormationAges = PyTuple_New(nRecordNum);
+PyObject* pyTupleIsSurfaceRuptureBelts = PyTuple_New(nRecordNum);
+PyObject* pyTupleFractureBeltIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleFractureTypes = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleViewTos = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhotographers = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolMains = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolLows = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolUps = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_GeomorphyLine25));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_GeomorphyLine25[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_GeomorphyLine25[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_GeomorphyLine25[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_GeomorphyLine25[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_GeomorphyLine25[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_GeomorphyLine25[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleGeomorphyCodes, idx, StringToPy(WstringToString(vec_GeomorphyLine25[idx]._baseinfo._GeomorphyCode)));
+PyTuple_SetItem(pyTupleGeomorphyNames, idx, StringToPy(WstringToString(vec_GeomorphyLine25[idx]._baseinfo._GeomorphyName)));
+PyTuple_SetItem(pyTupleGeomorphyTypes, idx, StringToPy(WstringToString(vec_GeomorphyLine25[idx]._baseinfo._GeomorphyType)));
+PyTuple_SetItem(pyTupleGeomorphyDescriptions, idx, StringToPy(WstringToString(vec_GeomorphyLine25[idx]._baseinfo._GeomorphyDescription)));
+PyTuple_SetItem(pyTupleLengths, idx, PyFloat_FromDouble(vec_GeomorphyLine25[idx]._Length));
+PyTuple_SetItem(pyTupleWidths, idx, PyFloat_FromDouble(vec_GeomorphyLine25[idx]._Width));
+PyTuple_SetItem(pyTupleHeights, idx, PyFloat_FromDouble(vec_GeomorphyLine25[idx]._Height));
+PyTuple_SetItem(pyTupleMaxVerticalOffsets, idx, PyFloat_FromDouble(vec_GeomorphyLine25[idx]._MaxVerticalOffset));
+PyTuple_SetItem(pyTupleMaxHorizontalOffsets, idx, PyFloat_FromDouble(vec_GeomorphyLine25[idx]._MaxHorizontalOffset));
+PyTuple_SetItem(pyTupleMaxTensionalOffsets, idx, PyFloat_FromDouble(vec_GeomorphyLine25[idx]._MaxTensionalOffset));
+PyTuple_SetItem(pyTupleFeatures, idx, StringToPy(WstringToString(vec_GeomorphyLine25[idx]._baseinfo._Feature)));
+PyTuple_SetItem(pyTupleFormationAges, idx, Py_BuildValue("i", vec_GeomorphyLine25[idx]._FormationAge));
+PyTuple_SetItem(pyTupleIsSurfaceRuptureBelts, idx, Py_BuildValue("i", vec_GeomorphyLine25[idx]._IsSurfaceRuptureBelt));
+PyTuple_SetItem(pyTupleFractureBeltIDs, idx, StringToPy(WstringToString(vec_GeomorphyLine25[idx]._baseinfo._FractureBeltID)));
+PyTuple_SetItem(pyTupleFractureTypes, idx, Py_BuildValue("i", vec_GeomorphyLine25[idx]._FractureType));
+PyTuple_SetItem(pyTuplePhoto_AIIDs, idx, StringToPy(WstringToString(vec_GeomorphyLine25[idx]._baseinfo._Photo_AIID)));
+PyTuple_SetItem(pyTuplePhoto_ARWIDs, idx, StringToPy(WstringToString(vec_GeomorphyLine25[idx]._baseinfo._Photo_ARWID)));
+PyTuple_SetItem(pyTupleViewTos, idx, Py_BuildValue("i", vec_GeomorphyLine25[idx]._ViewTo));
+PyTuple_SetItem(pyTuplePhotographers, idx, StringToPy(WstringToString(vec_GeomorphyLine25[idx]._baseinfo._Photographer)));
+PyTuple_SetItem(pyTupleSymbolMains, idx, StringToPy(WstringToString(vec_GeomorphyLine25[idx]._baseinfo._SymbolMain)));
+PyTuple_SetItem(pyTupleSymbolLows, idx, StringToPy(WstringToString(vec_GeomorphyLine25[idx]._baseinfo._SymbolLow)));
+PyTuple_SetItem(pyTupleSymbolUps, idx, StringToPy(WstringToString(vec_GeomorphyLine25[idx]._baseinfo._SymbolUp)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_GeomorphyLine25[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleGeomorphyCodes);
+PyTuple_SetItem(args, 5, pyTupleGeomorphyNames);
+PyTuple_SetItem(args, 6, pyTupleGeomorphyTypes);
+PyTuple_SetItem(args, 7, pyTupleGeomorphyDescriptions);
+PyTuple_SetItem(args, 8, pyTupleLengths);
+PyTuple_SetItem(args, 9, pyTupleWidths);
+PyTuple_SetItem(args, 10, pyTupleHeights);
+PyTuple_SetItem(args, 11, pyTupleMaxVerticalOffsets);
+PyTuple_SetItem(args, 12, pyTupleMaxHorizontalOffsets);
+PyTuple_SetItem(args, 13, pyTupleMaxTensionalOffsets);
+PyTuple_SetItem(args, 14, pyTupleFeatures);
+PyTuple_SetItem(args, 15, pyTupleFormationAges);
+PyTuple_SetItem(args, 16, pyTupleIsSurfaceRuptureBelts);
+PyTuple_SetItem(args, 17, pyTupleFractureBeltIDs);
+PyTuple_SetItem(args, 18, pyTupleFractureTypes);
+PyTuple_SetItem(args, 19, pyTuplePhoto_AIIDs);
+PyTuple_SetItem(args, 20, pyTuplePhoto_ARWIDs);
+PyTuple_SetItem(args, 21, pyTupleViewTos);
+PyTuple_SetItem(args, 22, pyTuplePhotographers);
+PyTuple_SetItem(args, 23, pyTupleSymbolMains);
+PyTuple_SetItem(args, 24, pyTupleSymbolLows);
+PyTuple_SetItem(args, 25, pyTupleSymbolUps);
+PyTuple_SetItem(args, 26, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddGeomorphyPoint25ToNetDB(const int nSId, const vector<_GEOMORPHYPOINT25>& vec_GeomorphyPoint25)
+{
+if(vec_GeomorphyPoint25.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_GeomorphyPoint25.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_GeomorphyPoint25);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(33);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleGeomorSvyPtIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleGeomorphyCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGeomorphyNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleGeomorphyTypes = PyTuple_New(nRecordNum);
+PyObject* pyTupleLengths = PyTuple_New(nRecordNum);
+PyObject* pyTuplewidths = PyTuple_New(nRecordNum);
+PyObject* pyTupleHeights = PyTuple_New(nRecordNum);
+PyObject* pyTupleVerticalOffsets = PyTuple_New(nRecordNum);
+PyObject* pyTupleHorizontalOffsets = PyTuple_New(nRecordNum);
+PyObject* pyTupleTensionalOffsets = PyTuple_New(nRecordNum);
+PyObject* pyTupleFeatures = PyTuple_New(nRecordNum);
+PyObject* pyTupleGeomorphyLnDirections = PyTuple_New(nRecordNum);
+PyObject* pyTupleFormationAges = PyTuple_New(nRecordNum);
+PyObject* pyTupleIsSurfaceRuptureBelts = PyTuple_New(nRecordNum);
+PyObject* pyTupleFractureBeltIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleFractureTypes = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleViewTos = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhotographers = PyTuple_New(nRecordNum);
+PyObject* pyTupleTypicalProfile_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleTypicalProfile_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSketch_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSketch_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolMains = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolLows = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolUps = PyTuple_New(nRecordNum);
+PyObject* pyTupleLastAngles = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_GeomorphyPoint25));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_GeomorphyPoint25[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_GeomorphyPoint25[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_GeomorphyPoint25[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_GeomorphyPoint25[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleGeomorSvyPtIDs, idx, StringToPy(WstringToString(vec_GeomorphyPoint25[idx]._baseinfo._GeomorSvyPtID)));
+PyTuple_SetItem(pyTupleGeomorphyCodes, idx, StringToPy(WstringToString(vec_GeomorphyPoint25[idx]._baseinfo._GeomorphyCode)));
+PyTuple_SetItem(pyTupleGeomorphyNames, idx, StringToPy(WstringToString(vec_GeomorphyPoint25[idx]._baseinfo._GeomorphyName)));
+PyTuple_SetItem(pyTupleGeomorphyTypes, idx, StringToPy(WstringToString(vec_GeomorphyPoint25[idx]._baseinfo._GeomorphyType)));
+PyTuple_SetItem(pyTupleLengths, idx, PyFloat_FromDouble(vec_GeomorphyPoint25[idx]._Length));
+PyTuple_SetItem(pyTuplewidths, idx, PyFloat_FromDouble(vec_GeomorphyPoint25[idx]._width));
+PyTuple_SetItem(pyTupleHeights, idx, PyFloat_FromDouble(vec_GeomorphyPoint25[idx]._Height));
+PyTuple_SetItem(pyTupleVerticalOffsets, idx, PyFloat_FromDouble(vec_GeomorphyPoint25[idx]._VerticalOffset));
+PyTuple_SetItem(pyTupleHorizontalOffsets, idx, PyFloat_FromDouble(vec_GeomorphyPoint25[idx]._HorizontalOffset));
+PyTuple_SetItem(pyTupleTensionalOffsets, idx, PyFloat_FromDouble(vec_GeomorphyPoint25[idx]._TensionalOffset));
+PyTuple_SetItem(pyTupleFeatures, idx, StringToPy(WstringToString(vec_GeomorphyPoint25[idx]._baseinfo._Feature)));
+PyTuple_SetItem(pyTupleGeomorphyLnDirections, idx, Py_BuildValue("i", vec_GeomorphyPoint25[idx]._GeomorphyLnDirection));
+PyTuple_SetItem(pyTupleFormationAges, idx, Py_BuildValue("i", vec_GeomorphyPoint25[idx]._FormationAge));
+PyTuple_SetItem(pyTupleIsSurfaceRuptureBelts, idx, Py_BuildValue("i", vec_GeomorphyPoint25[idx]._IsSurfaceRuptureBelt));
+PyTuple_SetItem(pyTupleFractureBeltIDs, idx, StringToPy(WstringToString(vec_GeomorphyPoint25[idx]._baseinfo._FractureBeltID)));
+PyTuple_SetItem(pyTupleFractureTypes, idx, Py_BuildValue("i", vec_GeomorphyPoint25[idx]._FractureType));
+PyTuple_SetItem(pyTuplePhoto_AIIDs, idx, StringToPy(WstringToString(vec_GeomorphyPoint25[idx]._baseinfo._Photo_AIID)));
+PyTuple_SetItem(pyTuplePhoto_ARWIDs, idx, StringToPy(WstringToString(vec_GeomorphyPoint25[idx]._baseinfo._Photo_ARWID)));
+PyTuple_SetItem(pyTupleViewTos, idx, Py_BuildValue("i", vec_GeomorphyPoint25[idx]._ViewTo));
+PyTuple_SetItem(pyTuplePhotographers, idx, StringToPy(WstringToString(vec_GeomorphyPoint25[idx]._baseinfo._Photographer)));
+PyTuple_SetItem(pyTupleTypicalProfile_AIIDs, idx, StringToPy(WstringToString(vec_GeomorphyPoint25[idx]._baseinfo._TypicalProfile_AIID)));
+PyTuple_SetItem(pyTupleTypicalProfile_ARWIDs, idx, StringToPy(WstringToString(vec_GeomorphyPoint25[idx]._baseinfo._TypicalProfile_ARWID)));
+PyTuple_SetItem(pyTupleSketch_AIIDs, idx, StringToPy(WstringToString(vec_GeomorphyPoint25[idx]._baseinfo._Sketch_AIID)));
+PyTuple_SetItem(pyTupleSketch_ARWIDs, idx, StringToPy(WstringToString(vec_GeomorphyPoint25[idx]._baseinfo._Sketch_ARWID)));
+PyTuple_SetItem(pyTupleSymbolMains, idx, StringToPy(WstringToString(vec_GeomorphyPoint25[idx]._baseinfo._SymbolMain)));
+PyTuple_SetItem(pyTupleSymbolLows, idx, StringToPy(WstringToString(vec_GeomorphyPoint25[idx]._baseinfo._SymbolLow)));
+PyTuple_SetItem(pyTupleSymbolUps, idx, StringToPy(WstringToString(vec_GeomorphyPoint25[idx]._baseinfo._SymbolUp)));
+PyTuple_SetItem(pyTupleLastAngles, idx, PyFloat_FromDouble(vec_GeomorphyPoint25[idx]._LastAngle));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_GeomorphyPoint25[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleGeomorSvyPtIDs);
+PyTuple_SetItem(args, 5, pyTupleGeomorphyCodes);
+PyTuple_SetItem(args, 6, pyTupleGeomorphyNames);
+PyTuple_SetItem(args, 7, pyTupleGeomorphyTypes);
+PyTuple_SetItem(args, 8, pyTupleLengths);
+PyTuple_SetItem(args, 9, pyTuplewidths);
+PyTuple_SetItem(args, 10, pyTupleHeights);
+PyTuple_SetItem(args, 11, pyTupleVerticalOffsets);
+PyTuple_SetItem(args, 12, pyTupleHorizontalOffsets);
+PyTuple_SetItem(args, 13, pyTupleTensionalOffsets);
+PyTuple_SetItem(args, 14, pyTupleFeatures);
+PyTuple_SetItem(args, 15, pyTupleGeomorphyLnDirections);
+PyTuple_SetItem(args, 16, pyTupleFormationAges);
+PyTuple_SetItem(args, 17, pyTupleIsSurfaceRuptureBelts);
+PyTuple_SetItem(args, 18, pyTupleFractureBeltIDs);
+PyTuple_SetItem(args, 19, pyTupleFractureTypes);
+PyTuple_SetItem(args, 20, pyTuplePhoto_AIIDs);
+PyTuple_SetItem(args, 21, pyTuplePhoto_ARWIDs);
+PyTuple_SetItem(args, 22, pyTupleViewTos);
+PyTuple_SetItem(args, 23, pyTuplePhotographers);
+PyTuple_SetItem(args, 24, pyTupleTypicalProfile_AIIDs);
+PyTuple_SetItem(args, 25, pyTupleTypicalProfile_ARWIDs);
+PyTuple_SetItem(args, 26, pyTupleSketch_AIIDs);
+PyTuple_SetItem(args, 27, pyTupleSketch_ARWIDs);
+PyTuple_SetItem(args, 28, pyTupleSymbolMains);
+PyTuple_SetItem(args, 29, pyTupleSymbolLows);
+PyTuple_SetItem(args, 30, pyTupleSymbolUps);
+PyTuple_SetItem(args, 31, pyTupleLastAngles);
+PyTuple_SetItem(args, 32, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddGeomorphyPolygon25ToNetDB(const int nSId, const vector<_GEOMORPHYPOLYGON25>& vec_GeomorphyPolygon25)
+{
+if(vec_GeomorphyPolygon25.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_GeomorphyPolygon25.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_GeomorphyPolygon25);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(27);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolygons = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleGeomorphyCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGeomorphyNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleGeomorphyTypes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGeomorphyDescriptions = PyTuple_New(nRecordNum);
+PyObject* pyTupleLengths = PyTuple_New(nRecordNum);
+PyObject* pyTuplewidths = PyTuple_New(nRecordNum);
+PyObject* pyTupleHeights = PyTuple_New(nRecordNum);
+PyObject* pyTupleMaxVerticalOffsets = PyTuple_New(nRecordNum);
+PyObject* pyTupleMaxHorizontalOffsets = PyTuple_New(nRecordNum);
+PyObject* pyTupleMaxTensionalOffsets = PyTuple_New(nRecordNum);
+PyObject* pyTupleFeatures = PyTuple_New(nRecordNum);
+PyObject* pyTupleFormationAges = PyTuple_New(nRecordNum);
+PyObject* pyTupleIsSurfaceRuptureBelts = PyTuple_New(nRecordNum);
+PyObject* pyTupleFractureBeltIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleFractureTypes = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleViewTos = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhotographers = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolMains = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolLows = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolUps = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_GeomorphyPolygon25));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_GeomorphyPolygon25[idx]._baseinfo._polygon.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_GeomorphyPolygon25[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_GeomorphyPolygon25[idx]._baseinfo._polygon[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_GeomorphyPolygon25[idx]._baseinfo._polygon[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_GeomorphyPolygon25[idx]._baseinfo._polygon[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_GeomorphyPolygon25[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleGeomorphyCodes, idx, StringToPy(WstringToString(vec_GeomorphyPolygon25[idx]._baseinfo._GeomorphyCode)));
+PyTuple_SetItem(pyTupleGeomorphyNames, idx, StringToPy(WstringToString(vec_GeomorphyPolygon25[idx]._baseinfo._GeomorphyName)));
+PyTuple_SetItem(pyTupleGeomorphyTypes, idx, StringToPy(WstringToString(vec_GeomorphyPolygon25[idx]._baseinfo._GeomorphyType)));
+PyTuple_SetItem(pyTupleGeomorphyDescriptions, idx, StringToPy(WstringToString(vec_GeomorphyPolygon25[idx]._baseinfo._GeomorphyDescription)));
+PyTuple_SetItem(pyTupleLengths, idx, PyFloat_FromDouble(vec_GeomorphyPolygon25[idx]._Length));
+PyTuple_SetItem(pyTuplewidths, idx, PyFloat_FromDouble(vec_GeomorphyPolygon25[idx]._width));
+PyTuple_SetItem(pyTupleHeights, idx, PyFloat_FromDouble(vec_GeomorphyPolygon25[idx]._Height));
+PyTuple_SetItem(pyTupleMaxVerticalOffsets, idx, PyFloat_FromDouble(vec_GeomorphyPolygon25[idx]._MaxVerticalOffset));
+PyTuple_SetItem(pyTupleMaxHorizontalOffsets, idx, PyFloat_FromDouble(vec_GeomorphyPolygon25[idx]._MaxHorizontalOffset));
+PyTuple_SetItem(pyTupleMaxTensionalOffsets, idx, PyFloat_FromDouble(vec_GeomorphyPolygon25[idx]._MaxTensionalOffset));
+PyTuple_SetItem(pyTupleFeatures, idx, StringToPy(WstringToString(vec_GeomorphyPolygon25[idx]._baseinfo._Feature)));
+PyTuple_SetItem(pyTupleFormationAges, idx, Py_BuildValue("i", vec_GeomorphyPolygon25[idx]._FormationAge));
+PyTuple_SetItem(pyTupleIsSurfaceRuptureBelts, idx, Py_BuildValue("i", vec_GeomorphyPolygon25[idx]._IsSurfaceRuptureBelt));
+PyTuple_SetItem(pyTupleFractureBeltIDs, idx, StringToPy(WstringToString(vec_GeomorphyPolygon25[idx]._baseinfo._FractureBeltID)));
+PyTuple_SetItem(pyTupleFractureTypes, idx, Py_BuildValue("i", vec_GeomorphyPolygon25[idx]._FractureType));
+PyTuple_SetItem(pyTuplePhoto_AIIDs, idx, StringToPy(WstringToString(vec_GeomorphyPolygon25[idx]._baseinfo._Photo_AIID)));
+PyTuple_SetItem(pyTuplePhoto_ARWIDs, idx, StringToPy(WstringToString(vec_GeomorphyPolygon25[idx]._baseinfo._Photo_ARWID)));
+PyTuple_SetItem(pyTupleViewTos, idx, Py_BuildValue("i", vec_GeomorphyPolygon25[idx]._ViewTo));
+PyTuple_SetItem(pyTuplePhotographers, idx, StringToPy(WstringToString(vec_GeomorphyPolygon25[idx]._baseinfo._Photographer)));
+PyTuple_SetItem(pyTupleSymbolMains, idx, StringToPy(WstringToString(vec_GeomorphyPolygon25[idx]._baseinfo._SymbolMain)));
+PyTuple_SetItem(pyTupleSymbolLows, idx, StringToPy(WstringToString(vec_GeomorphyPolygon25[idx]._baseinfo._SymbolLow)));
+PyTuple_SetItem(pyTupleSymbolUps, idx, StringToPy(WstringToString(vec_GeomorphyPolygon25[idx]._baseinfo._SymbolUp)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_GeomorphyPolygon25[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolygons);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleGeomorphyCodes);
+PyTuple_SetItem(args, 5, pyTupleGeomorphyNames);
+PyTuple_SetItem(args, 6, pyTupleGeomorphyTypes);
+PyTuple_SetItem(args, 7, pyTupleGeomorphyDescriptions);
+PyTuple_SetItem(args, 8, pyTupleLengths);
+PyTuple_SetItem(args, 9, pyTuplewidths);
+PyTuple_SetItem(args, 10, pyTupleHeights);
+PyTuple_SetItem(args, 11, pyTupleMaxVerticalOffsets);
+PyTuple_SetItem(args, 12, pyTupleMaxHorizontalOffsets);
+PyTuple_SetItem(args, 13, pyTupleMaxTensionalOffsets);
+PyTuple_SetItem(args, 14, pyTupleFeatures);
+PyTuple_SetItem(args, 15, pyTupleFormationAges);
+PyTuple_SetItem(args, 16, pyTupleIsSurfaceRuptureBelts);
+PyTuple_SetItem(args, 17, pyTupleFractureBeltIDs);
+PyTuple_SetItem(args, 18, pyTupleFractureTypes);
+PyTuple_SetItem(args, 19, pyTuplePhoto_AIIDs);
+PyTuple_SetItem(args, 20, pyTuplePhoto_ARWIDs);
+PyTuple_SetItem(args, 21, pyTupleViewTos);
+PyTuple_SetItem(args, 22, pyTuplePhotographers);
+PyTuple_SetItem(args, 23, pyTupleSymbolMains);
+PyTuple_SetItem(args, 24, pyTupleSymbolLows);
+PyTuple_SetItem(args, 25, pyTupleSymbolUps);
+PyTuple_SetItem(args, 26, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddGeotectonicUnit25ToNetDB(const int nSId, const vector<_GEOTECTONICUNIT25>& vec_GeotectonicUnit25)
+{
+if(vec_GeotectonicUnit25.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_GeotectonicUnit25.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_GeotectonicUnit25);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(11);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolygons = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleTectonicLevels = PyTuple_New(nRecordNum);
+PyObject* pyTuplensb1s = PyTuple_New(nRecordNum);
+PyObject* pyTuplensb2s = PyTuple_New(nRecordNum);
+PyObject* pyTuplensb3s = PyTuple_New(nRecordNum);
+PyObject* pyTupleShowCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_GeotectonicUnit25));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_GeotectonicUnit25[idx]._baseinfo._polygon.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_GeotectonicUnit25[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_GeotectonicUnit25[idx]._baseinfo._polygon[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_GeotectonicUnit25[idx]._baseinfo._polygon[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_GeotectonicUnit25[idx]._baseinfo._polygon[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_GeotectonicUnit25[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleNames, idx, StringToPy(WstringToString(vec_GeotectonicUnit25[idx]._baseinfo._Name)));
+PyTuple_SetItem(pyTupleTectonicLevels, idx, Py_BuildValue("i", vec_GeotectonicUnit25[idx]._TectonicLevel));
+PyTuple_SetItem(pyTuplensb1s, idx, StringToPy(WstringToString(vec_GeotectonicUnit25[idx]._baseinfo._nsb1)));
+PyTuple_SetItem(pyTuplensb2s, idx, StringToPy(WstringToString(vec_GeotectonicUnit25[idx]._baseinfo._nsb2)));
+PyTuple_SetItem(pyTuplensb3s, idx, StringToPy(WstringToString(vec_GeotectonicUnit25[idx]._baseinfo._nsb3)));
+PyTuple_SetItem(pyTupleShowCodes, idx, Py_BuildValue("i", vec_GeotectonicUnit25[idx]._ShowCode));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_GeotectonicUnit25[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolygons);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleNames);
+PyTuple_SetItem(args, 5, pyTupleTectonicLevels);
+PyTuple_SetItem(args, 6, pyTuplensb1s);
+PyTuple_SetItem(args, 7, pyTuplensb2s);
+PyTuple_SetItem(args, 8, pyTuplensb3s);
+PyTuple_SetItem(args, 9, pyTupleShowCodes);
+PyTuple_SetItem(args, 10, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddNeotectonicUnit25ToNetDB(const int nSId, const vector<_NEOTECTONICUNIT25>& vec_NeotectonicUnit25)
+{
+if(vec_NeotectonicUnit25.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_NeotectonicUnit25.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_NeotectonicUnit25);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(11);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolygons = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleTectonicLevels = PyTuple_New(nRecordNum);
+PyObject* pyTuplensb1s = PyTuple_New(nRecordNum);
+PyObject* pyTuplensb2s = PyTuple_New(nRecordNum);
+PyObject* pyTuplensb3s = PyTuple_New(nRecordNum);
+PyObject* pyTupleShowCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_NeotectonicUnit25));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_NeotectonicUnit25[idx]._baseinfo._polygon.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_NeotectonicUnit25[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_NeotectonicUnit25[idx]._baseinfo._polygon[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_NeotectonicUnit25[idx]._baseinfo._polygon[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_NeotectonicUnit25[idx]._baseinfo._polygon[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_NeotectonicUnit25[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleNames, idx, StringToPy(WstringToString(vec_NeotectonicUnit25[idx]._baseinfo._Name)));
+PyTuple_SetItem(pyTupleTectonicLevels, idx, Py_BuildValue("i", vec_NeotectonicUnit25[idx]._TectonicLevel));
+PyTuple_SetItem(pyTuplensb1s, idx, StringToPy(WstringToString(vec_NeotectonicUnit25[idx]._baseinfo._nsb1)));
+PyTuple_SetItem(pyTuplensb2s, idx, StringToPy(WstringToString(vec_NeotectonicUnit25[idx]._baseinfo._nsb2)));
+PyTuple_SetItem(pyTuplensb3s, idx, StringToPy(WstringToString(vec_NeotectonicUnit25[idx]._baseinfo._nsb3)));
+PyTuple_SetItem(pyTupleShowCodes, idx, Py_BuildValue("i", vec_NeotectonicUnit25[idx]._ShowCode));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_NeotectonicUnit25[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolygons);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleNames);
+PyTuple_SetItem(args, 5, pyTupleTectonicLevels);
+PyTuple_SetItem(args, 6, pyTuplensb1s);
+PyTuple_SetItem(args, 7, pyTuplensb2s);
+PyTuple_SetItem(args, 8, pyTuplensb3s);
+PyTuple_SetItem(args, 9, pyTupleShowCodes);
+PyTuple_SetItem(args, 10, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddRock25ToNetDB(const int nSId, const vector<_ROCK25>& vec_Rock25)
+{
+if(vec_Rock25.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_Rock25.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_Rock25);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(12);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolygons = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleRockNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbols = PyTuple_New(nRecordNum);
+PyObject* pyTupleQDHOs = PyTuple_New(nRecordNum);
+PyObject* pyTupleDescriptions = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolMains = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolUps = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolLows = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_Rock25));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_Rock25[idx]._baseinfo._polygon.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_Rock25[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_Rock25[idx]._baseinfo._polygon[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_Rock25[idx]._baseinfo._polygon[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_Rock25[idx]._baseinfo._polygon[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_Rock25[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleRockNames, idx, StringToPy(WstringToString(vec_Rock25[idx]._baseinfo._RockName)));
+PyTuple_SetItem(pyTupleSymbols, idx, Py_BuildValue("i", vec_Rock25[idx]._Symbol));
+PyTuple_SetItem(pyTupleQDHOs, idx, Py_BuildValue("i", vec_Rock25[idx]._QDHO));
+PyTuple_SetItem(pyTupleDescriptions, idx, StringToPy(WstringToString(vec_Rock25[idx]._baseinfo._Description)));
+PyTuple_SetItem(pyTupleSymbolMains, idx, StringToPy(WstringToString(vec_Rock25[idx]._baseinfo._SymbolMain)));
+PyTuple_SetItem(pyTupleSymbolUps, idx, StringToPy(WstringToString(vec_Rock25[idx]._baseinfo._SymbolUp)));
+PyTuple_SetItem(pyTupleSymbolLows, idx, StringToPy(WstringToString(vec_Rock25[idx]._baseinfo._SymbolLow)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_Rock25[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolygons);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleRockNames);
+PyTuple_SetItem(args, 5, pyTupleSymbols);
+PyTuple_SetItem(args, 6, pyTupleQDHOs);
+PyTuple_SetItem(args, 7, pyTupleDescriptions);
+PyTuple_SetItem(args, 8, pyTupleSymbolMains);
+PyTuple_SetItem(args, 9, pyTupleSymbolUps);
+PyTuple_SetItem(args, 10, pyTupleSymbolLows);
+PyTuple_SetItem(args, 11, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddStraAttitude25ToNetDB(const int nSId, const vector<_STRAATTITUDE25>& vec_StraAttitude25)
+{
+if(vec_StraAttitude25.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_StraAttitude25.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_StraAttitude25);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(11);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleColStraAttiIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleStraSvyPtIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleStraDips = PyTuple_New(nRecordNum);
+PyObject* pyTupleStraDipAngles = PyTuple_New(nRecordNum);
+PyObject* pyTupleIsReverseds = PyTuple_New(nRecordNum);
+PyObject* pyTupleLastAngles = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_StraAttitude25));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_StraAttitude25[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_StraAttitude25[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_StraAttitude25[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_StraAttitude25[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleColStraAttiIDs, idx, StringToPy(WstringToString(vec_StraAttitude25[idx]._baseinfo._ColStraAttiID)));
+PyTuple_SetItem(pyTupleStraSvyPtIDs, idx, StringToPy(WstringToString(vec_StraAttitude25[idx]._baseinfo._StraSvyPtID)));
+PyTuple_SetItem(pyTupleStraDips, idx, Py_BuildValue("i", vec_StraAttitude25[idx]._StraDip));
+PyTuple_SetItem(pyTupleStraDipAngles, idx, Py_BuildValue("i", vec_StraAttitude25[idx]._StraDipAngle));
+PyTuple_SetItem(pyTupleIsReverseds, idx, Py_BuildValue("i", vec_StraAttitude25[idx]._IsReversed));
+PyTuple_SetItem(pyTupleLastAngles, idx, PyFloat_FromDouble(vec_StraAttitude25[idx]._LastAngle));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_StraAttitude25[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleColStraAttiIDs);
+PyTuple_SetItem(args, 5, pyTupleStraSvyPtIDs);
+PyTuple_SetItem(args, 6, pyTupleStraDips);
+PyTuple_SetItem(args, 7, pyTupleStraDipAngles);
+PyTuple_SetItem(args, 8, pyTupleIsReverseds);
+PyTuple_SetItem(args, 9, pyTupleLastAngles);
+PyTuple_SetItem(args, 10, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddStraIsoline25ToNetDB(const int nSId, const vector<_STRAISOLINE25>& vec_StraIsoline25)
+{
+if(vec_StraIsoline25.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_StraIsoline25.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_StraIsoline25);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(8);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleStraiNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleStraiValues = PyTuple_New(nRecordNum);
+PyObject* pyTupleShowCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_StraIsoline25));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_StraIsoline25[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_StraIsoline25[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_StraIsoline25[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_StraIsoline25[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_StraIsoline25[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_StraIsoline25[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleStraiNames, idx, StringToPy(WstringToString(vec_StraIsoline25[idx]._baseinfo._StraiName)));
+PyTuple_SetItem(pyTupleStraiValues, idx, Py_BuildValue("i", vec_StraIsoline25[idx]._StraiValue));
+PyTuple_SetItem(pyTupleShowCodes, idx, Py_BuildValue("i", vec_StraIsoline25[idx]._ShowCode));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_StraIsoline25[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleStraiNames);
+PyTuple_SetItem(args, 5, pyTupleStraiValues);
+PyTuple_SetItem(args, 6, pyTupleShowCodes);
+PyTuple_SetItem(args, 7, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddStratigraphy25ToNetDB(const int nSId, const vector<_STRATIGRAPHY25>& vec_Stratigraphy25)
+{
+if(vec_Stratigraphy25.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_Stratigraphy25.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_Stratigraphy25);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(13);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolygons = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleStratigraphyNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbols = PyTuple_New(nRecordNum);
+PyObject* pyTupleSedimentaryFaciess = PyTuple_New(nRecordNum);
+PyObject* pyTupleThicknesss = PyTuple_New(nRecordNum);
+PyObject* pyTupleDescriptions = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolMains = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolUps = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolLows = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_Stratigraphy25));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_Stratigraphy25[idx]._baseinfo._polygon.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_Stratigraphy25[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_Stratigraphy25[idx]._baseinfo._polygon[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_Stratigraphy25[idx]._baseinfo._polygon[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_Stratigraphy25[idx]._baseinfo._polygon[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_Stratigraphy25[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleStratigraphyNames, idx, StringToPy(WstringToString(vec_Stratigraphy25[idx]._baseinfo._StratigraphyName)));
+PyTuple_SetItem(pyTupleSymbols, idx, Py_BuildValue("i", vec_Stratigraphy25[idx]._Symbol));
+PyTuple_SetItem(pyTupleSedimentaryFaciess, idx, StringToPy(WstringToString(vec_Stratigraphy25[idx]._baseinfo._SedimentaryFacies)));
+PyTuple_SetItem(pyTupleThicknesss, idx, StringToPy(WstringToString(vec_Stratigraphy25[idx]._baseinfo._Thickness)));
+PyTuple_SetItem(pyTupleDescriptions, idx, StringToPy(WstringToString(vec_Stratigraphy25[idx]._baseinfo._Description)));
+PyTuple_SetItem(pyTupleSymbolMains, idx, StringToPy(WstringToString(vec_Stratigraphy25[idx]._baseinfo._SymbolMain)));
+PyTuple_SetItem(pyTupleSymbolUps, idx, StringToPy(WstringToString(vec_Stratigraphy25[idx]._baseinfo._SymbolUp)));
+PyTuple_SetItem(pyTupleSymbolLows, idx, StringToPy(WstringToString(vec_Stratigraphy25[idx]._baseinfo._SymbolLow)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_Stratigraphy25[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolygons);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleStratigraphyNames);
+PyTuple_SetItem(args, 5, pyTupleSymbols);
+PyTuple_SetItem(args, 6, pyTupleSedimentaryFaciess);
+PyTuple_SetItem(args, 7, pyTupleThicknesss);
+PyTuple_SetItem(args, 8, pyTupleDescriptions);
+PyTuple_SetItem(args, 9, pyTupleSymbolMains);
+PyTuple_SetItem(args, 10, pyTupleSymbolUps);
+PyTuple_SetItem(args, 11, pyTupleSymbolLows);
+PyTuple_SetItem(args, 12, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddUplift25ToNetDB(const int nSId, const vector<_UPLIFT25>& vec_Uplift25)
+{
+if(vec_Uplift25.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_Uplift25.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_Uplift25);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(16);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolygons = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleUpliftNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleFormationAges = PyTuple_New(nRecordNum);
+PyObject* pyTupleHeights = PyTuple_New(nRecordNum);
+PyObject* pyTupleFeatures = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleViewTos = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhotographers = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolMains = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolLows = PyTuple_New(nRecordNum);
+PyObject* pyTupleSymbolUps = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_Uplift25));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_Uplift25[idx]._baseinfo._polygon.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_Uplift25[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_Uplift25[idx]._baseinfo._polygon[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_Uplift25[idx]._baseinfo._polygon[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_Uplift25[idx]._baseinfo._polygon[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_Uplift25[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleUpliftNames, idx, StringToPy(WstringToString(vec_Uplift25[idx]._baseinfo._UpliftName)));
+PyTuple_SetItem(pyTupleFormationAges, idx, Py_BuildValue("i", vec_Uplift25[idx]._FormationAge));
+PyTuple_SetItem(pyTupleHeights, idx, Py_BuildValue("i", vec_Uplift25[idx]._Height));
+PyTuple_SetItem(pyTupleFeatures, idx, StringToPy(WstringToString(vec_Uplift25[idx]._baseinfo._Feature)));
+PyTuple_SetItem(pyTuplePhoto_AIIDs, idx, StringToPy(WstringToString(vec_Uplift25[idx]._baseinfo._Photo_AIID)));
+PyTuple_SetItem(pyTuplePhoto_ARWIDs, idx, StringToPy(WstringToString(vec_Uplift25[idx]._baseinfo._Photo_ARWID)));
+PyTuple_SetItem(pyTupleViewTos, idx, Py_BuildValue("i", vec_Uplift25[idx]._ViewTo));
+PyTuple_SetItem(pyTuplePhotographers, idx, StringToPy(WstringToString(vec_Uplift25[idx]._baseinfo._Photographer)));
+PyTuple_SetItem(pyTupleSymbolMains, idx, StringToPy(WstringToString(vec_Uplift25[idx]._baseinfo._SymbolMain)));
+PyTuple_SetItem(pyTupleSymbolLows, idx, StringToPy(WstringToString(vec_Uplift25[idx]._baseinfo._SymbolLow)));
+PyTuple_SetItem(pyTupleSymbolUps, idx, StringToPy(WstringToString(vec_Uplift25[idx]._baseinfo._SymbolUp)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_Uplift25[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolygons);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleUpliftNames);
+PyTuple_SetItem(args, 5, pyTupleFormationAges);
+PyTuple_SetItem(args, 6, pyTupleHeights);
+PyTuple_SetItem(args, 7, pyTupleFeatures);
+PyTuple_SetItem(args, 8, pyTuplePhoto_AIIDs);
+PyTuple_SetItem(args, 9, pyTuplePhoto_ARWIDs);
+PyTuple_SetItem(args, 10, pyTupleViewTos);
+PyTuple_SetItem(args, 11, pyTuplePhotographers);
+PyTuple_SetItem(args, 12, pyTupleSymbolMains);
+PyTuple_SetItem(args, 13, pyTupleSymbolLows);
+PyTuple_SetItem(args, 14, pyTupleSymbolUps);
+PyTuple_SetItem(args, 15, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+

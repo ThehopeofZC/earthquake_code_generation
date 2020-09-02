@@ -1,0 +1,192 @@
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadInvRgnHasLayer()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取调查区与面状资料关联表...\r\n");
+	vector<_INVRGNHASLAYER> vec_InvRgnHasLayer;
+	if(!obReader.EsGetInvRgnHasLayer(vec_InvRgnHasLayer))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("调查区与面状资料关联表获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("调查区与面状资料关联表获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传调查区与面状资料关联表...\r\n");
+	if(!EsAddInvRgnHasLayerToNetDB(m_nSId, vec_InvRgnHasLayer))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("调查区与面状资料关联表上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("调查区与面状资料关联表上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadLiteratureDocumentTable()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取文献资料库...\r\n");
+	vector<_LITERATUREDOCUMENTTABLE> vec_LiteratureDocumentTable;
+	if(!obReader.EsGetLiteratureDocumentTable(vec_LiteratureDocumentTable))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("文献资料库获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("文献资料库获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传文献资料库...\r\n");
+	if(!EsAddLiteratureDocumentTableToNetDB(m_nSId, vec_LiteratureDocumentTable))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("文献资料库上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("文献资料库上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadGeologicalSvyPlanningLine()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取地质调查规划路线...\r\n");
+	vector<_GEOLOGICALSVYPLANNINGLINE> vec_GeologicalSvyPlanningLine;
+	if(!obReader.EsGetGeologicalSvyPlanningLine(vec_GeologicalSvyPlanningLine))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地质调查规划路线获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地质调查规划路线获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传地质调查规划路线...\r\n");
+	if(!EsAddGeologicalSvyPlanningLineToNetDB(m_nSId, vec_GeologicalSvyPlanningLine))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地质调查规划路线上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地质调查规划路线上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadGeologicalSvyPlanningPt()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取地质调查规划点...\r\n");
+	vector<_GEOLOGICALSVYPLANNINGPT> vec_GeologicalSvyPlanningPt;
+	if(!obReader.EsGetGeologicalSvyPlanningPt(vec_GeologicalSvyPlanningPt))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地质调查规划点获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地质调查规划点获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传地质调查规划点...\r\n");
+	if(!EsAddGeologicalSvyPlanningPtToNetDB(m_nSId, vec_GeologicalSvyPlanningPt))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地质调查规划点上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地质调查规划点上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadMainAFMappingRegion()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取主要活动断层制图区...\r\n");
+	vector<_MAINAFMAPPINGREGION> vec_MainAFMappingRegion;
+	if(!obReader.EsGetMainAFMappingRegion(vec_MainAFMappingRegion))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("主要活动断层制图区获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("主要活动断层制图区获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传主要活动断层制图区...\r\n");
+	if(!EsAddMainAFMappingRegionToNetDB(m_nSId, vec_MainAFMappingRegion))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("主要活动断层制图区上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("主要活动断层制图区上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadPolygonDataLayer()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取面状资料图层...\r\n");
+	vector<_POLYGONDATALAYER> vec_PolygonDataLayer;
+	if(!obReader.EsGetPolygonDataLayer(vec_PolygonDataLayer))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("面状资料图层获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("面状资料图层获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传面状资料图层...\r\n");
+	if(!EsAddPolygonDataLayerToNetDB(m_nSId, vec_PolygonDataLayer))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("面状资料图层上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("面状资料图层上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadTargetRegion()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取目标区...\r\n");
+	vector<_TARGETREGION> vec_TargetRegion;
+	if(!obReader.EsGetTargetRegion(vec_TargetRegion))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("目标区获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("目标区获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传目标区...\r\n");
+	if(!EsAddTargetRegionToNetDB(m_nSId, vec_TargetRegion))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("目标区上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("目标区上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadWorkRegion()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取工作区...\r\n");
+	vector<_WORKREGION> vec_WorkRegion;
+	if(!obReader.EsGetWorkRegion(vec_WorkRegion))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("工作区获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("工作区获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传工作区...\r\n");
+	if(!EsAddWorkRegionToNetDB(m_nSId, vec_WorkRegion))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("工作区上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("工作区上传成功！\r\n");
+	return true;
+}

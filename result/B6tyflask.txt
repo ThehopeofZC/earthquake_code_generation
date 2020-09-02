@@ -1,0 +1,119 @@
+@app.route('/mysql/seismological_bureau/add_B6_GeochemicalProjectTable/', methods = ['POST'])
+def add_B6_GeochemicalProjectTable():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	IDs = data["IDs"]
+	MainAFMRegionIDs = data["MainAFMRegionIDs"]
+	TargetRegionIDs = data["TargetRegionIDs"]
+	WorkRegionIDs = data["WorkRegionIDs"]
+	Names = data["Names"]
+	SvyMethods = data["SvyMethods"]
+	SvyLineCounts = data["SvyLineCounts"]
+	SvyLineLengths = data["SvyLineLengths"]
+	SvyPointCounts = data["SvyPointCounts"]
+	SvyInstitutes = data["SvyInstitutes"]
+	Data_ARWIDs = data["Data_ARWIDs"]
+	DB_ARIDs = data["DB_ARIDs"]
+	DB_ARWIDs = data["DB_ARWIDs"]
+	CS_ARIDs = data["CS_ARIDs"]
+	CS_ARWIDs = data["CS_ARWIDs"]
+	Report_ARIDs = data["Report_ARIDs"]
+	Report_ARWIDs = data["Report_ARWIDs"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_B6_GeochemicalProjectTable(sid, IDs, MainAFMRegionIDs, TargetRegionIDs, WorkRegionIDs, Names, SvyMethods, SvyLineCounts, SvyLineLengths, SvyPointCounts, SvyInstitutes, Data_ARWIDs, DB_ARIDs, DB_ARWIDs, CS_ARIDs, CS_ARWIDs, Report_ARIDs, Report_ARWIDs, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_B6_GeocheSvyDataTable/', methods = ['POST'])
+def add_B6_GeocheSvyDataTable():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	IDs = data["IDs"]
+	ProjectIDs = data["ProjectIDs"]
+	SvyLineIDs = data["SvyLineIDs"]
+	SvyPointIDs = data["SvyPointIDs"]
+	SvyMethods = data["SvyMethods"]
+	Survey_ARWIDs = data["Survey_ARWIDs"]
+	ResultTypes = data["ResultTypes"]
+	ResultNames = data["ResultNames"]
+	Result_AIIDs = data["Result_AIIDs"]
+	Result_ARWIDs = data["Result_ARWIDs"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_B6_GeocheSvyDataTable(sid, IDs, ProjectIDs, SvyLineIDs, SvyPointIDs, SvyMethods, Survey_ARWIDs, ResultTypes, ResultNames, Result_AIIDs, Result_ARWIDs, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_GeochemicalAbnPoint/', methods = ['POST'])
+def add_GeochemicalAbnPoint():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	points = data["points"]
+	IDs = data["IDs"]
+	SvyLineIDs = data["SvyLineIDs"]
+	TargetFaultIDs = data["TargetFaultIDs"]
+	TargetFaultSources = data["TargetFaultSources"]
+	TargetFaultNames = data["TargetFaultNames"]
+	Distances = data["Distances"]
+	AbnormalTypes = data["AbnormalTypes"]
+	ShowCodes = data["ShowCodes"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_GeochemicalAbnPoint(sid, points, IDs, SvyLineIDs, TargetFaultIDs, TargetFaultSources, TargetFaultNames, Distances, AbnormalTypes, ShowCodes, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_GeochemicalAbnSegment/', methods = ['POST'])
+def add_GeochemicalAbnSegment():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	SvyLineIDs = data["SvyLineIDs"]
+	TargetFaultIDs = data["TargetFaultIDs"]
+	TargetFaultSources = data["TargetFaultSources"]
+	TargetFaultNames = data["TargetFaultNames"]
+	Distance1s = data["Distance1s"]
+	Distance2s = data["Distance2s"]
+	AbnormalTypes = data["AbnormalTypes"]
+	ShowCodes = data["ShowCodes"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_GeochemicalAbnSegment(sid, lines, IDs, SvyLineIDs, TargetFaultIDs, TargetFaultSources, TargetFaultNames, Distance1s, Distance2s, AbnormalTypes, ShowCodes, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_GeochemicalSvyLine/', methods = ['POST'])
+def add_GeochemicalSvyLine():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	ProjectIDs = data["ProjectIDs"]
+	Names = data["Names"]
+	SvyMethods = data["SvyMethods"]
+	Lengths = data["Lengths"]
+	StartLongitudes = data["StartLongitudes"]
+	StartLatitudes = data["StartLatitudes"]
+	EndLongitutdes = data["EndLongitutdes"]
+	EndLatitudes = data["EndLatitudes"]
+	SvyPointNums = data["SvyPointNums"]
+	InterpolateNums = data["InterpolateNums"]
+	AbnPointNums = data["AbnPointNums"]
+	MeanValues = data["MeanValues"]
+	SlippageValues = data["SlippageValues"]
+	AbnormalBottomValues = data["AbnormalBottomValues"]
+	RM_AIIDs = data["RM_AIIDs"]
+	RM_ARWIDs = data["RM_ARWIDs"]
+	ShowCodes = data["ShowCodes"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_GeochemicalSvyLine(sid, lines, IDs, ProjectIDs, Names, SvyMethods, Lengths, StartLongitudes, StartLatitudes, EndLongitutdes, EndLatitudes, SvyPointNums, InterpolateNums, AbnPointNums, MeanValues, SlippageValues, AbnormalBottomValues, RM_AIIDs, RM_ARWIDs, ShowCodes, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_GeochemicalSvyPoint/', methods = ['POST'])
+def add_GeochemicalSvyPoint():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	points = data["points"]
+	IDs = data["IDs"]
+	FieldIDs = data["FieldIDs"]
+	SvyLineIDs = data["SvyLineIDs"]
+	SvyMethods = data["SvyMethods"]
+	LabelInfos = data["LabelInfos"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_GeochemicalSvyPoint(sid, points, IDs, FieldIDs, SvyLineIDs, SvyMethods, LabelInfos, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+

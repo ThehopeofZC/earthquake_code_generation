@@ -1,0 +1,685 @@
+bool EsAddB5_GeophyRgnHasGeophyPtToNetDB(const int nSId, const vector<_B5_GEOPHYRGNHASGEOPHYPT>& vec_B5_GeophyRgnHasGeophyPt)
+{
+if(vec_B5_GeophyRgnHasGeophyPt.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_B5_GeophyRgnHasGeophyPt.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_B5_GeophyRgnHasGeophyPt);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(5);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleGeophyRgnIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleGeophyPtIDs = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_B5_GeophyRgnHasGeophyPt));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_B5_GeophyRgnHasGeophyPt[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleGeophyRgnIDs, idx, StringToPy(WstringToString(vec_B5_GeophyRgnHasGeophyPt[idx]._baseinfo._GeophyRgnID)));
+PyTuple_SetItem(pyTupleGeophyPtIDs, idx, StringToPy(WstringToString(vec_B5_GeophyRgnHasGeophyPt[idx]._baseinfo._GeophyPtID)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTupleIDs);
+PyTuple_SetItem(args, 3, pyTupleGeophyRgnIDs);
+PyTuple_SetItem(args, 4, pyTupleGeophyPtIDs);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddB5_GeophySvyDataTableToNetDB(const int nSId, const vector<_B5_GEOPHYSVYDATATABLE>& vec_B5_GeophySvyDataTable)
+{
+if(vec_B5_GeophySvyDataTable.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_B5_GeophySvyDataTable.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_B5_GeophySvyDataTable);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(14);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyRegionIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyLineIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyPointIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyMethods = PyTuple_New(nRecordNum);
+PyObject* pyTupleSurvey_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleResultTypes = PyTuple_New(nRecordNum);
+PyObject* pyTupleResultNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleResult_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleResult_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_B5_GeophySvyDataTable));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_B5_GeophySvyDataTable[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectIDs, idx, StringToPy(WstringToString(vec_B5_GeophySvyDataTable[idx]._baseinfo._ProjectID)));
+PyTuple_SetItem(pyTupleSvyRegionIDs, idx, StringToPy(WstringToString(vec_B5_GeophySvyDataTable[idx]._baseinfo._SvyRegionID)));
+PyTuple_SetItem(pyTupleSvyLineIDs, idx, StringToPy(WstringToString(vec_B5_GeophySvyDataTable[idx]._baseinfo._SvyLineID)));
+PyTuple_SetItem(pyTupleSvyPointIDs, idx, StringToPy(WstringToString(vec_B5_GeophySvyDataTable[idx]._baseinfo._SvyPointID)));
+PyTuple_SetItem(pyTupleSvyMethods, idx, Py_BuildValue("i", vec_B5_GeophySvyDataTable[idx]._SvyMethod));
+PyTuple_SetItem(pyTupleSurvey_ARWIDs, idx, StringToPy(WstringToString(vec_B5_GeophySvyDataTable[idx]._baseinfo._Survey_ARWID)));
+PyTuple_SetItem(pyTupleResultTypes, idx, Py_BuildValue("i", vec_B5_GeophySvyDataTable[idx]._ResultType));
+PyTuple_SetItem(pyTupleResultNames, idx, StringToPy(WstringToString(vec_B5_GeophySvyDataTable[idx]._baseinfo._ResultName)));
+PyTuple_SetItem(pyTupleResult_AIIDs, idx, StringToPy(WstringToString(vec_B5_GeophySvyDataTable[idx]._baseinfo._Result_AIID)));
+PyTuple_SetItem(pyTupleResult_ARWIDs, idx, StringToPy(WstringToString(vec_B5_GeophySvyDataTable[idx]._baseinfo._Result_ARWID)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_B5_GeophySvyDataTable[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTupleIDs);
+PyTuple_SetItem(args, 3, pyTupleProjectIDs);
+PyTuple_SetItem(args, 4, pyTupleSvyRegionIDs);
+PyTuple_SetItem(args, 5, pyTupleSvyLineIDs);
+PyTuple_SetItem(args, 6, pyTupleSvyPointIDs);
+PyTuple_SetItem(args, 7, pyTupleSvyMethods);
+PyTuple_SetItem(args, 8, pyTupleSurvey_ARWIDs);
+PyTuple_SetItem(args, 9, pyTupleResultTypes);
+PyTuple_SetItem(args, 10, pyTupleResultNames);
+PyTuple_SetItem(args, 11, pyTupleResult_AIIDs);
+PyTuple_SetItem(args, 12, pyTupleResult_ARWIDs);
+PyTuple_SetItem(args, 13, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddB5_GeophySvyProjectTableToNetDB(const int nSId, const vector<_B5_GEOPHYSVYPROJECTTABLE>& vec_B5_GeophySvyProjectTable)
+{
+if(vec_B5_GeophySvyProjectTable.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_B5_GeophySvyProjectTable.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_B5_GeophySvyProjectTable);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(24);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleMainAFMRegionIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleTargetRegionIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleWorkRegionIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleHugeVolumeDataIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyMethods = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyLineCounts = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyLineLengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyPointCounts = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyInstitutes = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyDataStorageInstitutions = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyDataContactPersons = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyDataContactPhones = PyTuple_New(nRecordNum);
+PyObject* pyTupleSurveyCommentInfos = PyTuple_New(nRecordNum);
+PyObject* pyTupleDB_ARIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleDB_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCS_ARIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCS_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleReport_ARIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleReport_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_B5_GeophySvyProjectTable));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_B5_GeophySvyProjectTable[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleMainAFMRegionIDs, idx, StringToPy(WstringToString(vec_B5_GeophySvyProjectTable[idx]._baseinfo._MainAFMRegionID)));
+PyTuple_SetItem(pyTupleTargetRegionIDs, idx, StringToPy(WstringToString(vec_B5_GeophySvyProjectTable[idx]._baseinfo._TargetRegionID)));
+PyTuple_SetItem(pyTupleWorkRegionIDs, idx, StringToPy(WstringToString(vec_B5_GeophySvyProjectTable[idx]._baseinfo._WorkRegionID)));
+PyTuple_SetItem(pyTupleHugeVolumeDataIDs, idx, StringToPy(WstringToString(vec_B5_GeophySvyProjectTable[idx]._baseinfo._HugeVolumeDataID)));
+PyTuple_SetItem(pyTupleNames, idx, StringToPy(WstringToString(vec_B5_GeophySvyProjectTable[idx]._baseinfo._Name)));
+PyTuple_SetItem(pyTupleSvyMethods, idx, Py_BuildValue("i", vec_B5_GeophySvyProjectTable[idx]._SvyMethod));
+PyTuple_SetItem(pyTupleSvyLineCounts, idx, Py_BuildValue("i", vec_B5_GeophySvyProjectTable[idx]._SvyLineCount));
+PyTuple_SetItem(pyTupleSvyLineLengths, idx, PyFloat_FromDouble(vec_B5_GeophySvyProjectTable[idx]._SvyLineLength));
+PyTuple_SetItem(pyTupleSvyPointCounts, idx, Py_BuildValue("i", vec_B5_GeophySvyProjectTable[idx]._SvyPointCount));
+PyTuple_SetItem(pyTupleSvyInstitutes, idx, StringToPy(WstringToString(vec_B5_GeophySvyProjectTable[idx]._baseinfo._SvyInstitute)));
+PyTuple_SetItem(pyTupleSvyDataStorageInstitutions, idx, StringToPy(WstringToString(vec_B5_GeophySvyProjectTable[idx]._baseinfo._SvyDataStorageInstitution)));
+PyTuple_SetItem(pyTupleSvyDataContactPersons, idx, StringToPy(WstringToString(vec_B5_GeophySvyProjectTable[idx]._baseinfo._SvyDataContactPerson)));
+PyTuple_SetItem(pyTupleSvyDataContactPhones, idx, StringToPy(WstringToString(vec_B5_GeophySvyProjectTable[idx]._baseinfo._SvyDataContactPhone)));
+PyTuple_SetItem(pyTupleSurveyCommentInfos, idx, StringToPy(WstringToString(vec_B5_GeophySvyProjectTable[idx]._baseinfo._SurveyCommentInfo)));
+PyTuple_SetItem(pyTupleDB_ARIDs, idx, StringToPy(WstringToString(vec_B5_GeophySvyProjectTable[idx]._baseinfo._DB_ARID)));
+PyTuple_SetItem(pyTupleDB_ARWIDs, idx, StringToPy(WstringToString(vec_B5_GeophySvyProjectTable[idx]._baseinfo._DB_ARWID)));
+PyTuple_SetItem(pyTupleCS_ARIDs, idx, StringToPy(WstringToString(vec_B5_GeophySvyProjectTable[idx]._baseinfo._CS_ARID)));
+PyTuple_SetItem(pyTupleCS_ARWIDs, idx, StringToPy(WstringToString(vec_B5_GeophySvyProjectTable[idx]._baseinfo._CS_ARWID)));
+PyTuple_SetItem(pyTupleReport_ARIDs, idx, StringToPy(WstringToString(vec_B5_GeophySvyProjectTable[idx]._baseinfo._Report_ARID)));
+PyTuple_SetItem(pyTupleReport_ARWIDs, idx, StringToPy(WstringToString(vec_B5_GeophySvyProjectTable[idx]._baseinfo._Report_ARWID)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_B5_GeophySvyProjectTable[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTupleIDs);
+PyTuple_SetItem(args, 3, pyTupleMainAFMRegionIDs);
+PyTuple_SetItem(args, 4, pyTupleTargetRegionIDs);
+PyTuple_SetItem(args, 5, pyTupleWorkRegionIDs);
+PyTuple_SetItem(args, 6, pyTupleHugeVolumeDataIDs);
+PyTuple_SetItem(args, 7, pyTupleNames);
+PyTuple_SetItem(args, 8, pyTupleSvyMethods);
+PyTuple_SetItem(args, 9, pyTupleSvyLineCounts);
+PyTuple_SetItem(args, 10, pyTupleSvyLineLengths);
+PyTuple_SetItem(args, 11, pyTupleSvyPointCounts);
+PyTuple_SetItem(args, 12, pyTupleSvyInstitutes);
+PyTuple_SetItem(args, 13, pyTupleSvyDataStorageInstitutions);
+PyTuple_SetItem(args, 14, pyTupleSvyDataContactPersons);
+PyTuple_SetItem(args, 15, pyTupleSvyDataContactPhones);
+PyTuple_SetItem(args, 16, pyTupleSurveyCommentInfos);
+PyTuple_SetItem(args, 17, pyTupleDB_ARIDs);
+PyTuple_SetItem(args, 18, pyTupleDB_ARWIDs);
+PyTuple_SetItem(args, 19, pyTupleCS_ARIDs);
+PyTuple_SetItem(args, 20, pyTupleCS_ARWIDs);
+PyTuple_SetItem(args, 21, pyTupleReport_ARIDs);
+PyTuple_SetItem(args, 22, pyTupleReport_ARWIDs);
+PyTuple_SetItem(args, 23, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddGeophySvyFaultPointToNetDB(const int nSId, const vector<_GEOPHYSVYFAULTPOINT>& vec_GeophySvyFaultPoint)
+{
+if(vec_GeophySvyFaultPoint.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_GeophySvyFaultPoint.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_GeophySvyFaultPoint);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(21);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyLineIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleTargetFaultIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleTargetFaultSources = PyTuple_New(nRecordNum);
+PyObject* pyTupleTargetFaultNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleMeasureLengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleLons = PyTuple_New(nRecordNum);
+PyObject* pyTupleLats = PyTuple_New(nRecordNum);
+PyObject* pyTupleM0Depths = PyTuple_New(nRecordNum);
+PyObject* pyTupleM0s = PyTuple_New(nRecordNum);
+PyObject* pyTupleAge0s = PyTuple_New(nRecordNum);
+PyObject* pyTupleViewDirections = PyTuple_New(nRecordNum);
+PyObject* pyTupleViewClinations = PyTuple_New(nRecordNum);
+PyObject* pyTupleFaultTypes = PyTuple_New(nRecordNum);
+PyObject* pyTupleReliabilitys = PyTuple_New(nRecordNum);
+PyObject* pyTupleFaultDescriptions = PyTuple_New(nRecordNum);
+PyObject* pyTupleShowCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_GeophySvyFaultPoint));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_GeophySvyFaultPoint[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_GeophySvyFaultPoint[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_GeophySvyFaultPoint[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_GeophySvyFaultPoint[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleSvyLineIDs, idx, StringToPy(WstringToString(vec_GeophySvyFaultPoint[idx]._baseinfo._SvyLineID)));
+PyTuple_SetItem(pyTupleTargetFaultIDs, idx, StringToPy(WstringToString(vec_GeophySvyFaultPoint[idx]._baseinfo._TargetFaultID)));
+PyTuple_SetItem(pyTupleTargetFaultSources, idx, StringToPy(WstringToString(vec_GeophySvyFaultPoint[idx]._baseinfo._TargetFaultSource)));
+PyTuple_SetItem(pyTupleTargetFaultNames, idx, StringToPy(WstringToString(vec_GeophySvyFaultPoint[idx]._baseinfo._TargetFaultName)));
+PyTuple_SetItem(pyTupleMeasureLengths, idx, PyFloat_FromDouble(vec_GeophySvyFaultPoint[idx]._MeasureLength));
+PyTuple_SetItem(pyTupleLons, idx, PyFloat_FromDouble(vec_GeophySvyFaultPoint[idx]._Lon));
+PyTuple_SetItem(pyTupleLats, idx, PyFloat_FromDouble(vec_GeophySvyFaultPoint[idx]._Lat));
+PyTuple_SetItem(pyTupleM0Depths, idx, StringToPy(WstringToString(vec_GeophySvyFaultPoint[idx]._baseinfo._M0Depth)));
+PyTuple_SetItem(pyTupleM0s, idx, StringToPy(WstringToString(vec_GeophySvyFaultPoint[idx]._baseinfo._M0)));
+PyTuple_SetItem(pyTupleAge0s, idx, Py_BuildValue("i", vec_GeophySvyFaultPoint[idx]._Age0));
+PyTuple_SetItem(pyTupleViewDirections, idx, Py_BuildValue("i", vec_GeophySvyFaultPoint[idx]._ViewDirection));
+PyTuple_SetItem(pyTupleViewClinations, idx, Py_BuildValue("i", vec_GeophySvyFaultPoint[idx]._ViewClination));
+PyTuple_SetItem(pyTupleFaultTypes, idx, Py_BuildValue("i", vec_GeophySvyFaultPoint[idx]._FaultType));
+PyTuple_SetItem(pyTupleReliabilitys, idx, Py_BuildValue("i", vec_GeophySvyFaultPoint[idx]._Reliability));
+PyTuple_SetItem(pyTupleFaultDescriptions, idx, StringToPy(WstringToString(vec_GeophySvyFaultPoint[idx]._baseinfo._FaultDescription)));
+PyTuple_SetItem(pyTupleShowCodes, idx, Py_BuildValue("i", vec_GeophySvyFaultPoint[idx]._ShowCode));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_GeophySvyFaultPoint[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleSvyLineIDs);
+PyTuple_SetItem(args, 5, pyTupleTargetFaultIDs);
+PyTuple_SetItem(args, 6, pyTupleTargetFaultSources);
+PyTuple_SetItem(args, 7, pyTupleTargetFaultNames);
+PyTuple_SetItem(args, 8, pyTupleMeasureLengths);
+PyTuple_SetItem(args, 9, pyTupleLons);
+PyTuple_SetItem(args, 10, pyTupleLats);
+PyTuple_SetItem(args, 11, pyTupleM0Depths);
+PyTuple_SetItem(args, 12, pyTupleM0s);
+PyTuple_SetItem(args, 13, pyTupleAge0s);
+PyTuple_SetItem(args, 14, pyTupleViewDirections);
+PyTuple_SetItem(args, 15, pyTupleViewClinations);
+PyTuple_SetItem(args, 16, pyTupleFaultTypes);
+PyTuple_SetItem(args, 17, pyTupleReliabilitys);
+PyTuple_SetItem(args, 18, pyTupleFaultDescriptions);
+PyTuple_SetItem(args, 19, pyTupleShowCodes);
+PyTuple_SetItem(args, 20, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddGeophySvyLineToNetDB(const int nSId, const vector<_GEOPHYSVYLINE>& vec_GeophySvyLine)
+{
+if(vec_GeophySvyLine.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_GeophySvyLine.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_GeophySvyLine);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(20);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleFieldIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNames = PyTuple_New(nRecordNum);
+PyObject* pyTuplePurposes = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyMethods = PyTuple_New(nRecordNum);
+PyObject* pyTupleStartMilestoneNums = PyTuple_New(nRecordNum);
+PyObject* pyTupleEndMilestoneNums = PyTuple_New(nRecordNum);
+PyObject* pyTupleLengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleResultNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleExpData_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleResultMap_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleResultMap_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleFaultPtProfile_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleFaultPtProfile_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleShowCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_GeophySvyLine));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_GeophySvyLine[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_GeophySvyLine[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_GeophySvyLine[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_GeophySvyLine[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_GeophySvyLine[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_GeophySvyLine[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectIDs, idx, StringToPy(WstringToString(vec_GeophySvyLine[idx]._baseinfo._ProjectID)));
+PyTuple_SetItem(pyTupleFieldIDs, idx, StringToPy(WstringToString(vec_GeophySvyLine[idx]._baseinfo._FieldID)));
+PyTuple_SetItem(pyTupleNames, idx, StringToPy(WstringToString(vec_GeophySvyLine[idx]._baseinfo._Name)));
+PyTuple_SetItem(pyTuplePurposes, idx, StringToPy(WstringToString(vec_GeophySvyLine[idx]._baseinfo._Purpose)));
+PyTuple_SetItem(pyTupleSvyMethods, idx, Py_BuildValue("i", vec_GeophySvyLine[idx]._SvyMethod));
+PyTuple_SetItem(pyTupleStartMilestoneNums, idx, Py_BuildValue("i", vec_GeophySvyLine[idx]._StartMilestoneNum));
+PyTuple_SetItem(pyTupleEndMilestoneNums, idx, Py_BuildValue("i", vec_GeophySvyLine[idx]._EndMilestoneNum));
+PyTuple_SetItem(pyTupleLengths, idx, PyFloat_FromDouble(vec_GeophySvyLine[idx]._Length));
+PyTuple_SetItem(pyTupleResultNames, idx, StringToPy(WstringToString(vec_GeophySvyLine[idx]._baseinfo._ResultName)));
+PyTuple_SetItem(pyTupleExpData_ARWIDs, idx, StringToPy(WstringToString(vec_GeophySvyLine[idx]._baseinfo._ExpData_ARWID)));
+PyTuple_SetItem(pyTupleResultMap_ARWIDs, idx, StringToPy(WstringToString(vec_GeophySvyLine[idx]._baseinfo._ResultMap_ARWID)));
+PyTuple_SetItem(pyTupleResultMap_AIIDs, idx, StringToPy(WstringToString(vec_GeophySvyLine[idx]._baseinfo._ResultMap_AIID)));
+PyTuple_SetItem(pyTupleFaultPtProfile_AIIDs, idx, StringToPy(WstringToString(vec_GeophySvyLine[idx]._baseinfo._FaultPtProfile_AIID)));
+PyTuple_SetItem(pyTupleFaultPtProfile_ARWIDs, idx, StringToPy(WstringToString(vec_GeophySvyLine[idx]._baseinfo._FaultPtProfile_ARWID)));
+PyTuple_SetItem(pyTupleShowCodes, idx, Py_BuildValue("i", vec_GeophySvyLine[idx]._ShowCode));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_GeophySvyLine[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectIDs);
+PyTuple_SetItem(args, 5, pyTupleFieldIDs);
+PyTuple_SetItem(args, 6, pyTupleNames);
+PyTuple_SetItem(args, 7, pyTuplePurposes);
+PyTuple_SetItem(args, 8, pyTupleSvyMethods);
+PyTuple_SetItem(args, 9, pyTupleStartMilestoneNums);
+PyTuple_SetItem(args, 10, pyTupleEndMilestoneNums);
+PyTuple_SetItem(args, 11, pyTupleLengths);
+PyTuple_SetItem(args, 12, pyTupleResultNames);
+PyTuple_SetItem(args, 13, pyTupleExpData_ARWIDs);
+PyTuple_SetItem(args, 14, pyTupleResultMap_ARWIDs);
+PyTuple_SetItem(args, 15, pyTupleResultMap_AIIDs);
+PyTuple_SetItem(args, 16, pyTupleFaultPtProfile_AIIDs);
+PyTuple_SetItem(args, 17, pyTupleFaultPtProfile_ARWIDs);
+PyTuple_SetItem(args, 18, pyTupleShowCodes);
+PyTuple_SetItem(args, 19, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddGeophySvyPointToNetDB(const int nSId, const vector<_GEOPHYSVYPOINT>& vec_GeophySvyPoint)
+{
+if(vec_GeophySvyPoint.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_GeophySvyPoint.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_GeophySvyPoint);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(14);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyLineIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleFieldIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyMethods = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyPointDescriptions = PyTuple_New(nRecordNum);
+PyObject* pyTupleMilestoneNums = PyTuple_New(nRecordNum);
+PyObject* pyTupleLons = PyTuple_New(nRecordNum);
+PyObject* pyTupleLats = PyTuple_New(nRecordNum);
+PyObject* pyTupleElevations = PyTuple_New(nRecordNum);
+PyObject* pyTupleLabelInfos = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_GeophySvyPoint));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_GeophySvyPoint[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_GeophySvyPoint[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_GeophySvyPoint[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_GeophySvyPoint[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleSvyLineIDs, idx, StringToPy(WstringToString(vec_GeophySvyPoint[idx]._baseinfo._SvyLineID)));
+PyTuple_SetItem(pyTupleFieldIDs, idx, StringToPy(WstringToString(vec_GeophySvyPoint[idx]._baseinfo._FieldID)));
+PyTuple_SetItem(pyTupleSvyMethods, idx, Py_BuildValue("i", vec_GeophySvyPoint[idx]._SvyMethod));
+PyTuple_SetItem(pyTupleSvyPointDescriptions, idx, StringToPy(WstringToString(vec_GeophySvyPoint[idx]._baseinfo._SvyPointDescription)));
+PyTuple_SetItem(pyTupleMilestoneNums, idx, Py_BuildValue("i", vec_GeophySvyPoint[idx]._MilestoneNum));
+PyTuple_SetItem(pyTupleLons, idx, PyFloat_FromDouble(vec_GeophySvyPoint[idx]._Lon));
+PyTuple_SetItem(pyTupleLats, idx, PyFloat_FromDouble(vec_GeophySvyPoint[idx]._Lat));
+PyTuple_SetItem(pyTupleElevations, idx, PyFloat_FromDouble(vec_GeophySvyPoint[idx]._Elevation));
+PyTuple_SetItem(pyTupleLabelInfos, idx, StringToPy(WstringToString(vec_GeophySvyPoint[idx]._baseinfo._LabelInfo)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_GeophySvyPoint[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleSvyLineIDs);
+PyTuple_SetItem(args, 5, pyTupleFieldIDs);
+PyTuple_SetItem(args, 6, pyTupleSvyMethods);
+PyTuple_SetItem(args, 7, pyTupleSvyPointDescriptions);
+PyTuple_SetItem(args, 8, pyTupleMilestoneNums);
+PyTuple_SetItem(args, 9, pyTupleLons);
+PyTuple_SetItem(args, 10, pyTupleLats);
+PyTuple_SetItem(args, 11, pyTupleElevations);
+PyTuple_SetItem(args, 12, pyTupleLabelInfos);
+PyTuple_SetItem(args, 13, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddGeophySvyRegionToNetDB(const int nSId, const vector<_GEOPHYSVYREGION>& vec_GeophySvyRegion)
+{
+if(vec_GeophySvyRegion.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_GeophySvyRegion.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_GeophySvyRegion);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(19);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolygons = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleFieldIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNames = PyTuple_New(nRecordNum);
+PyObject* pyTuplePurposes = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyMethods = PyTuple_New(nRecordNum);
+PyObject* pyTupleResultNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleExpData_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleThreeDimensionalView_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleThreeDimensionalView_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleHorizontalSlices_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleVerticalSlices_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleFaultInterpreResult_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleFaultInterpreResult_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleShowCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_GeophySvyRegion));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_GeophySvyRegion[idx]._baseinfo._polygon.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_GeophySvyRegion[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_GeophySvyRegion[idx]._baseinfo._polygon[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_GeophySvyRegion[idx]._baseinfo._polygon[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_GeophySvyRegion[idx]._baseinfo._polygon[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_GeophySvyRegion[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectIDs, idx, StringToPy(WstringToString(vec_GeophySvyRegion[idx]._baseinfo._ProjectID)));
+PyTuple_SetItem(pyTupleFieldIDs, idx, StringToPy(WstringToString(vec_GeophySvyRegion[idx]._baseinfo._FieldID)));
+PyTuple_SetItem(pyTupleNames, idx, StringToPy(WstringToString(vec_GeophySvyRegion[idx]._baseinfo._Name)));
+PyTuple_SetItem(pyTuplePurposes, idx, StringToPy(WstringToString(vec_GeophySvyRegion[idx]._baseinfo._Purpose)));
+PyTuple_SetItem(pyTupleSvyMethods, idx, Py_BuildValue("i", vec_GeophySvyRegion[idx]._SvyMethod));
+PyTuple_SetItem(pyTupleResultNames, idx, StringToPy(WstringToString(vec_GeophySvyRegion[idx]._baseinfo._ResultName)));
+PyTuple_SetItem(pyTupleExpData_ARWIDs, idx, StringToPy(WstringToString(vec_GeophySvyRegion[idx]._baseinfo._ExpData_ARWID)));
+PyTuple_SetItem(pyTupleThreeDimensionalView_ARWIDs, idx, StringToPy(WstringToString(vec_GeophySvyRegion[idx]._baseinfo._ThreeDimensionalView_ARWID)));
+PyTuple_SetItem(pyTupleThreeDimensionalView_AIIDs, idx, StringToPy(WstringToString(vec_GeophySvyRegion[idx]._baseinfo._ThreeDimensionalView_AIID)));
+PyTuple_SetItem(pyTupleHorizontalSlices_AIIDs, idx, StringToPy(WstringToString(vec_GeophySvyRegion[idx]._baseinfo._HorizontalSlices_AIID)));
+PyTuple_SetItem(pyTupleVerticalSlices_AIIDs, idx, StringToPy(WstringToString(vec_GeophySvyRegion[idx]._baseinfo._VerticalSlices_AIID)));
+PyTuple_SetItem(pyTupleFaultInterpreResult_AIIDs, idx, StringToPy(WstringToString(vec_GeophySvyRegion[idx]._baseinfo._FaultInterpreResult_AIID)));
+PyTuple_SetItem(pyTupleFaultInterpreResult_ARWIDs, idx, StringToPy(WstringToString(vec_GeophySvyRegion[idx]._baseinfo._FaultInterpreResult_ARWID)));
+PyTuple_SetItem(pyTupleShowCodes, idx, Py_BuildValue("i", vec_GeophySvyRegion[idx]._ShowCode));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_GeophySvyRegion[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolygons);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectIDs);
+PyTuple_SetItem(args, 5, pyTupleFieldIDs);
+PyTuple_SetItem(args, 6, pyTupleNames);
+PyTuple_SetItem(args, 7, pyTuplePurposes);
+PyTuple_SetItem(args, 8, pyTupleSvyMethods);
+PyTuple_SetItem(args, 9, pyTupleResultNames);
+PyTuple_SetItem(args, 10, pyTupleExpData_ARWIDs);
+PyTuple_SetItem(args, 11, pyTupleThreeDimensionalView_ARWIDs);
+PyTuple_SetItem(args, 12, pyTupleThreeDimensionalView_AIIDs);
+PyTuple_SetItem(args, 13, pyTupleHorizontalSlices_AIIDs);
+PyTuple_SetItem(args, 14, pyTupleVerticalSlices_AIIDs);
+PyTuple_SetItem(args, 15, pyTupleFaultInterpreResult_AIIDs);
+PyTuple_SetItem(args, 16, pyTupleFaultInterpreResult_ARWIDs);
+PyTuple_SetItem(args, 17, pyTupleShowCodes);
+PyTuple_SetItem(args, 18, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+

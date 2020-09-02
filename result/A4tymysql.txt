@@ -1,0 +1,17 @@
+bool EXPORTTEMYSQLAPI EsAddCollectedCrustIsolineToNetDB(const int nSId, const vector<_COLLECTEDCRUSTISOLINE>& vec_CollectedCrustIsoline);
+bool EXPORTTEMYSQLAPI EsAddCollectedGeophySvyLineToNetDB(const int nSId, const vector<_COLLECTEDGEOPHYSVYLINE>& vec_CollectedGeophySvyLine);
+bool EXPORTTEMYSQLAPI EsAddCollectedGMInterpretationLineToNetDB(const int nSId, const vector<_COLLECTEDGMINTERPRETATIONLINE>& vec_CollectedGMInterpretationLine);
+bool EXPORTTEMYSQLAPI EsAddCollectedGravityMagneticToNetDB(const int nSId, const vector<_COLLECTEDGRAVITYMAGNETIC>& vec_CollectedGravityMagnetic);
+bool EXPORTTEMYSQLAPI EsAddCollectedRegionDeformationToNetDB(const int nSId, const vector<_COLLECTEDREGIONDEFORMATION>& vec_CollectedRegionDeformation);
+
+const char* func_add_CollectedCrustIsolinet = "api_add_CollectedCrustIsoline";
+const char* func_add_CollectedGeophySvyLinet = "api_add_CollectedGeophySvyLine";
+const char* func_add_CollectedGMInterpretationLinet = "api_add_CollectedGMInterpretationLine";
+const char* func_add_CollectedGravityMagnetict = "api_add_CollectedGravityMagnetic";
+const char* func_add_CollectedRegionDeformationt = "api_add_CollectedRegionDeformation";
+
+const char* url_add_CollectedCrustIsoline = "http://localhost:5000/mysql/seismological_bureau/add_CollectedCrustIsoline/";
+const char* url_add_CollectedGeophySvyLine = "http://localhost:5000/mysql/seismological_bureau/add_CollectedGeophySvyLine/";
+const char* url_add_CollectedGMInterpretationLine = "http://localhost:5000/mysql/seismological_bureau/add_CollectedGMInterpretationLine/";
+const char* url_add_CollectedGravityMagnetic = "http://localhost:5000/mysql/seismological_bureau/add_CollectedGravityMagnetic/";
+const char* url_add_CollectedRegionDeformation = "http://localhost:5000/mysql/seismological_bureau/add_CollectedRegionDeformation/";

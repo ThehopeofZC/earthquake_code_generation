@@ -1,0 +1,28 @@
+def api_add_B5_GeophyRgnHasGeophyPt(url, sid, IDs, GeophyRgnIDs, GeophyPtIDs):
+	data = {'sid':sid, 'IDs':IDs, 'GeophyRgnIDs':GeophyRgnIDs, 'GeophyPtIDs':GeophyPtIDs}
+	return(common_fun(url, data))
+
+def api_add_B5_GeophySvyDataTable(url, sid, IDs, ProjectIDs, SvyRegionIDs, SvyLineIDs, SvyPointIDs, SvyMethods, Survey_ARWIDs, ResultTypes, ResultNames, Result_AIIDs, Result_ARWIDs, CommentInfos):
+	data = {'sid':sid, 'IDs':IDs, 'ProjectIDs':ProjectIDs, 'SvyRegionIDs':SvyRegionIDs, 'SvyLineIDs':SvyLineIDs, 'SvyPointIDs':SvyPointIDs, 'SvyMethods':SvyMethods, 'Survey_ARWIDs':Survey_ARWIDs, 'ResultTypes':ResultTypes, 'ResultNames':ResultNames, 'Result_AIIDs':Result_AIIDs, 'Result_ARWIDs':Result_ARWIDs, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_B5_GeophySvyProjectTable(url, sid, IDs, MainAFMRegionIDs, TargetRegionIDs, WorkRegionIDs, HugeVolumeDataIDs, Names, SvyMethods, SvyLineCounts, SvyLineLengths, SvyPointCounts, SvyInstitutes, SvyDataStorageInstitutions, SvyDataContactPersons, SvyDataContactPhones, SurveyCommentInfos, DB_ARIDs, DB_ARWIDs, CS_ARIDs, CS_ARWIDs, Report_ARIDs, Report_ARWIDs, CommentInfos):
+	data = {'sid':sid, 'IDs':IDs, 'MainAFMRegionIDs':MainAFMRegionIDs, 'TargetRegionIDs':TargetRegionIDs, 'WorkRegionIDs':WorkRegionIDs, 'HugeVolumeDataIDs':HugeVolumeDataIDs, 'Names':Names, 'SvyMethods':SvyMethods, 'SvyLineCounts':SvyLineCounts, 'SvyLineLengths':SvyLineLengths, 'SvyPointCounts':SvyPointCounts, 'SvyInstitutes':SvyInstitutes, 'SvyDataStorageInstitutions':SvyDataStorageInstitutions, 'SvyDataContactPersons':SvyDataContactPersons, 'SvyDataContactPhones':SvyDataContactPhones, 'SurveyCommentInfos':SurveyCommentInfos, 'DB_ARIDs':DB_ARIDs, 'DB_ARWIDs':DB_ARWIDs, 'CS_ARIDs':CS_ARIDs, 'CS_ARWIDs':CS_ARWIDs, 'Report_ARIDs':Report_ARIDs, 'Report_ARWIDs':Report_ARWIDs, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_GeophySvyFaultPoint(url, sid, points, IDs, SvyLineIDs, TargetFaultIDs, TargetFaultSources, TargetFaultNames, MeasureLengths, Lons, Lats, M0Depths, M0s, Age0s, ViewDirections, ViewClinations, FaultTypes, Reliabilitys, FaultDescriptions, ShowCodes, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'SvyLineIDs':SvyLineIDs, 'TargetFaultIDs':TargetFaultIDs, 'TargetFaultSources':TargetFaultSources, 'TargetFaultNames':TargetFaultNames, 'MeasureLengths':MeasureLengths, 'Lons':Lons, 'Lats':Lats, 'M0Depths':M0Depths, 'M0s':M0s, 'Age0s':Age0s, 'ViewDirections':ViewDirections, 'ViewClinations':ViewClinations, 'FaultTypes':FaultTypes, 'Reliabilitys':Reliabilitys, 'FaultDescriptions':FaultDescriptions, 'ShowCodes':ShowCodes, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_GeophySvyLine(url, sid, lines, IDs, ProjectIDs, FieldIDs, Names, Purposes, SvyMethods, StartMilestoneNums, EndMilestoneNums, Lengths, ResultNames, ExpData_ARWIDs, ResultMap_ARWIDs, ResultMap_AIIDs, FaultPtProfile_AIIDs, FaultPtProfile_ARWIDs, ShowCodes, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'ProjectIDs':ProjectIDs, 'FieldIDs':FieldIDs, 'Names':Names, 'Purposes':Purposes, 'SvyMethods':SvyMethods, 'StartMilestoneNums':StartMilestoneNums, 'EndMilestoneNums':EndMilestoneNums, 'Lengths':Lengths, 'ResultNames':ResultNames, 'ExpData_ARWIDs':ExpData_ARWIDs, 'ResultMap_ARWIDs':ResultMap_ARWIDs, 'ResultMap_AIIDs':ResultMap_AIIDs, 'FaultPtProfile_AIIDs':FaultPtProfile_AIIDs, 'FaultPtProfile_ARWIDs':FaultPtProfile_ARWIDs, 'ShowCodes':ShowCodes, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_GeophySvyPoint(url, sid, points, IDs, SvyLineIDs, FieldIDs, SvyMethods, SvyPointDescriptions, MilestoneNums, Lons, Lats, Elevations, LabelInfos, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'SvyLineIDs':SvyLineIDs, 'FieldIDs':FieldIDs, 'SvyMethods':SvyMethods, 'SvyPointDescriptions':SvyPointDescriptions, 'MilestoneNums':MilestoneNums, 'Lons':Lons, 'Lats':Lats, 'Elevations':Elevations, 'LabelInfos':LabelInfos, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_GeophySvyRegion(url, sid, faces, IDs, ProjectIDs, FieldIDs, Names, Purposes, SvyMethods, ResultNames, ExpData_ARWIDs, ThreeDimensionalView_ARWIDs, ThreeDimensionalView_AIIDs, HorizontalSlices_AIIDs, VerticalSlices_AIIDs, FaultInterpreResult_AIIDs, FaultInterpreResult_ARWIDs, ShowCodes, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'ProjectIDs':ProjectIDs, 'FieldIDs':FieldIDs, 'Names':Names, 'Purposes':Purposes, 'SvyMethods':SvyMethods, 'ResultNames':ResultNames, 'ExpData_ARWIDs':ExpData_ARWIDs, 'ThreeDimensionalView_ARWIDs':ThreeDimensionalView_ARWIDs, 'ThreeDimensionalView_AIIDs':ThreeDimensionalView_AIIDs, 'HorizontalSlices_AIIDs':HorizontalSlices_AIIDs, 'VerticalSlices_AIIDs':VerticalSlices_AIIDs, 'FaultInterpreResult_AIIDs':FaultInterpreResult_AIIDs, 'FaultInterpreResult_ARWIDs':FaultInterpreResult_ARWIDs, 'ShowCodes':ShowCodes, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+

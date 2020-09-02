@@ -1,0 +1,168 @@
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadMagnitudeEstimateTable()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取断层分段分析结果震级估计副表...\r\n");
+	vector<_MAGNITUDEESTIMATETABLE> vec_MagnitudeEstimateTable;
+	if(!obReader.EsGetMagnitudeEstimateTable(vec_MagnitudeEstimateTable))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("断层分段分析结果震级估计副表获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("断层分段分析结果震级估计副表获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传断层分段分析结果震级估计副表...\r\n");
+	if(!EsAddMagnitudeEstimateTableToNetDB(m_nSId, vec_MagnitudeEstimateTable))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("断层分段分析结果震级估计副表上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("断层分段分析结果震级估计副表上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadFaultRuptureInversion()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取现今地震破裂过程反应结构点...\r\n");
+	vector<_FAULTRUPTUREINVERSION> vec_FaultRuptureInversion;
+	if(!obReader.EsGetFaultRuptureInversion(vec_FaultRuptureInversion))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("现今地震破裂过程反应结构点获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("现今地震破裂过程反应结构点获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传现今地震破裂过程反应结构点...\r\n");
+	if(!EsAddFaultRuptureInversionToNetDB(m_nSId, vec_FaultRuptureInversion))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("现今地震破裂过程反应结构点上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("现今地震破裂过程反应结构点上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadFSeismicRiskAnalysis()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取断层地震危险性分析...\r\n");
+	vector<_FSEISMICRISKANALYSIS> vec_FSeismicRiskAnalysis;
+	if(!obReader.EsGetFSeismicRiskAnalysis(vec_FSeismicRiskAnalysis))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("断层地震危险性分析获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("断层地震危险性分析获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传断层地震危险性分析...\r\n");
+	if(!EsAddFSeismicRiskAnalysisToNetDB(m_nSId, vec_FSeismicRiskAnalysis))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("断层地震危险性分析上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("断层地震危险性分析上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadPotentialSourceRegion()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取潜在震源区分布...\r\n");
+	vector<_POTENTIALSOURCEREGION> vec_PotentialSourceRegion;
+	if(!obReader.EsGetPotentialSourceRegion(vec_PotentialSourceRegion))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("潜在震源区分布获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("潜在震源区分布获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传潜在震源区分布...\r\n");
+	if(!EsAddPotentialSourceRegionToNetDB(m_nSId, vec_PotentialSourceRegion))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("潜在震源区分布上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("潜在震源区分布上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadPSSeismicRiskAnalysis()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取潜源区地震危险性分析...\r\n");
+	vector<_PSSEISMICRISKANALYSIS> vec_PSSeismicRiskAnalysis;
+	if(!obReader.EsGetPSSeismicRiskAnalysis(vec_PSSeismicRiskAnalysis))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("潜源区地震危险性分析获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("潜源区地震危险性分析获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传潜源区地震危险性分析...\r\n");
+	if(!EsAddPSSeismicRiskAnalysisToNetDB(m_nSId, vec_PSSeismicRiskAnalysis))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("潜源区地震危险性分析上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("潜源区地震危险性分析上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadSeismicBelt()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取地震带...\r\n");
+	vector<_SEISMICBELT> vec_SeismicBelt;
+	if(!obReader.EsGetSeismicBelt(vec_SeismicBelt))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地震带获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地震带获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传地震带...\r\n");
+	if(!EsAddSeismicBeltToNetDB(m_nSId, vec_SeismicBelt))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地震带上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地震带上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadSeismicZone()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取地震区...\r\n");
+	vector<_SEISMICZONE> vec_SeismicZone;
+	if(!obReader.EsGetSeismicZone(vec_SeismicZone))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地震区获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地震区获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传地震区...\r\n");
+	if(!EsAddSeismicZoneToNetDB(m_nSId, vec_SeismicZone))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地震区上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("地震区上传成功！\r\n");
+	return true;
+}

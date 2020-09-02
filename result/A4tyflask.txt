@@ -1,0 +1,89 @@
+@app.route('/mysql/seismological_bureau/add_CollectedCrustIsoline/', methods = ['POST'])
+def add_CollectedCrustIsoline():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	Depths = data["Depths"]
+	DepthNames = data["DepthNames"]
+	ShowCodes = data["ShowCodes"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_CollectedCrustIsoline(sid, lines, IDs, Depths, DepthNames, ShowCodes, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_CollectedGeophySvyLine/', methods = ['POST'])
+def add_CollectedGeophySvyLine():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	Names = data["Names"]
+	CollectedLineSources = data["CollectedLineSources"]
+	Purposes = data["Purposes"]
+	SvyMethods = data["SvyMethods"]
+	StartMilestoneNums = data["StartMilestoneNums"]
+	EndMilestoneNums = data["EndMilestoneNums"]
+	Lengths = data["Lengths"]
+	ResultNames = data["ResultNames"]
+	ExpData_ARWIDs = data["ExpData_ARWIDs"]
+	ResultMap_ARWIDs = data["ResultMap_ARWIDs"]
+	ResultMap_AIIDs = data["ResultMap_AIIDs"]
+	FaultPtProfile_AIIDs = data["FaultPtProfile_AIIDs"]
+	FaultPtProfile_ARWIDs = data["FaultPtProfile_ARWIDs"]
+	ShowCodes = data["ShowCodes"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_CollectedGeophySvyLine(sid, lines, IDs, Names, CollectedLineSources, Purposes, SvyMethods, StartMilestoneNums, EndMilestoneNums, Lengths, ResultNames, ExpData_ARWIDs, ResultMap_ARWIDs, ResultMap_AIIDs, FaultPtProfile_AIIDs, FaultPtProfile_ARWIDs, ShowCodes, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_CollectedGMInterpretationLine/', methods = ['POST'])
+def add_CollectedGMInterpretationLine():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	Codes = data["Codes"]
+	FaultNames = data["FaultNames"]
+	InterpretationAccordingGs = data["InterpretationAccordingGs"]
+	InterpretationAccordingMs = data["InterpretationAccordingMs"]
+	FaultDepths = data["FaultDepths"]
+	FaultAges = data["FaultAges"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_CollectedGMInterpretationLine(sid, lines, IDs, Codes, FaultNames, InterpretationAccordingGs, InterpretationAccordingMs, FaultDepths, FaultAges, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_CollectedGravityMagnetic/', methods = ['POST'])
+def add_CollectedGravityMagnetic():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	faces = data["faces"]
+	IDs = data["IDs"]
+	DataSources = data["DataSources"]
+	TimeSpans = data["TimeSpans"]
+	DataContents = data["DataContents"]
+	GM_AIIDs = data["GM_AIIDs"]
+	GM_ARWIDs = data["GM_ARWIDs"]
+	GM_Metadata_ARWIDs = data["GM_Metadata_ARWIDs"]
+	DataTypes = data["DataTypes"]
+	Descriptions = data["Descriptions"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_CollectedGravityMagnetic(sid, faces, IDs, DataSources, TimeSpans, DataContents, GM_AIIDs, GM_ARWIDs, GM_Metadata_ARWIDs, DataTypes, Descriptions, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_CollectedRegionDeformation/', methods = ['POST'])
+def add_CollectedRegionDeformation():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	faces = data["faces"]
+	IDs = data["IDs"]
+	DataSources = data["DataSources"]
+	TimeSpans = data["TimeSpans"]
+	DataContents = data["DataContents"]
+	Deformation_AIIDs = data["Deformation_AIIDs"]
+	Deformation_ARWIDs = data["Deformation_ARWIDs"]
+	Defor_Metadata_ARWIDs = data["Defor_Metadata_ARWIDs"]
+	DataTypes = data["DataTypes"]
+	Descriptions = data["Descriptions"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_CollectedRegionDeformation(sid, faces, IDs, DataSources, TimeSpans, DataContents, Deformation_AIIDs, Deformation_ARWIDs, Defor_Metadata_ARWIDs, DataTypes, Descriptions, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+

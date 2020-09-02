@@ -1,0 +1,168 @@
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadVolcanicDataTable()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取火山地质调查填图数据表...\r\n");
+	vector<_VOLCANICDATATABLE> vec_VolcanicDataTable;
+	if(!obReader.EsGetVolcanicDataTable(vec_VolcanicDataTable))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山地质调查填图数据表获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山地质调查填图数据表获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传火山地质调查填图数据表...\r\n");
+	if(!EsAddVolcanicDataTableToNetDB(m_nSId, vec_VolcanicDataTable))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山地质调查填图数据表上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山地质调查填图数据表上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadVolcanicSvyProjectTable()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取火山化学测量工程表...\r\n");
+	vector<_VOLCANICSVYPROJECTTABLE> vec_VolcanicSvyProjectTable;
+	if(!obReader.EsGetVolcanicSvyProjectTable(vec_VolcanicSvyProjectTable))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山化学测量工程表获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山化学测量工程表获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传火山化学测量工程表...\r\n");
+	if(!EsAddVolcanicSvyProjectTableToNetDB(m_nSId, vec_VolcanicSvyProjectTable))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山化学测量工程表上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山化学测量工程表上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadVolSvyPtObservationObject()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取火山调查观测点观测对象...\r\n");
+	vector<_VOLSVYPTOBSERVATIONOBJECT> vec_VolSvyPtObservationObject;
+	if(!obReader.EsGetVolSvyPtObservationObject(vec_VolSvyPtObservationObject))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山调查观测点观测对象获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山调查观测点观测对象获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传火山调查观测点观测对象...\r\n");
+	if(!EsAddVolSvyPtObservationObjectToNetDB(m_nSId, vec_VolSvyPtObservationObject))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山调查观测点观测对象上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山调查观测点观测对象上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadCrater()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取火山口...\r\n");
+	vector<_CRATER> vec_Crater;
+	if(!obReader.EsGetCrater(vec_Crater))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山口获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山口获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传火山口...\r\n");
+	if(!EsAddCraterToNetDB(m_nSId, vec_Crater))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山口上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山口上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadLava()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取熔岩流...\r\n");
+	vector<_LAVA> vec_Lava;
+	if(!obReader.EsGetLava(vec_Lava))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("熔岩流获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("熔岩流获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传熔岩流...\r\n");
+	if(!EsAddLavaToNetDB(m_nSId, vec_Lava))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("熔岩流上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("熔岩流上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadVolcanicCone()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取火山锥...\r\n");
+	vector<_VOLCANICCONE> vec_VolcanicCone;
+	if(!obReader.EsGetVolcanicCone(vec_VolcanicCone))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山锥获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山锥获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传火山锥...\r\n");
+	if(!EsAddVolcanicConeToNetDB(m_nSId, vec_VolcanicCone))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山锥上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山锥上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadVolcanicSvyPoint()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取火山调查观测点...\r\n");
+	vector<_VOLCANICSVYPOINT> vec_VolcanicSvyPoint;
+	if(!obReader.EsGetVolcanicSvyPoint(vec_VolcanicSvyPoint))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山调查观测点获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山调查观测点获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传火山调查观测点...\r\n");
+	if(!EsAddVolcanicSvyPointToNetDB(m_nSId, vec_VolcanicSvyPoint))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山调查观测点上传失败!");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("火山调查观测点上传成功！\r\n");
+	return true;
+}

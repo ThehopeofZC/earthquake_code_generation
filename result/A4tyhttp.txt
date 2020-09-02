@@ -1,0 +1,20 @@
+def api_add_CollectedCrustIsoline(url, sid, lines, IDs, Depths, DepthNames, ShowCodes, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'Depths':Depths, 'DepthNames':DepthNames, 'ShowCodes':ShowCodes, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_CollectedGeophySvyLine(url, sid, lines, IDs, Names, CollectedLineSources, Purposes, SvyMethods, StartMilestoneNums, EndMilestoneNums, Lengths, ResultNames, ExpData_ARWIDs, ResultMap_ARWIDs, ResultMap_AIIDs, FaultPtProfile_AIIDs, FaultPtProfile_ARWIDs, ShowCodes, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'Names':Names, 'CollectedLineSources':CollectedLineSources, 'Purposes':Purposes, 'SvyMethods':SvyMethods, 'StartMilestoneNums':StartMilestoneNums, 'EndMilestoneNums':EndMilestoneNums, 'Lengths':Lengths, 'ResultNames':ResultNames, 'ExpData_ARWIDs':ExpData_ARWIDs, 'ResultMap_ARWIDs':ResultMap_ARWIDs, 'ResultMap_AIIDs':ResultMap_AIIDs, 'FaultPtProfile_AIIDs':FaultPtProfile_AIIDs, 'FaultPtProfile_ARWIDs':FaultPtProfile_ARWIDs, 'ShowCodes':ShowCodes, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_CollectedGMInterpretationLine(url, sid, lines, IDs, Codes, FaultNames, InterpretationAccordingGs, InterpretationAccordingMs, FaultDepths, FaultAges, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'Codes':Codes, 'FaultNames':FaultNames, 'InterpretationAccordingGs':InterpretationAccordingGs, 'InterpretationAccordingMs':InterpretationAccordingMs, 'FaultDepths':FaultDepths, 'FaultAges':FaultAges, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_CollectedGravityMagnetic(url, sid, faces, IDs, DataSources, TimeSpans, DataContents, GM_AIIDs, GM_ARWIDs, GM_Metadata_ARWIDs, DataTypes, Descriptions, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'DataSources':DataSources, 'TimeSpans':TimeSpans, 'DataContents':DataContents, 'GM_AIIDs':GM_AIIDs, 'GM_ARWIDs':GM_ARWIDs, 'GM_Metadata_ARWIDs':GM_Metadata_ARWIDs, 'DataTypes':DataTypes, 'Descriptions':Descriptions, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_CollectedRegionDeformation(url, sid, faces, IDs, DataSources, TimeSpans, DataContents, Deformation_AIIDs, Deformation_ARWIDs, Defor_Metadata_ARWIDs, DataTypes, Descriptions, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'DataSources':DataSources, 'TimeSpans':TimeSpans, 'DataContents':DataContents, 'Deformation_AIIDs':Deformation_AIIDs, 'Deformation_ARWIDs':Deformation_ARWIDs, 'Defor_Metadata_ARWIDs':Defor_Metadata_ARWIDs, 'DataTypes':DataTypes, 'Descriptions':Descriptions, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+

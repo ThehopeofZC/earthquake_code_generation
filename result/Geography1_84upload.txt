@@ -1,0 +1,816 @@
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadAALL0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取AALL0184...\r\n");
+	vector<_AALL0184> vec_AALL0184;
+	if(!obReader.EsGetAALL0184(vec_AALL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("AALL0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("AALL0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传AALL0184...\r\n");
+	if(!EsAddAALL0184ToNetDB(m_nSId, vec_AALL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("AALL0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("AALL0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadAALP0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取AALP0184...\r\n");
+	vector<_AALP0184> vec_AALP0184;
+	if(!obReader.EsGetAALP0184(vec_AALP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("AALP0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("AALP0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传AALP0184...\r\n");
+	if(!EsAddAALP0184ToNetDB(m_nSId, vec_AALP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("AALP0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("AALP0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadBOUA0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取BOUA0184...\r\n");
+	vector<_BOUA0184> vec_BOUA0184;
+	if(!obReader.EsGetBOUA0184(vec_BOUA0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BOUA0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BOUA0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传BOUA0184...\r\n");
+	if(!EsAddBOUA0184ToNetDB(m_nSId, vec_BOUA0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BOUA0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BOUA0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadBOUL0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取BOUL0184...\r\n");
+	vector<_BOUL0184> vec_BOUL0184;
+	if(!obReader.EsGetBOUL0184(vec_BOUL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BOUL0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BOUL0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传BOUL0184...\r\n");
+	if(!EsAddBOUL0184ToNetDB(m_nSId, vec_BOUL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BOUL0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BOUL0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadBOUP0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取BOUP0184...\r\n");
+	vector<_BOUP0184> vec_BOUP0184;
+	if(!obReader.EsGetBOUP0184(vec_BOUP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BOUP0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BOUP0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传BOUP0184...\r\n");
+	if(!EsAddBOUP0184ToNetDB(m_nSId, vec_BOUP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BOUP0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BOUP0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadBRGA0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取BRGA0184...\r\n");
+	vector<_BRGA0184> vec_BRGA0184;
+	if(!obReader.EsGetBRGA0184(vec_BRGA0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BRGA0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BRGA0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传BRGA0184...\r\n");
+	if(!EsAddBRGA0184ToNetDB(m_nSId, vec_BRGA0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BRGA0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BRGA0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadBRGL0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取BRGL0184...\r\n");
+	vector<_BRGL0184> vec_BRGL0184;
+	if(!obReader.EsGetBRGL0184(vec_BRGL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BRGL0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BRGL0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传BRGL0184...\r\n");
+	if(!EsAddBRGL0184ToNetDB(m_nSId, vec_BRGL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BRGL0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BRGL0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadBRGP0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取BRGP0184...\r\n");
+	vector<_BRGP0184> vec_BRGP0184;
+	if(!obReader.EsGetBRGP0184(vec_BRGP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BRGP0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BRGP0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传BRGP0184...\r\n");
+	if(!EsAddBRGP0184ToNetDB(m_nSId, vec_BRGP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BRGP0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("BRGP0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadCPTL0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取CPTL0184...\r\n");
+	vector<_CPTL0184> vec_CPTL0184;
+	if(!obReader.EsGetCPTL0184(vec_CPTL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("CPTL0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("CPTL0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传CPTL0184...\r\n");
+	if(!EsAddCPTL0184ToNetDB(m_nSId, vec_CPTL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("CPTL0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("CPTL0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadCPTP0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取CPTP0184...\r\n");
+	vector<_CPTP0184> vec_CPTP0184;
+	if(!obReader.EsGetCPTP0184(vec_CPTP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("CPTP0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("CPTP0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传CPTP0184...\r\n");
+	if(!EsAddCPTP0184ToNetDB(m_nSId, vec_CPTP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("CPTP0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("CPTP0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadHFCA0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取HFCA0184...\r\n");
+	vector<_HFCA0184> vec_HFCA0184;
+	if(!obReader.EsGetHFCA0184(vec_HFCA0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HFCA0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HFCA0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传HFCA0184...\r\n");
+	if(!EsAddHFCA0184ToNetDB(m_nSId, vec_HFCA0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HFCA0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HFCA0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadHFCL0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取HFCL0184...\r\n");
+	vector<_HFCL0184> vec_HFCL0184;
+	if(!obReader.EsGetHFCL0184(vec_HFCL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HFCL0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HFCL0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传HFCL0184...\r\n");
+	if(!EsAddHFCL0184ToNetDB(m_nSId, vec_HFCL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HFCL0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HFCL0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadHFCP0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取HFCP0184...\r\n");
+	vector<_HFCP0184> vec_HFCP0184;
+	if(!obReader.EsGetHFCP0184(vec_HFCP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HFCP0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HFCP0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传HFCP0184...\r\n");
+	if(!EsAddHFCP0184ToNetDB(m_nSId, vec_HFCP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HFCP0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HFCP0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadHYDA0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取HYDA0184...\r\n");
+	vector<_HYDA0184> vec_HYDA0184;
+	if(!obReader.EsGetHYDA0184(vec_HYDA0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HYDA0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HYDA0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传HYDA0184...\r\n");
+	if(!EsAddHYDA0184ToNetDB(m_nSId, vec_HYDA0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HYDA0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HYDA0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadHYDL0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取HYDL0184...\r\n");
+	vector<_HYDL0184> vec_HYDL0184;
+	if(!obReader.EsGetHYDL0184(vec_HYDL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HYDL0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HYDL0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传HYDL0184...\r\n");
+	if(!EsAddHYDL0184ToNetDB(m_nSId, vec_HYDL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HYDL0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HYDL0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadHYDP0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取HYDP0184...\r\n");
+	vector<_HYDP0184> vec_HYDP0184;
+	if(!obReader.EsGetHYDP0184(vec_HYDP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HYDP0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HYDP0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传HYDP0184...\r\n");
+	if(!EsAddHYDP0184ToNetDB(m_nSId, vec_HYDP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HYDP0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("HYDP0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadLFCL0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取LFCL0184...\r\n");
+	vector<_LFCL0184> vec_LFCL0184;
+	if(!obReader.EsGetLFCL0184(vec_LFCL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("LFCL0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("LFCL0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传LFCL0184...\r\n");
+	if(!EsAddLFCL0184ToNetDB(m_nSId, vec_LFCL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("LFCL0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("LFCL0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadLFCP0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取LFCP0184...\r\n");
+	vector<_LFCP0184> vec_LFCP0184;
+	if(!obReader.EsGetLFCP0184(vec_LFCP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("LFCP0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("LFCP0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传LFCP0184...\r\n");
+	if(!EsAddLFCP0184ToNetDB(m_nSId, vec_LFCP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("LFCP0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("LFCP0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadLRDL0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取LRDL0184...\r\n");
+	vector<_LRDL0184> vec_LRDL0184;
+	if(!obReader.EsGetLRDL0184(vec_LRDL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("LRDL0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("LRDL0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传LRDL0184...\r\n");
+	if(!EsAddLRDL0184ToNetDB(m_nSId, vec_LRDL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("LRDL0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("LRDL0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadLRRL0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取LRRL0184...\r\n");
+	vector<_LRRL0184> vec_LRRL0184;
+	if(!obReader.EsGetLRRL0184(vec_LRRL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("LRRL0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("LRRL0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传LRRL0184...\r\n");
+	if(!EsAddLRRL0184ToNetDB(m_nSId, vec_LRRL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("LRRL0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("LRRL0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadPIPL0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取PIPL0184...\r\n");
+	vector<_PIPL0184> vec_PIPL0184;
+	if(!obReader.EsGetPIPL0184(vec_PIPL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("PIPL0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("PIPL0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传PIPL0184...\r\n");
+	if(!EsAddPIPL0184ToNetDB(m_nSId, vec_PIPL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("PIPL0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("PIPL0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadPIPP0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取PIPP0184...\r\n");
+	vector<_PIPP0184> vec_PIPP0184;
+	if(!obReader.EsGetPIPP0184(vec_PIPP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("PIPP0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("PIPP0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传PIPP0184...\r\n");
+	if(!EsAddPIPP0184ToNetDB(m_nSId, vec_PIPP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("PIPP0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("PIPP0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadRESA0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取RESA0184...\r\n");
+	vector<_RESA0184> vec_RESA0184;
+	if(!obReader.EsGetRESA0184(vec_RESA0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RESA0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RESA0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传RESA0184...\r\n");
+	if(!EsAddRESA0184ToNetDB(m_nSId, vec_RESA0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RESA0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RESA0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadRESL0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取RESL0184...\r\n");
+	vector<_RESL0184> vec_RESL0184;
+	if(!obReader.EsGetRESL0184(vec_RESL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RESL0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RESL0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传RESL0184...\r\n");
+	if(!EsAddRESL0184ToNetDB(m_nSId, vec_RESL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RESL0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RESL0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadRESP0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取RESP0184...\r\n");
+	vector<_RESP0184> vec_RESP0184;
+	if(!obReader.EsGetRESP0184(vec_RESP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RESP0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RESP0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传RESP0184...\r\n");
+	if(!EsAddRESP0184ToNetDB(m_nSId, vec_RESP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RESP0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RESP0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadRFCA0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取RFCA0184...\r\n");
+	vector<_RFCA0184> vec_RFCA0184;
+	if(!obReader.EsGetRFCA0184(vec_RFCA0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RFCA0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RFCA0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传RFCA0184...\r\n");
+	if(!EsAddRFCA0184ToNetDB(m_nSId, vec_RFCA0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RFCA0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RFCA0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadRFCL0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取RFCL0184...\r\n");
+	vector<_RFCL0184> vec_RFCL0184;
+	if(!obReader.EsGetRFCL0184(vec_RFCL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RFCL0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RFCL0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传RFCL0184...\r\n");
+	if(!EsAddRFCL0184ToNetDB(m_nSId, vec_RFCL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RFCL0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RFCL0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadRFCP0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取RFCP0184...\r\n");
+	vector<_RFCP0184> vec_RFCP0184;
+	if(!obReader.EsGetRFCP0184(vec_RFCP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RFCP0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RFCP0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传RFCP0184...\r\n");
+	if(!EsAddRFCP0184ToNetDB(m_nSId, vec_RFCP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RFCP0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("RFCP0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadTERA0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取TERA0184...\r\n");
+	vector<_TERA0184> vec_TERA0184;
+	if(!obReader.EsGetTERA0184(vec_TERA0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("TERA0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("TERA0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传TERA0184...\r\n");
+	if(!EsAddTERA0184ToNetDB(m_nSId, vec_TERA0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("TERA0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("TERA0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadTERL0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取TERL0184...\r\n");
+	vector<_TERL0184> vec_TERL0184;
+	if(!obReader.EsGetTERL0184(vec_TERL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("TERL0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("TERL0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传TERL0184...\r\n");
+	if(!EsAddTERL0184ToNetDB(m_nSId, vec_TERL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("TERL0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("TERL0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadTERP0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取TERP0184...\r\n");
+	vector<_TERP0184> vec_TERP0184;
+	if(!obReader.EsGetTERP0184(vec_TERP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("TERP0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("TERP0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传TERP0184...\r\n");
+	if(!EsAddTERP0184ToNetDB(m_nSId, vec_TERP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("TERP0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("TERP0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadVEGA0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取VEGA0184...\r\n");
+	vector<_VEGA0184> vec_VEGA0184;
+	if(!obReader.EsGetVEGA0184(vec_VEGA0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("VEGA0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("VEGA0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传VEGA0184...\r\n");
+	if(!EsAddVEGA0184ToNetDB(m_nSId, vec_VEGA0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("VEGA0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("VEGA0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadVEGL0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取VEGL0184...\r\n");
+	vector<_VEGL0184> vec_VEGL0184;
+	if(!obReader.EsGetVEGL0184(vec_VEGL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("VEGL0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("VEGL0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传VEGL0184...\r\n");
+	if(!EsAddVEGL0184ToNetDB(m_nSId, vec_VEGL0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("VEGL0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("VEGL0184上传成功！\r\n");
+	return true;
+}
+bool CSB_GDB_UPLOAD_TOOLDlg::EsUploadVEGP0184()
+{
+	EsGDBReader obReader;
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在获取VEGP0184...\r\n");
+	vector<_VEGP0184> vec_VEGP0184;
+	if(!obReader.EsGetVEGP0184(vec_VEGP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("VEGP0184获取失败！\r\n");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false;
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("VEGP0184获取成功！\r\n");
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传VEGP0184...\r\n");
+	if(!EsAddVEGP0184ToNetDB(m_nSId, vec_VEGP0184))
+	{
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("VEGP0184上传失败！");
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());
+		((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\r\n");
+		return false
+	}
+	((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("VEGP0184上传成功！\r\n");
+	return true;
+}

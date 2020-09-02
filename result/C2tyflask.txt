@@ -1,0 +1,81 @@
+@app.route('/mysql/seismological_bureau/add_CartoAuxLabel/', methods = ['POST'])
+def add_CartoAuxLabel():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	points = data["points"]
+	IDs = data["IDs"]
+	LabelInfos = data["LabelInfos"]
+	ShowCodes = data["ShowCodes"]
+	Ownerships = data["Ownerships"]
+	DataPurposes = data["DataPurposes"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_CartoAuxLabel(sid, points, IDs, LabelInfos, ShowCodes, Ownerships, DataPurposes, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_CartoAuxLine/', methods = ['POST'])
+def add_CartoAuxLine():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	LabelInfos = data["LabelInfos"]
+	ShowCodes = data["ShowCodes"]
+	Ownerships = data["Ownerships"]
+	DataPurposes = data["DataPurposes"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_CartoAuxLine(sid, lines, IDs, LabelInfos, ShowCodes, Ownerships, DataPurposes, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_CartoAuxPoint/', methods = ['POST'])
+def add_CartoAuxPoint():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	points = data["points"]
+	IDs = data["IDs"]
+	LabelInfos = data["LabelInfos"]
+	ShowCodes = data["ShowCodes"]
+	Ownerships = data["Ownerships"]
+	DataPurposes = data["DataPurposes"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_CartoAuxPoint(sid, points, IDs, LabelInfos, ShowCodes, Ownerships, DataPurposes, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_CartoAuxPolygon/', methods = ['POST'])
+def add_CartoAuxPolygon():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	faces = data["faces"]
+	IDs = data["IDs"]
+	LabelInfos = data["LabelInfos"]
+	ShowCodes = data["ShowCodes"]
+	Ownerships = data["Ownerships"]
+	DataPurposes = data["DataPurposes"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_CartoAuxPolygon(sid, faces, IDs, LabelInfos, ShowCodes, Ownerships, DataPurposes, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_GeoProfilePoint/', methods = ['POST'])
+def add_GeoProfilePoint():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	points = data["points"]
+	IDs = data["IDs"]
+	ProfileLineIDs = data["ProfileLineIDs"]
+	Names = data["Names"]
+	Scales = data["Scales"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_GeoProfilePoint(sid, points, IDs, ProfileLineIDs, Names, Scales, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_MapSheet/', methods = ['POST'])
+def add_MapSheet():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	faces = data["faces"]
+	IDs = data["IDs"]
+	SheetNumbers = data["SheetNumbers"]
+	RotationAngles = data["RotationAngles"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_MapSheet(sid, faces, IDs, SheetNumbers, RotationAngles, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+

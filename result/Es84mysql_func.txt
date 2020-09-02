@@ -1,0 +1,2954 @@
+bool EsAddAALL0184ToNetDB(const int nSId, const vector<_AALL0184>& vec_AALL0184)
+{
+if(vec_AALL0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_AALL0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_AALL0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(8);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_AALL0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_AALL0184[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_AALL0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_AALL0184[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_AALL0184[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_AALL0184[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_AALL0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_AALL0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_AALL0184[idx]._GB));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_AALL0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_AALL0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 7, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddAALP0184ToNetDB(const int nSId, const vector<_AALP0184>& vec_AALP0184)
+{
+if(vec_AALP0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_AALP0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_AALP0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(11);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePINYINs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCHAR_CODEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleFONT_CODEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_AALP0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_AALP0184[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_AALP0184[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_AALP0184[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_AALP0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_AALP0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_AALP0184[idx]._GB));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_AALP0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTuplePINYINs, idx, StringToPy(WstringToString(vec_AALP0184[idx]._baseinfo._PINYIN)));
+PyTuple_SetItem(pyTupleCHAR_CODEs, idx, StringToPy(WstringToString(vec_AALP0184[idx]._baseinfo._CHAR_CODE)));
+PyTuple_SetItem(pyTupleFONT_CODEs, idx, StringToPy(WstringToString(vec_AALP0184[idx]._baseinfo._FONT_CODE)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_AALP0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleNAMEs);
+PyTuple_SetItem(args, 7, pyTuplePINYINs);
+PyTuple_SetItem(args, 8, pyTupleCHAR_CODEs);
+PyTuple_SetItem(args, 9, pyTupleFONT_CODEs);
+PyTuple_SetItem(args, 10, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddBOUA0184ToNetDB(const int nSId, const vector<_BOUA0184>& vec_BOUA0184)
+{
+if(vec_BOUA0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_BOUA0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_BOUA0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(13);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolygons = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleTPACs = PyTuple_New(nRecordNum);
+PyObject* pyTupleTNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCPACs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Areas = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_BOUA0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_BOUA0184[idx]._baseinfo._polygon.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_BOUA0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_BOUA0184[idx]._baseinfo._polygon[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_BOUA0184[idx]._baseinfo._polygon[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_BOUA0184[idx]._baseinfo._polygon[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_BOUA0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_BOUA0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_BOUA0184[idx]._GB));
+PyTuple_SetItem(pyTupleTPACs, idx, Py_BuildValue("i", vec_BOUA0184[idx]._TPAC));
+PyTuple_SetItem(pyTupleTNAMEs, idx, StringToPy(WstringToString(vec_BOUA0184[idx]._baseinfo._TNAME)));
+PyTuple_SetItem(pyTupleCPACs, idx, Py_BuildValue("i", vec_BOUA0184[idx]._CPAC));
+PyTuple_SetItem(pyTupleCNAMEs, idx, StringToPy(WstringToString(vec_BOUA0184[idx]._baseinfo._CNAME)));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_BOUA0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleSHAPE_Areas, idx, PyFloat_FromDouble(vec_BOUA0184[idx]._SHAPE_Area));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_BOUA0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolygons);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleTPACs);
+PyTuple_SetItem(args, 7, pyTupleTNAMEs);
+PyTuple_SetItem(args, 8, pyTupleCPACs);
+PyTuple_SetItem(args, 9, pyTupleCNAMEs);
+PyTuple_SetItem(args, 10, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 11, pyTupleSHAPE_Areas);
+PyTuple_SetItem(args, 12, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddBOUL0184ToNetDB(const int nSId, const vector<_BOUL0184>& vec_BOUL0184)
+{
+if(vec_BOUL0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_BOUL0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_BOUL0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(8);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_BOUL0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_BOUL0184[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_BOUL0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_BOUL0184[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_BOUL0184[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_BOUL0184[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_BOUL0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_BOUL0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_BOUL0184[idx]._GB));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_BOUL0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_BOUL0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 7, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddBOUP0184ToNetDB(const int nSId, const vector<_BOUP0184>& vec_BOUP0184)
+{
+if(vec_BOUP0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_BOUP0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_BOUP0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(8);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleBNOs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_BOUP0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_BOUP0184[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_BOUP0184[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_BOUP0184[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_BOUP0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_BOUP0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_BOUP0184[idx]._GB));
+PyTuple_SetItem(pyTupleBNOs, idx, StringToPy(WstringToString(vec_BOUP0184[idx]._baseinfo._BNO)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_BOUP0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleBNOs);
+PyTuple_SetItem(args, 7, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddBRGA0184ToNetDB(const int nSId, const vector<_BRGA0184>& vec_BRGA0184)
+{
+if(vec_BRGA0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_BRGA0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_BRGA0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(10);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolygons = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Areas = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_BRGA0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_BRGA0184[idx]._baseinfo._polygon.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_BRGA0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_BRGA0184[idx]._baseinfo._polygon[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_BRGA0184[idx]._baseinfo._polygon[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_BRGA0184[idx]._baseinfo._polygon[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_BRGA0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_BRGA0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_BRGA0184[idx]._GB));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_BRGA0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_BRGA0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleSHAPE_Areas, idx, PyFloat_FromDouble(vec_BRGA0184[idx]._SHAPE_Area));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_BRGA0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolygons);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleNAMEs);
+PyTuple_SetItem(args, 7, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 8, pyTupleSHAPE_Areas);
+PyTuple_SetItem(args, 9, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddBRGL0184ToNetDB(const int nSId, const vector<_BRGL0184>& vec_BRGL0184)
+{
+if(vec_BRGL0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_BRGL0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_BRGL0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(8);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_BRGL0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_BRGL0184[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_BRGL0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_BRGL0184[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_BRGL0184[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_BRGL0184[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_BRGL0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_BRGL0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_BRGL0184[idx]._GB));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_BRGL0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_BRGL0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 7, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddBRGP0184ToNetDB(const int nSId, const vector<_BRGP0184>& vec_BRGP0184)
+{
+if(vec_BRGP0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_BRGP0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_BRGP0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(8);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_BRGP0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_BRGP0184[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_BRGP0184[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_BRGP0184[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_BRGP0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_BRGP0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_BRGP0184[idx]._GB));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_BRGP0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_BRGP0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleNAMEs);
+PyTuple_SetItem(args, 7, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddCPTL0184ToNetDB(const int nSId, const vector<_CPTL0184>& vec_CPTL0184)
+{
+if(vec_CPTL0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_CPTL0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_CPTL0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(8);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_CPTL0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_CPTL0184[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_CPTL0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_CPTL0184[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_CPTL0184[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_CPTL0184[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_CPTL0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_CPTL0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_CPTL0184[idx]._GB));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_CPTL0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_CPTL0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 7, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddCPTP0184ToNetDB(const int nSId, const vector<_CPTP0184>& vec_CPTP0184)
+{
+if(vec_CPTP0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_CPTP0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_CPTP0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(10);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleTEGRs = PyTuple_New(nRecordNum);
+PyObject* pyTupleELEVs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_CPTP0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_CPTP0184[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_CPTP0184[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_CPTP0184[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_CPTP0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_CPTP0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_CPTP0184[idx]._GB));
+PyTuple_SetItem(pyTupleTEGRs, idx, StringToPy(WstringToString(vec_CPTP0184[idx]._baseinfo._TEGR)));
+PyTuple_SetItem(pyTupleELEVs, idx, PyFloat_FromDouble(vec_CPTP0184[idx]._ELEV));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_CPTP0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_CPTP0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleTEGRs);
+PyTuple_SetItem(args, 7, pyTupleELEVs);
+PyTuple_SetItem(args, 8, pyTupleNAMEs);
+PyTuple_SetItem(args, 9, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddHFCA0184ToNetDB(const int nSId, const vector<_HFCA0184>& vec_HFCA0184)
+{
+if(vec_HFCA0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_HFCA0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_HFCA0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(10);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolygons = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Areas = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_HFCA0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_HFCA0184[idx]._baseinfo._polygon.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_HFCA0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_HFCA0184[idx]._baseinfo._polygon[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_HFCA0184[idx]._baseinfo._polygon[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_HFCA0184[idx]._baseinfo._polygon[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_HFCA0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_HFCA0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_HFCA0184[idx]._GB));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_HFCA0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_HFCA0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleSHAPE_Areas, idx, PyFloat_FromDouble(vec_HFCA0184[idx]._SHAPE_Area));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_HFCA0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolygons);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleNAMEs);
+PyTuple_SetItem(args, 7, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 8, pyTupleSHAPE_Areas);
+PyTuple_SetItem(args, 9, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddHFCL0184ToNetDB(const int nSId, const vector<_HFCL0184>& vec_HFCL0184)
+{
+if(vec_HFCL0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_HFCL0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_HFCL0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(9);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_HFCL0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_HFCL0184[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_HFCL0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_HFCL0184[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_HFCL0184[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_HFCL0184[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_HFCL0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_HFCL0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_HFCL0184[idx]._GB));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_HFCL0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_HFCL0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_HFCL0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleNAMEs);
+PyTuple_SetItem(args, 7, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 8, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddHFCP0184ToNetDB(const int nSId, const vector<_HFCP0184>& vec_HFCP0184)
+{
+if(vec_HFCP0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_HFCP0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_HFCP0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(9);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSYM_ANGLEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_HFCP0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_HFCP0184[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_HFCP0184[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_HFCP0184[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_HFCP0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_HFCP0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_HFCP0184[idx]._GB));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_HFCP0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleSYM_ANGLEs, idx, PyFloat_FromDouble(vec_HFCP0184[idx]._SYM_ANGLE));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_HFCP0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleNAMEs);
+PyTuple_SetItem(args, 7, pyTupleSYM_ANGLEs);
+PyTuple_SetItem(args, 8, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddHYDA0184ToNetDB(const int nSId, const vector<_HYDA0184>& vec_HYDA0184)
+{
+if(vec_HYDA0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_HYDA0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_HYDA0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(12);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolygons = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleHYDCs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleHYDGs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Areas = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_HYDA0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_HYDA0184[idx]._baseinfo._polygon.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_HYDA0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_HYDA0184[idx]._baseinfo._polygon[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_HYDA0184[idx]._baseinfo._polygon[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_HYDA0184[idx]._baseinfo._polygon[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_HYDA0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_HYDA0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_HYDA0184[idx]._GB));
+PyTuple_SetItem(pyTupleHYDCs, idx, StringToPy(WstringToString(vec_HYDA0184[idx]._baseinfo._HYDC)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_HYDA0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleHYDGs, idx, StringToPy(WstringToString(vec_HYDA0184[idx]._baseinfo._HYDG)));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_HYDA0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleSHAPE_Areas, idx, PyFloat_FromDouble(vec_HYDA0184[idx]._SHAPE_Area));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_HYDA0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolygons);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleHYDCs);
+PyTuple_SetItem(args, 7, pyTupleNAMEs);
+PyTuple_SetItem(args, 8, pyTupleHYDGs);
+PyTuple_SetItem(args, 9, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 10, pyTupleSHAPE_Areas);
+PyTuple_SetItem(args, 11, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddHYDL0184ToNetDB(const int nSId, const vector<_HYDL0184>& vec_HYDL0184)
+{
+if(vec_HYDL0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_HYDL0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_HYDL0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(11);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleHYDCs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleHYDGs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_HYDL0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_HYDL0184[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_HYDL0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_HYDL0184[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_HYDL0184[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_HYDL0184[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_HYDL0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_HYDL0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_HYDL0184[idx]._GB));
+PyTuple_SetItem(pyTupleHYDCs, idx, StringToPy(WstringToString(vec_HYDL0184[idx]._baseinfo._HYDC)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_HYDL0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleHYDGs, idx, StringToPy(WstringToString(vec_HYDL0184[idx]._baseinfo._HYDG)));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_HYDL0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_HYDL0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleHYDCs);
+PyTuple_SetItem(args, 7, pyTupleNAMEs);
+PyTuple_SetItem(args, 8, pyTupleHYDGs);
+PyTuple_SetItem(args, 9, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 10, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddHYDP0184ToNetDB(const int nSId, const vector<_HYDP0184>& vec_HYDP0184)
+{
+if(vec_HYDP0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_HYDP0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_HYDP0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(9);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSYM_ANGLEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_HYDP0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_HYDP0184[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_HYDP0184[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_HYDP0184[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_HYDP0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_HYDP0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_HYDP0184[idx]._GB));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_HYDP0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleSYM_ANGLEs, idx, PyFloat_FromDouble(vec_HYDP0184[idx]._SYM_ANGLE));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_HYDP0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleNAMEs);
+PyTuple_SetItem(args, 7, pyTupleSYM_ANGLEs);
+PyTuple_SetItem(args, 8, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddLFCL0184ToNetDB(const int nSId, const vector<_LFCL0184>& vec_LFCL0184)
+{
+if(vec_LFCL0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_LFCL0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_LFCL0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(9);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_LFCL0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_LFCL0184[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_LFCL0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_LFCL0184[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_LFCL0184[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_LFCL0184[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_LFCL0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_LFCL0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_LFCL0184[idx]._GB));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_LFCL0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_LFCL0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_LFCL0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleNAMEs);
+PyTuple_SetItem(args, 7, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 8, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddLFCP0184ToNetDB(const int nSId, const vector<_LFCP0184>& vec_LFCP0184)
+{
+if(vec_LFCP0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_LFCP0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_LFCP0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(10);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleRNs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSYM_ANGLEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_LFCP0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_LFCP0184[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_LFCP0184[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_LFCP0184[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_LFCP0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_LFCP0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_LFCP0184[idx]._GB));
+PyTuple_SetItem(pyTupleRNs, idx, StringToPy(WstringToString(vec_LFCP0184[idx]._baseinfo._RN)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_LFCP0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleSYM_ANGLEs, idx, PyFloat_FromDouble(vec_LFCP0184[idx]._SYM_ANGLE));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_LFCP0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleRNs);
+PyTuple_SetItem(args, 7, pyTupleNAMEs);
+PyTuple_SetItem(args, 8, pyTupleSYM_ANGLEs);
+PyTuple_SetItem(args, 9, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddLRDL0184ToNetDB(const int nSId, const vector<_LRDL0184>& vec_LRDL0184)
+{
+if(vec_LRDL0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_LRDL0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_LRDL0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(11);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleRNs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleRTEGs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_LRDL0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_LRDL0184[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_LRDL0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_LRDL0184[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_LRDL0184[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_LRDL0184[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_LRDL0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_LRDL0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_LRDL0184[idx]._GB));
+PyTuple_SetItem(pyTupleRNs, idx, StringToPy(WstringToString(vec_LRDL0184[idx]._baseinfo._RN)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_LRDL0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleRTEGs, idx, StringToPy(WstringToString(vec_LRDL0184[idx]._baseinfo._RTEG)));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_LRDL0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_LRDL0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleRNs);
+PyTuple_SetItem(args, 7, pyTupleNAMEs);
+PyTuple_SetItem(args, 8, pyTupleRTEGs);
+PyTuple_SetItem(args, 9, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 10, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddLRRL0184ToNetDB(const int nSId, const vector<_LRRL0184>& vec_LRRL0184)
+{
+if(vec_LRRL0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_LRRL0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_LRRL0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(10);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleRNs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_LRRL0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_LRRL0184[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_LRRL0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_LRRL0184[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_LRRL0184[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_LRRL0184[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_LRRL0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_LRRL0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_LRRL0184[idx]._GB));
+PyTuple_SetItem(pyTupleRNs, idx, StringToPy(WstringToString(vec_LRRL0184[idx]._baseinfo._RN)));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_LRRL0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_LRRL0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_LRRL0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleRNs);
+PyTuple_SetItem(args, 7, pyTupleNAMEs);
+PyTuple_SetItem(args, 8, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 9, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddPIPL0184ToNetDB(const int nSId, const vector<_PIPL0184>& vec_PIPL0184)
+{
+if(vec_PIPL0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_PIPL0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_PIPL0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(9);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_PIPL0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_PIPL0184[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_PIPL0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_PIPL0184[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_PIPL0184[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_PIPL0184[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_PIPL0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_PIPL0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_PIPL0184[idx]._GB));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_PIPL0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_PIPL0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_PIPL0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleNAMEs);
+PyTuple_SetItem(args, 7, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 8, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddPIPP0184ToNetDB(const int nSId, const vector<_PIPP0184>& vec_PIPP0184)
+{
+if(vec_PIPP0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_PIPP0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_PIPP0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(9);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSYM_ANGLEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_PIPP0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_PIPP0184[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_PIPP0184[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_PIPP0184[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_PIPP0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_PIPP0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_PIPP0184[idx]._GB));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_PIPP0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleSYM_ANGLEs, idx, PyFloat_FromDouble(vec_PIPP0184[idx]._SYM_ANGLE));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_PIPP0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleNAMEs);
+PyTuple_SetItem(args, 7, pyTupleSYM_ANGLEs);
+PyTuple_SetItem(args, 8, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddRESA0184ToNetDB(const int nSId, const vector<_RESA0184>& vec_RESA0184)
+{
+if(vec_RESA0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_RESA0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_RESA0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(9);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolygons = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Areas = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_RESA0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_RESA0184[idx]._baseinfo._polygon.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_RESA0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_RESA0184[idx]._baseinfo._polygon[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_RESA0184[idx]._baseinfo._polygon[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_RESA0184[idx]._baseinfo._polygon[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_RESA0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_RESA0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_RESA0184[idx]._GB));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_RESA0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleSHAPE_Areas, idx, PyFloat_FromDouble(vec_RESA0184[idx]._SHAPE_Area));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_RESA0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolygons);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 7, pyTupleSHAPE_Areas);
+PyTuple_SetItem(args, 8, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddRESL0184ToNetDB(const int nSId, const vector<_RESL0184>& vec_RESL0184)
+{
+if(vec_RESL0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_RESL0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_RESL0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(8);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_RESL0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_RESL0184[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_RESL0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_RESL0184[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_RESL0184[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_RESL0184[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_RESL0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_RESL0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_RESL0184[idx]._GB));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_RESL0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_RESL0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 7, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddRESP0184ToNetDB(const int nSId, const vector<_RESP0184>& vec_RESP0184)
+{
+if(vec_RESP0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_RESP0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_RESP0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(9);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSYM_ANGLEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_RESP0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_RESP0184[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_RESP0184[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_RESP0184[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_RESP0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_RESP0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_RESP0184[idx]._GB));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_RESP0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleSYM_ANGLEs, idx, PyFloat_FromDouble(vec_RESP0184[idx]._SYM_ANGLE));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_RESP0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleNAMEs);
+PyTuple_SetItem(args, 7, pyTupleSYM_ANGLEs);
+PyTuple_SetItem(args, 8, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddRFCA0184ToNetDB(const int nSId, const vector<_RFCA0184>& vec_RFCA0184)
+{
+if(vec_RFCA0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_RFCA0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_RFCA0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(10);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolygons = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Areas = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_RFCA0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_RFCA0184[idx]._baseinfo._polygon.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_RFCA0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_RFCA0184[idx]._baseinfo._polygon[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_RFCA0184[idx]._baseinfo._polygon[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_RFCA0184[idx]._baseinfo._polygon[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_RFCA0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_RFCA0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_RFCA0184[idx]._GB));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_RFCA0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_RFCA0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleSHAPE_Areas, idx, PyFloat_FromDouble(vec_RFCA0184[idx]._SHAPE_Area));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_RFCA0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolygons);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleNAMEs);
+PyTuple_SetItem(args, 7, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 8, pyTupleSHAPE_Areas);
+PyTuple_SetItem(args, 9, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddRFCL0184ToNetDB(const int nSId, const vector<_RFCL0184>& vec_RFCL0184)
+{
+if(vec_RFCL0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_RFCL0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_RFCL0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(9);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_RFCL0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_RFCL0184[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_RFCL0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_RFCL0184[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_RFCL0184[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_RFCL0184[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_RFCL0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_RFCL0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_RFCL0184[idx]._GB));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_RFCL0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_RFCL0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_RFCL0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleNAMEs);
+PyTuple_SetItem(args, 7, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 8, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddRFCP0184ToNetDB(const int nSId, const vector<_RFCP0184>& vec_RFCP0184)
+{
+if(vec_RFCP0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_RFCP0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_RFCP0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(9);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSYM_ANGLEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_RFCP0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_RFCP0184[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_RFCP0184[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_RFCP0184[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_RFCP0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_RFCP0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_RFCP0184[idx]._GB));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_RFCP0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleSYM_ANGLEs, idx, PyFloat_FromDouble(vec_RFCP0184[idx]._SYM_ANGLE));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_RFCP0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleNAMEs);
+PyTuple_SetItem(args, 7, pyTupleSYM_ANGLEs);
+PyTuple_SetItem(args, 8, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddTERA0184ToNetDB(const int nSId, const vector<_TERA0184>& vec_TERA0184)
+{
+if(vec_TERA0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_TERA0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_TERA0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(10);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolygons = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Areas = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_TERA0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_TERA0184[idx]._baseinfo._polygon.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_TERA0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_TERA0184[idx]._baseinfo._polygon[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_TERA0184[idx]._baseinfo._polygon[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_TERA0184[idx]._baseinfo._polygon[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_TERA0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_TERA0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_TERA0184[idx]._GB));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_TERA0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_TERA0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleSHAPE_Areas, idx, PyFloat_FromDouble(vec_TERA0184[idx]._SHAPE_Area));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_TERA0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolygons);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleNAMEs);
+PyTuple_SetItem(args, 7, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 8, pyTupleSHAPE_Areas);
+PyTuple_SetItem(args, 9, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddTERL0184ToNetDB(const int nSId, const vector<_TERL0184>& vec_TERL0184)
+{
+if(vec_TERL0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_TERL0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_TERL0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(10);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleELEVs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_TERL0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_TERL0184[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_TERL0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_TERL0184[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_TERL0184[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_TERL0184[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_TERL0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_TERL0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_TERL0184[idx]._GB));
+PyTuple_SetItem(pyTupleELEVs, idx, PyFloat_FromDouble(vec_TERL0184[idx]._ELEV));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_TERL0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_TERL0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_TERL0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleELEVs);
+PyTuple_SetItem(args, 7, pyTupleNAMEs);
+PyTuple_SetItem(args, 8, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 9, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddTERP0184ToNetDB(const int nSId, const vector<_TERP0184>& vec_TERP0184)
+{
+if(vec_TERP0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_TERP0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_TERP0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(10);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleELEVs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNAMEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSYM_ANGLEs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_TERP0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_TERP0184[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_TERP0184[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_TERP0184[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_TERP0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_TERP0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_TERP0184[idx]._GB));
+PyTuple_SetItem(pyTupleELEVs, idx, PyFloat_FromDouble(vec_TERP0184[idx]._ELEV));
+PyTuple_SetItem(pyTupleNAMEs, idx, StringToPy(WstringToString(vec_TERP0184[idx]._baseinfo._NAME)));
+PyTuple_SetItem(pyTupleSYM_ANGLEs, idx, PyFloat_FromDouble(vec_TERP0184[idx]._SYM_ANGLE));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_TERP0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleELEVs);
+PyTuple_SetItem(args, 7, pyTupleNAMEs);
+PyTuple_SetItem(args, 8, pyTupleSYM_ANGLEs);
+PyTuple_SetItem(args, 9, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddVEGA0184ToNetDB(const int nSId, const vector<_VEGA0184>& vec_VEGA0184)
+{
+if(vec_VEGA0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_VEGA0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_VEGA0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(9);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolygons = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Areas = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_VEGA0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_VEGA0184[idx]._baseinfo._polygon.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_VEGA0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_VEGA0184[idx]._baseinfo._polygon[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_VEGA0184[idx]._baseinfo._polygon[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_VEGA0184[idx]._baseinfo._polygon[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_VEGA0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_VEGA0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_VEGA0184[idx]._GB));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_VEGA0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleSHAPE_Areas, idx, PyFloat_FromDouble(vec_VEGA0184[idx]._SHAPE_Area));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_VEGA0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolygons);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 7, pyTupleSHAPE_Areas);
+PyTuple_SetItem(args, 8, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddVEGL0184ToNetDB(const int nSId, const vector<_VEGL0184>& vec_VEGL0184)
+{
+if(vec_VEGL0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_VEGL0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_VEGL0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(8);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSHAPE_Lengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_VEGL0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_VEGL0184[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_VEGL0184[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_VEGL0184[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_VEGL0184[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_VEGL0184[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_VEGL0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_VEGL0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_VEGL0184[idx]._GB));
+PyTuple_SetItem(pyTupleSHAPE_Lengths, idx, PyFloat_FromDouble(vec_VEGL0184[idx]._SHAPE_Length));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_VEGL0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleSHAPE_Lengths);
+PyTuple_SetItem(args, 7, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddVEGP0184ToNetDB(const int nSId, const vector<_VEGP0184>& vec_VEGP0184)
+{
+if(vec_VEGP0184.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_VEGP0184.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_VEGP0184);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(7);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleGBs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_VEGP0184));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_VEGP0184[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_VEGP0184[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_VEGP0184[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_VEGP0184[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectCodes, idx, StringToPy(WstringToString(vec_VEGP0184[idx]._baseinfo._ProjectCode)));
+PyTuple_SetItem(pyTupleGBs, idx, Py_BuildValue("i", vec_VEGP0184[idx]._GB));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_VEGP0184[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectCodes);
+PyTuple_SetItem(args, 5, pyTupleGBs);
+PyTuple_SetItem(args, 6, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+

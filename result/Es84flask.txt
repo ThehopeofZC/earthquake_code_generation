@@ -1,0 +1,488 @@
+@app.route('/mysql/seismological_bureau/add_AALL0184/', methods = ['POST'])
+def add_AALL0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_AALL0184(sid, lines, IDs, ProjectCodes, GBs, SHAPE_Lengths, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_AALP0184/', methods = ['POST'])
+def add_AALP0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	points = data["points"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	NAMEs = data["NAMEs"]
+	PINYINs = data["PINYINs"]
+	CHAR_CODEs = data["CHAR_CODEs"]
+	FONT_CODEs = data["FONT_CODEs"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_AALP0184(sid, points, IDs, ProjectCodes, GBs, NAMEs, PINYINs, CHAR_CODEs, FONT_CODEs, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_BOUA0184/', methods = ['POST'])
+def add_BOUA0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	faces = data["faces"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	TPACs = data["TPACs"]
+	TNAMEs = data["TNAMEs"]
+	CPACs = data["CPACs"]
+	CNAMEs = data["CNAMEs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	SHAPE_Areas = data["SHAPE_Areas"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_BOUA0184(sid, faces, IDs, ProjectCodes, GBs, TPACs, TNAMEs, CPACs, CNAMEs, SHAPE_Lengths, SHAPE_Areas, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_BOUL0184/', methods = ['POST'])
+def add_BOUL0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_BOUL0184(sid, lines, IDs, ProjectCodes, GBs, SHAPE_Lengths, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_BOUP0184/', methods = ['POST'])
+def add_BOUP0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	points = data["points"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	BNOs = data["BNOs"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_BOUP0184(sid, points, IDs, ProjectCodes, GBs, BNOs, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_BRGA0184/', methods = ['POST'])
+def add_BRGA0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	faces = data["faces"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	NAMEs = data["NAMEs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	SHAPE_Areas = data["SHAPE_Areas"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_BRGA0184(sid, faces, IDs, ProjectCodes, GBs, NAMEs, SHAPE_Lengths, SHAPE_Areas, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_BRGL0184/', methods = ['POST'])
+def add_BRGL0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_BRGL0184(sid, lines, IDs, ProjectCodes, GBs, SHAPE_Lengths, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_BRGP0184/', methods = ['POST'])
+def add_BRGP0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	points = data["points"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	NAMEs = data["NAMEs"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_BRGP0184(sid, points, IDs, ProjectCodes, GBs, NAMEs, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_CPTL0184/', methods = ['POST'])
+def add_CPTL0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_CPTL0184(sid, lines, IDs, ProjectCodes, GBs, SHAPE_Lengths, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_CPTP0184/', methods = ['POST'])
+def add_CPTP0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	points = data["points"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	TEGRs = data["TEGRs"]
+	ELEVs = data["ELEVs"]
+	NAMEs = data["NAMEs"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_CPTP0184(sid, points, IDs, ProjectCodes, GBs, TEGRs, ELEVs, NAMEs, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_HFCA0184/', methods = ['POST'])
+def add_HFCA0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	faces = data["faces"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	NAMEs = data["NAMEs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	SHAPE_Areas = data["SHAPE_Areas"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_HFCA0184(sid, faces, IDs, ProjectCodes, GBs, NAMEs, SHAPE_Lengths, SHAPE_Areas, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_HFCL0184/', methods = ['POST'])
+def add_HFCL0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	NAMEs = data["NAMEs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_HFCL0184(sid, lines, IDs, ProjectCodes, GBs, NAMEs, SHAPE_Lengths, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_HFCP0184/', methods = ['POST'])
+def add_HFCP0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	points = data["points"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	NAMEs = data["NAMEs"]
+	SYM_ANGLEs = data["SYM_ANGLEs"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_HFCP0184(sid, points, IDs, ProjectCodes, GBs, NAMEs, SYM_ANGLEs, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_HYDA0184/', methods = ['POST'])
+def add_HYDA0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	faces = data["faces"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	HYDCs = data["HYDCs"]
+	NAMEs = data["NAMEs"]
+	HYDGs = data["HYDGs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	SHAPE_Areas = data["SHAPE_Areas"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_HYDA0184(sid, faces, IDs, ProjectCodes, GBs, HYDCs, NAMEs, HYDGs, SHAPE_Lengths, SHAPE_Areas, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_HYDL0184/', methods = ['POST'])
+def add_HYDL0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	HYDCs = data["HYDCs"]
+	NAMEs = data["NAMEs"]
+	HYDGs = data["HYDGs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_HYDL0184(sid, lines, IDs, ProjectCodes, GBs, HYDCs, NAMEs, HYDGs, SHAPE_Lengths, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_HYDP0184/', methods = ['POST'])
+def add_HYDP0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	points = data["points"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	NAMEs = data["NAMEs"]
+	SYM_ANGLEs = data["SYM_ANGLEs"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_HYDP0184(sid, points, IDs, ProjectCodes, GBs, NAMEs, SYM_ANGLEs, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_LFCL0184/', methods = ['POST'])
+def add_LFCL0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	NAMEs = data["NAMEs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_LFCL0184(sid, lines, IDs, ProjectCodes, GBs, NAMEs, SHAPE_Lengths, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_LFCP0184/', methods = ['POST'])
+def add_LFCP0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	points = data["points"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	RNs = data["RNs"]
+	NAMEs = data["NAMEs"]
+	SYM_ANGLEs = data["SYM_ANGLEs"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_LFCP0184(sid, points, IDs, ProjectCodes, GBs, RNs, NAMEs, SYM_ANGLEs, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_LRDL0184/', methods = ['POST'])
+def add_LRDL0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	RNs = data["RNs"]
+	NAMEs = data["NAMEs"]
+	RTEGs = data["RTEGs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_LRDL0184(sid, lines, IDs, ProjectCodes, GBs, RNs, NAMEs, RTEGs, SHAPE_Lengths, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_LRRL0184/', methods = ['POST'])
+def add_LRRL0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	RNs = data["RNs"]
+	NAMEs = data["NAMEs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_LRRL0184(sid, lines, IDs, ProjectCodes, GBs, RNs, NAMEs, SHAPE_Lengths, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_PIPL0184/', methods = ['POST'])
+def add_PIPL0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	NAMEs = data["NAMEs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_PIPL0184(sid, lines, IDs, ProjectCodes, GBs, NAMEs, SHAPE_Lengths, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_PIPP0184/', methods = ['POST'])
+def add_PIPP0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	points = data["points"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	NAMEs = data["NAMEs"]
+	SYM_ANGLEs = data["SYM_ANGLEs"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_PIPP0184(sid, points, IDs, ProjectCodes, GBs, NAMEs, SYM_ANGLEs, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_RESA0184/', methods = ['POST'])
+def add_RESA0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	faces = data["faces"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	SHAPE_Areas = data["SHAPE_Areas"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_RESA0184(sid, faces, IDs, ProjectCodes, GBs, SHAPE_Lengths, SHAPE_Areas, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_RESL0184/', methods = ['POST'])
+def add_RESL0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_RESL0184(sid, lines, IDs, ProjectCodes, GBs, SHAPE_Lengths, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_RESP0184/', methods = ['POST'])
+def add_RESP0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	points = data["points"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	NAMEs = data["NAMEs"]
+	SYM_ANGLEs = data["SYM_ANGLEs"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_RESP0184(sid, points, IDs, ProjectCodes, GBs, NAMEs, SYM_ANGLEs, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_RFCA0184/', methods = ['POST'])
+def add_RFCA0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	faces = data["faces"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	NAMEs = data["NAMEs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	SHAPE_Areas = data["SHAPE_Areas"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_RFCA0184(sid, faces, IDs, ProjectCodes, GBs, NAMEs, SHAPE_Lengths, SHAPE_Areas, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_RFCL0184/', methods = ['POST'])
+def add_RFCL0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	NAMEs = data["NAMEs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_RFCL0184(sid, lines, IDs, ProjectCodes, GBs, NAMEs, SHAPE_Lengths, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_RFCP0184/', methods = ['POST'])
+def add_RFCP0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	points = data["points"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	NAMEs = data["NAMEs"]
+	SYM_ANGLEs = data["SYM_ANGLEs"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_RFCP0184(sid, points, IDs, ProjectCodes, GBs, NAMEs, SYM_ANGLEs, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_TERA0184/', methods = ['POST'])
+def add_TERA0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	faces = data["faces"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	NAMEs = data["NAMEs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	SHAPE_Areas = data["SHAPE_Areas"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_TERA0184(sid, faces, IDs, ProjectCodes, GBs, NAMEs, SHAPE_Lengths, SHAPE_Areas, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_TERL0184/', methods = ['POST'])
+def add_TERL0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	ELEVs = data["ELEVs"]
+	NAMEs = data["NAMEs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_TERL0184(sid, lines, IDs, ProjectCodes, GBs, ELEVs, NAMEs, SHAPE_Lengths, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_TERP0184/', methods = ['POST'])
+def add_TERP0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	points = data["points"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	ELEVs = data["ELEVs"]
+	NAMEs = data["NAMEs"]
+	SYM_ANGLEs = data["SYM_ANGLEs"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_TERP0184(sid, points, IDs, ProjectCodes, GBs, ELEVs, NAMEs, SYM_ANGLEs, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_VEGA0184/', methods = ['POST'])
+def add_VEGA0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	faces = data["faces"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	SHAPE_Areas = data["SHAPE_Areas"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_VEGA0184(sid, faces, IDs, ProjectCodes, GBs, SHAPE_Lengths, SHAPE_Areas, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_VEGL0184/', methods = ['POST'])
+def add_VEGL0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	lines = data["lines"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	SHAPE_Lengths = data["SHAPE_Lengths"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_VEGL0184(sid, lines, IDs, ProjectCodes, GBs, SHAPE_Lengths, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+
+@app.route('/mysql/seismological_bureau/add_VEGP0184/', methods = ['POST'])
+def add_VEGP0184():
+	data = json.loads(request.get_data())
+	sid = data["sid"]
+	points = data["points"]
+	IDs = data["IDs"]
+	ProjectCodes = data["ProjectCodes"]
+	GBs = data["GBs"]
+	CommentInfos = data["CommentInfos"]
+	res = mysql_api_seismological_bureau.add_VEGP0184(sid, points, IDs, ProjectCodes, GBs, CommentInfos)
+	return json.dumps(res, ensure_ascii=False)
+

@@ -1,0 +1,820 @@
+bool EsAddB7_VolcanicDataTableToNetDB(const int nSId, const vector<_B7_VOLCANICDATATABLE>& vec_B7_VolcanicDataTable)
+{
+if(vec_B7_VolcanicDataTable.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_B7_VolcanicDataTable.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_B7_VolcanicDataTable);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(16);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSamplePointIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleFieldIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleElementTypes = PyTuple_New(nRecordNum);
+PyObject* pyTupleNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyResults = PyTuple_New(nRecordNum);
+PyObject* pyTupleReliabilitys = PyTuple_New(nRecordNum);
+PyObject* pyTupleSampleLayout_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSampleLayout_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhotoDesc_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_B7_VolcanicDataTable));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_B7_VolcanicDataTable[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectIDs, idx, StringToPy(WstringToString(vec_B7_VolcanicDataTable[idx]._baseinfo._ProjectID)));
+PyTuple_SetItem(pyTupleSamplePointIDs, idx, StringToPy(WstringToString(vec_B7_VolcanicDataTable[idx]._baseinfo._SamplePointID)));
+PyTuple_SetItem(pyTupleFieldIDs, idx, StringToPy(WstringToString(vec_B7_VolcanicDataTable[idx]._baseinfo._FieldID)));
+PyTuple_SetItem(pyTupleElementTypes, idx, Py_BuildValue("i", vec_B7_VolcanicDataTable[idx]._ElementType));
+PyTuple_SetItem(pyTupleNames, idx, StringToPy(WstringToString(vec_B7_VolcanicDataTable[idx]._baseinfo._Name)));
+PyTuple_SetItem(pyTupleSvyResults, idx, StringToPy(WstringToString(vec_B7_VolcanicDataTable[idx]._baseinfo._SvyResult)));
+PyTuple_SetItem(pyTupleReliabilitys, idx, Py_BuildValue("i", vec_B7_VolcanicDataTable[idx]._Reliability));
+PyTuple_SetItem(pyTupleSampleLayout_AIIDs, idx, StringToPy(WstringToString(vec_B7_VolcanicDataTable[idx]._baseinfo._SampleLayout_AIID)));
+PyTuple_SetItem(pyTupleSampleLayout_ARWIDs, idx, StringToPy(WstringToString(vec_B7_VolcanicDataTable[idx]._baseinfo._SampleLayout_ARWID)));
+PyTuple_SetItem(pyTuplePhoto_AIIDs, idx, StringToPy(WstringToString(vec_B7_VolcanicDataTable[idx]._baseinfo._Photo_AIID)));
+PyTuple_SetItem(pyTuplePhoto_ARWIDs, idx, StringToPy(WstringToString(vec_B7_VolcanicDataTable[idx]._baseinfo._Photo_ARWID)));
+PyTuple_SetItem(pyTuplePhotoDesc_ARWIDs, idx, StringToPy(WstringToString(vec_B7_VolcanicDataTable[idx]._baseinfo._PhotoDesc_ARWID)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_B7_VolcanicDataTable[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTupleIDs);
+PyTuple_SetItem(args, 3, pyTupleProjectIDs);
+PyTuple_SetItem(args, 4, pyTupleSamplePointIDs);
+PyTuple_SetItem(args, 5, pyTupleFieldIDs);
+PyTuple_SetItem(args, 6, pyTupleElementTypes);
+PyTuple_SetItem(args, 7, pyTupleNames);
+PyTuple_SetItem(args, 8, pyTupleSvyResults);
+PyTuple_SetItem(args, 9, pyTupleReliabilitys);
+PyTuple_SetItem(args, 10, pyTupleSampleLayout_AIIDs);
+PyTuple_SetItem(args, 11, pyTupleSampleLayout_ARWIDs);
+PyTuple_SetItem(args, 12, pyTuplePhoto_AIIDs);
+PyTuple_SetItem(args, 13, pyTuplePhoto_ARWIDs);
+PyTuple_SetItem(args, 14, pyTuplePhotoDesc_ARWIDs);
+PyTuple_SetItem(args, 15, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddB7_VolcanicSvyProjectTableToNetDB(const int nSId, const vector<_B7_VOLCANICSVYPROJECTTABLE>& vec_B7_VolcanicSvyProjectTable)
+{
+if(vec_B7_VolcanicSvyProjectTable.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_B7_VolcanicSvyProjectTable.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_B7_VolcanicSvyProjectTable);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(23);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleMainAFMRegionIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleTargetRegionIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleWorkRegionIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleDeliverPersons = PyTuple_New(nRecordNum);
+PyObject* pyTupleDeliverInstitutes = PyTuple_New(nRecordNum);
+PyObject* pyTupleReportDates = PyTuple_New(nRecordNum);
+PyObject* pyTupleTestApparatuss = PyTuple_New(nRecordNum);
+PyObject* pyTupleCollectedSampleCounts = PyTuple_New(nRecordNum);
+PyObject* pyTupleSampleCounts = PyTuple_New(nRecordNum);
+PyObject* pyTupleMeasuringResultCounts = PyTuple_New(nRecordNum);
+PyObject* pyTupleDeliverReport_ARIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleDeliverReport_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleTestReport_ARIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleTestReport_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSurveyors = PyTuple_New(nRecordNum);
+PyObject* pyTupleTestInstitutes = PyTuple_New(nRecordNum);
+PyObject* pyTupleResultReport_ARIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleResultReport_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_B7_VolcanicSvyProjectTable));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_B7_VolcanicSvyProjectTable[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleMainAFMRegionIDs, idx, StringToPy(WstringToString(vec_B7_VolcanicSvyProjectTable[idx]._baseinfo._MainAFMRegionID)));
+PyTuple_SetItem(pyTupleTargetRegionIDs, idx, StringToPy(WstringToString(vec_B7_VolcanicSvyProjectTable[idx]._baseinfo._TargetRegionID)));
+PyTuple_SetItem(pyTupleWorkRegionIDs, idx, StringToPy(WstringToString(vec_B7_VolcanicSvyProjectTable[idx]._baseinfo._WorkRegionID)));
+PyTuple_SetItem(pyTupleNames, idx, StringToPy(WstringToString(vec_B7_VolcanicSvyProjectTable[idx]._baseinfo._Name)));
+PyTuple_SetItem(pyTupleDeliverPersons, idx, StringToPy(WstringToString(vec_B7_VolcanicSvyProjectTable[idx]._baseinfo._DeliverPerson)));
+PyTuple_SetItem(pyTupleDeliverInstitutes, idx, StringToPy(WstringToString(vec_B7_VolcanicSvyProjectTable[idx]._baseinfo._DeliverInstitute)));
+PyTuple_SetItem(pyTupleReportDates, idx, StringToPy(WstringToString(vec_B7_VolcanicSvyProjectTable[idx]._baseinfo._ReportDate)));
+PyTuple_SetItem(pyTupleTestApparatuss, idx, StringToPy(WstringToString(vec_B7_VolcanicSvyProjectTable[idx]._baseinfo._TestApparatus)));
+PyTuple_SetItem(pyTupleCollectedSampleCounts, idx, Py_BuildValue("i", vec_B7_VolcanicSvyProjectTable[idx]._CollectedSampleCount));
+PyTuple_SetItem(pyTupleSampleCounts, idx, Py_BuildValue("i", vec_B7_VolcanicSvyProjectTable[idx]._SampleCount));
+PyTuple_SetItem(pyTupleMeasuringResultCounts, idx, Py_BuildValue("i", vec_B7_VolcanicSvyProjectTable[idx]._MeasuringResultCount));
+PyTuple_SetItem(pyTupleDeliverReport_ARIDs, idx, StringToPy(WstringToString(vec_B7_VolcanicSvyProjectTable[idx]._baseinfo._DeliverReport_ARID)));
+PyTuple_SetItem(pyTupleDeliverReport_ARWIDs, idx, StringToPy(WstringToString(vec_B7_VolcanicSvyProjectTable[idx]._baseinfo._DeliverReport_ARWID)));
+PyTuple_SetItem(pyTupleTestReport_ARIDs, idx, StringToPy(WstringToString(vec_B7_VolcanicSvyProjectTable[idx]._baseinfo._TestReport_ARID)));
+PyTuple_SetItem(pyTupleTestReport_ARWIDs, idx, StringToPy(WstringToString(vec_B7_VolcanicSvyProjectTable[idx]._baseinfo._TestReport_ARWID)));
+PyTuple_SetItem(pyTupleSurveyors, idx, StringToPy(WstringToString(vec_B7_VolcanicSvyProjectTable[idx]._baseinfo._Surveyor)));
+PyTuple_SetItem(pyTupleTestInstitutes, idx, StringToPy(WstringToString(vec_B7_VolcanicSvyProjectTable[idx]._baseinfo._TestInstitute)));
+PyTuple_SetItem(pyTupleResultReport_ARIDs, idx, StringToPy(WstringToString(vec_B7_VolcanicSvyProjectTable[idx]._baseinfo._ResultReport_ARID)));
+PyTuple_SetItem(pyTupleResultReport_ARWIDs, idx, StringToPy(WstringToString(vec_B7_VolcanicSvyProjectTable[idx]._baseinfo._ResultReport_ARWID)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_B7_VolcanicSvyProjectTable[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTupleIDs);
+PyTuple_SetItem(args, 3, pyTupleMainAFMRegionIDs);
+PyTuple_SetItem(args, 4, pyTupleTargetRegionIDs);
+PyTuple_SetItem(args, 5, pyTupleWorkRegionIDs);
+PyTuple_SetItem(args, 6, pyTupleNames);
+PyTuple_SetItem(args, 7, pyTupleDeliverPersons);
+PyTuple_SetItem(args, 8, pyTupleDeliverInstitutes);
+PyTuple_SetItem(args, 9, pyTupleReportDates);
+PyTuple_SetItem(args, 10, pyTupleTestApparatuss);
+PyTuple_SetItem(args, 11, pyTupleCollectedSampleCounts);
+PyTuple_SetItem(args, 12, pyTupleSampleCounts);
+PyTuple_SetItem(args, 13, pyTupleMeasuringResultCounts);
+PyTuple_SetItem(args, 14, pyTupleDeliverReport_ARIDs);
+PyTuple_SetItem(args, 15, pyTupleDeliverReport_ARWIDs);
+PyTuple_SetItem(args, 16, pyTupleTestReport_ARIDs);
+PyTuple_SetItem(args, 17, pyTupleTestReport_ARWIDs);
+PyTuple_SetItem(args, 18, pyTupleSurveyors);
+PyTuple_SetItem(args, 19, pyTupleTestInstitutes);
+PyTuple_SetItem(args, 20, pyTupleResultReport_ARIDs);
+PyTuple_SetItem(args, 21, pyTupleResultReport_ARWIDs);
+PyTuple_SetItem(args, 22, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddB7_VolSvyPtObservationObjectToNetDB(const int nSId, const vector<_B7_VOLSVYPTOBSERVATIONOBJECT>& vec_B7_VolSvyPtObservationObject)
+{
+if(vec_B7_VolSvyPtObservationObject.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_B7_VolSvyPtObservationObject.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_B7_VolSvyPtObservationObject);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(7);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleVolcanicSvyPtIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCraterIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleLavaIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleVolcanicConeIDs = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_B7_VolSvyPtObservationObject));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_B7_VolSvyPtObservationObject[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleVolcanicSvyPtIDs, idx, StringToPy(WstringToString(vec_B7_VolSvyPtObservationObject[idx]._baseinfo._VolcanicSvyPtID)));
+PyTuple_SetItem(pyTupleCraterIDs, idx, StringToPy(WstringToString(vec_B7_VolSvyPtObservationObject[idx]._baseinfo._CraterID)));
+PyTuple_SetItem(pyTupleLavaIDs, idx, StringToPy(WstringToString(vec_B7_VolSvyPtObservationObject[idx]._baseinfo._LavaID)));
+PyTuple_SetItem(pyTupleVolcanicConeIDs, idx, StringToPy(WstringToString(vec_B7_VolSvyPtObservationObject[idx]._baseinfo._VolcanicConeID)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTupleIDs);
+PyTuple_SetItem(args, 3, pyTupleVolcanicSvyPtIDs);
+PyTuple_SetItem(args, 4, pyTupleCraterIDs);
+PyTuple_SetItem(args, 5, pyTupleLavaIDs);
+PyTuple_SetItem(args, 6, pyTupleVolcanicConeIDs);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddCraterToNetDB(const int nSId, const vector<_CRATER>& vec_Crater)
+{
+if(vec_Crater.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_Crater.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_Crater);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(33);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleConeNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleConeTypes = PyTuple_New(nRecordNum);
+PyObject* pyTupleConeMorphologys = PyTuple_New(nRecordNum);
+PyObject* pyTupleConeHeights = PyTuple_New(nRecordNum);
+PyObject* pyTupleCraterDepths = PyTuple_New(nRecordNum);
+PyObject* pyTupleInsideSlopeAngles = PyTuple_New(nRecordNum);
+PyObject* pyTupleOutsideSlopeAngles = PyTuple_New(nRecordNum);
+PyObject* pyTupleBottomDiameters = PyTuple_New(nRecordNum);
+PyObject* pyTupleCraterWallsDiameters = PyTuple_New(nRecordNum);
+PyObject* pyTupleCraterDiameters = PyTuple_New(nRecordNum);
+PyObject* pyTupleOverfallDirections = PyTuple_New(nRecordNum);
+PyObject* pyTupleDepositTypes = PyTuple_New(nRecordNum);
+PyObject* pyTupleDepositThicknesss = PyTuple_New(nRecordNum);
+PyObject* pyTupleDepositGranularitys = PyTuple_New(nRecordNum);
+PyObject* pyTupleLavaDribletSizes = PyTuple_New(nRecordNum);
+PyObject* pyTupleConeStructureProfile_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleConeStructureProfile_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleRockInclusionTypes = PyTuple_New(nRecordNum);
+PyObject* pyTupleRockInclusionNums = PyTuple_New(nRecordNum);
+PyObject* pyTupleRockInclusionGranularitys = PyTuple_New(nRecordNum);
+PyObject* pyTupleRockInclusionShapes = PyTuple_New(nRecordNum);
+PyObject* pyTupleRockInclusionOutputStates = PyTuple_New(nRecordNum);
+PyObject* pyTupleSketch_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSketch_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhotoDesc_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhotographers = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_Crater));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_Crater[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_Crater[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_Crater[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_Crater[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleConeNames, idx, StringToPy(WstringToString(vec_Crater[idx]._baseinfo._ConeName)));
+PyTuple_SetItem(pyTupleConeTypes, idx, Py_BuildValue("i", vec_Crater[idx]._ConeType));
+PyTuple_SetItem(pyTupleConeMorphologys, idx, StringToPy(WstringToString(vec_Crater[idx]._baseinfo._ConeMorphology)));
+PyTuple_SetItem(pyTupleConeHeights, idx, PyFloat_FromDouble(vec_Crater[idx]._ConeHeight));
+PyTuple_SetItem(pyTupleCraterDepths, idx, PyFloat_FromDouble(vec_Crater[idx]._CraterDepth));
+PyTuple_SetItem(pyTupleInsideSlopeAngles, idx, PyFloat_FromDouble(vec_Crater[idx]._InsideSlopeAngle));
+PyTuple_SetItem(pyTupleOutsideSlopeAngles, idx, PyFloat_FromDouble(vec_Crater[idx]._OutsideSlopeAngle));
+PyTuple_SetItem(pyTupleBottomDiameters, idx, PyFloat_FromDouble(vec_Crater[idx]._BottomDiameter));
+PyTuple_SetItem(pyTupleCraterWallsDiameters, idx, PyFloat_FromDouble(vec_Crater[idx]._CraterWallsDiameter));
+PyTuple_SetItem(pyTupleCraterDiameters, idx, PyFloat_FromDouble(vec_Crater[idx]._CraterDiameter));
+PyTuple_SetItem(pyTupleOverfallDirections, idx, Py_BuildValue("i", vec_Crater[idx]._OverfallDirection));
+PyTuple_SetItem(pyTupleDepositTypes, idx, StringToPy(WstringToString(vec_Crater[idx]._baseinfo._DepositType)));
+PyTuple_SetItem(pyTupleDepositThicknesss, idx, PyFloat_FromDouble(vec_Crater[idx]._DepositThickness));
+PyTuple_SetItem(pyTupleDepositGranularitys, idx, StringToPy(WstringToString(vec_Crater[idx]._baseinfo._DepositGranularity)));
+PyTuple_SetItem(pyTupleLavaDribletSizes, idx, PyFloat_FromDouble(vec_Crater[idx]._LavaDribletSize));
+PyTuple_SetItem(pyTupleConeStructureProfile_AIIDs, idx, StringToPy(WstringToString(vec_Crater[idx]._baseinfo._ConeStructureProfile_AIID)));
+PyTuple_SetItem(pyTupleConeStructureProfile_ARWIDs, idx, StringToPy(WstringToString(vec_Crater[idx]._baseinfo._ConeStructureProfile_ARWID)));
+PyTuple_SetItem(pyTupleRockInclusionTypes, idx, StringToPy(WstringToString(vec_Crater[idx]._baseinfo._RockInclusionType)));
+PyTuple_SetItem(pyTupleRockInclusionNums, idx, Py_BuildValue("i", vec_Crater[idx]._RockInclusionNum));
+PyTuple_SetItem(pyTupleRockInclusionGranularitys, idx, StringToPy(WstringToString(vec_Crater[idx]._baseinfo._RockInclusionGranularity)));
+PyTuple_SetItem(pyTupleRockInclusionShapes, idx, StringToPy(WstringToString(vec_Crater[idx]._baseinfo._RockInclusionShape)));
+PyTuple_SetItem(pyTupleRockInclusionOutputStates, idx, StringToPy(WstringToString(vec_Crater[idx]._baseinfo._RockInclusionOutputState)));
+PyTuple_SetItem(pyTupleSketch_AIIDs, idx, StringToPy(WstringToString(vec_Crater[idx]._baseinfo._Sketch_AIID)));
+PyTuple_SetItem(pyTupleSketch_ARWIDs, idx, StringToPy(WstringToString(vec_Crater[idx]._baseinfo._Sketch_ARWID)));
+PyTuple_SetItem(pyTuplePhoto_AIIDs, idx, StringToPy(WstringToString(vec_Crater[idx]._baseinfo._Photo_AIID)));
+PyTuple_SetItem(pyTuplePhoto_ARWIDs, idx, StringToPy(WstringToString(vec_Crater[idx]._baseinfo._Photo_ARWID)));
+PyTuple_SetItem(pyTuplePhotoDesc_ARWIDs, idx, StringToPy(WstringToString(vec_Crater[idx]._baseinfo._PhotoDesc_ARWID)));
+PyTuple_SetItem(pyTuplePhotographers, idx, StringToPy(WstringToString(vec_Crater[idx]._baseinfo._Photographer)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_Crater[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleConeNames);
+PyTuple_SetItem(args, 5, pyTupleConeTypes);
+PyTuple_SetItem(args, 6, pyTupleConeMorphologys);
+PyTuple_SetItem(args, 7, pyTupleConeHeights);
+PyTuple_SetItem(args, 8, pyTupleCraterDepths);
+PyTuple_SetItem(args, 9, pyTupleInsideSlopeAngles);
+PyTuple_SetItem(args, 10, pyTupleOutsideSlopeAngles);
+PyTuple_SetItem(args, 11, pyTupleBottomDiameters);
+PyTuple_SetItem(args, 12, pyTupleCraterWallsDiameters);
+PyTuple_SetItem(args, 13, pyTupleCraterDiameters);
+PyTuple_SetItem(args, 14, pyTupleOverfallDirections);
+PyTuple_SetItem(args, 15, pyTupleDepositTypes);
+PyTuple_SetItem(args, 16, pyTupleDepositThicknesss);
+PyTuple_SetItem(args, 17, pyTupleDepositGranularitys);
+PyTuple_SetItem(args, 18, pyTupleLavaDribletSizes);
+PyTuple_SetItem(args, 19, pyTupleConeStructureProfile_AIIDs);
+PyTuple_SetItem(args, 20, pyTupleConeStructureProfile_ARWIDs);
+PyTuple_SetItem(args, 21, pyTupleRockInclusionTypes);
+PyTuple_SetItem(args, 22, pyTupleRockInclusionNums);
+PyTuple_SetItem(args, 23, pyTupleRockInclusionGranularitys);
+PyTuple_SetItem(args, 24, pyTupleRockInclusionShapes);
+PyTuple_SetItem(args, 25, pyTupleRockInclusionOutputStates);
+PyTuple_SetItem(args, 26, pyTupleSketch_AIIDs);
+PyTuple_SetItem(args, 27, pyTupleSketch_ARWIDs);
+PyTuple_SetItem(args, 28, pyTuplePhoto_AIIDs);
+PyTuple_SetItem(args, 29, pyTuplePhoto_ARWIDs);
+PyTuple_SetItem(args, 30, pyTuplePhotoDesc_ARWIDs);
+PyTuple_SetItem(args, 31, pyTuplePhotographers);
+PyTuple_SetItem(args, 32, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddLavaToNetDB(const int nSId, const vector<_LAVA>& vec_Lava)
+{
+if(vec_Lava.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_Lava.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_Lava);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(22);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolygons = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleTypes = PyTuple_New(nRecordNum);
+PyObject* pyTupleScopes = PyTuple_New(nRecordNum);
+PyObject* pyTupleSurfaceMorphologys = PyTuple_New(nRecordNum);
+PyObject* pyTupleStructureZones = PyTuple_New(nRecordNum);
+PyObject* pyTupleUnits = PyTuple_New(nRecordNum);
+PyObject* pyTupleAges = PyTuple_New(nRecordNum);
+PyObject* pyTupleDescriptions = PyTuple_New(nRecordNum);
+PyObject* pyTupleRockTypes = PyTuple_New(nRecordNum);
+PyObject* pyTupleRockNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleRockDescriptions = PyTuple_New(nRecordNum);
+PyObject* pyTupleSketch_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSketch_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhotoDesc_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhotographers = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_Lava));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_Lava[idx]._baseinfo._polygon.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_Lava[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_Lava[idx]._baseinfo._polygon[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_Lava[idx]._baseinfo._polygon[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_Lava[idx]._baseinfo._polygon[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_Lava[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleNames, idx, StringToPy(WstringToString(vec_Lava[idx]._baseinfo._Name)));
+PyTuple_SetItem(pyTupleTypes, idx, StringToPy(WstringToString(vec_Lava[idx]._baseinfo._Type)));
+PyTuple_SetItem(pyTupleScopes, idx, StringToPy(WstringToString(vec_Lava[idx]._baseinfo._Scope)));
+PyTuple_SetItem(pyTupleSurfaceMorphologys, idx, StringToPy(WstringToString(vec_Lava[idx]._baseinfo._SurfaceMorphology)));
+PyTuple_SetItem(pyTupleStructureZones, idx, StringToPy(WstringToString(vec_Lava[idx]._baseinfo._StructureZone)));
+PyTuple_SetItem(pyTupleUnits, idx, StringToPy(WstringToString(vec_Lava[idx]._baseinfo._Unit)));
+PyTuple_SetItem(pyTupleAges, idx, Py_BuildValue("i", vec_Lava[idx]._Age));
+PyTuple_SetItem(pyTupleDescriptions, idx, StringToPy(WstringToString(vec_Lava[idx]._baseinfo._Description)));
+PyTuple_SetItem(pyTupleRockTypes, idx, Py_BuildValue("i", vec_Lava[idx]._RockType));
+PyTuple_SetItem(pyTupleRockNames, idx, StringToPy(WstringToString(vec_Lava[idx]._baseinfo._RockName)));
+PyTuple_SetItem(pyTupleRockDescriptions, idx, StringToPy(WstringToString(vec_Lava[idx]._baseinfo._RockDescription)));
+PyTuple_SetItem(pyTupleSketch_AIIDs, idx, StringToPy(WstringToString(vec_Lava[idx]._baseinfo._Sketch_AIID)));
+PyTuple_SetItem(pyTupleSketch_ARWIDs, idx, StringToPy(WstringToString(vec_Lava[idx]._baseinfo._Sketch_ARWID)));
+PyTuple_SetItem(pyTuplePhoto_AIIDs, idx, StringToPy(WstringToString(vec_Lava[idx]._baseinfo._Photo_AIID)));
+PyTuple_SetItem(pyTuplePhoto_ARWIDs, idx, StringToPy(WstringToString(vec_Lava[idx]._baseinfo._Photo_ARWID)));
+PyTuple_SetItem(pyTuplePhotoDesc_ARWIDs, idx, StringToPy(WstringToString(vec_Lava[idx]._baseinfo._PhotoDesc_ARWID)));
+PyTuple_SetItem(pyTuplePhotographers, idx, StringToPy(WstringToString(vec_Lava[idx]._baseinfo._Photographer)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_Lava[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolygons);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleNames);
+PyTuple_SetItem(args, 5, pyTupleTypes);
+PyTuple_SetItem(args, 6, pyTupleScopes);
+PyTuple_SetItem(args, 7, pyTupleSurfaceMorphologys);
+PyTuple_SetItem(args, 8, pyTupleStructureZones);
+PyTuple_SetItem(args, 9, pyTupleUnits);
+PyTuple_SetItem(args, 10, pyTupleAges);
+PyTuple_SetItem(args, 11, pyTupleDescriptions);
+PyTuple_SetItem(args, 12, pyTupleRockTypes);
+PyTuple_SetItem(args, 13, pyTupleRockNames);
+PyTuple_SetItem(args, 14, pyTupleRockDescriptions);
+PyTuple_SetItem(args, 15, pyTupleSketch_AIIDs);
+PyTuple_SetItem(args, 16, pyTupleSketch_ARWIDs);
+PyTuple_SetItem(args, 17, pyTuplePhoto_AIIDs);
+PyTuple_SetItem(args, 18, pyTuplePhoto_ARWIDs);
+PyTuple_SetItem(args, 19, pyTuplePhotoDesc_ARWIDs);
+PyTuple_SetItem(args, 20, pyTuplePhotographers);
+PyTuple_SetItem(args, 21, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddVolcanicConeToNetDB(const int nSId, const vector<_VOLCANICCONE>& vec_VolcanicCone)
+{
+if(vec_VolcanicCone.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_VolcanicCone.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_VolcanicCone);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(33);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolygons = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleConeNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleConeTypes = PyTuple_New(nRecordNum);
+PyObject* pyTupleConeMorphologys = PyTuple_New(nRecordNum);
+PyObject* pyTupleConeHeights = PyTuple_New(nRecordNum);
+PyObject* pyTupleCraterDepths = PyTuple_New(nRecordNum);
+PyObject* pyTupleInsideSlopeAngles = PyTuple_New(nRecordNum);
+PyObject* pyTupleOutsideSlopeAngles = PyTuple_New(nRecordNum);
+PyObject* pyTupleBottomDiameters = PyTuple_New(nRecordNum);
+PyObject* pyTupleCraterWallsDiameters = PyTuple_New(nRecordNum);
+PyObject* pyTupleCraterDiameters = PyTuple_New(nRecordNum);
+PyObject* pyTupleOverfallDirections = PyTuple_New(nRecordNum);
+PyObject* pyTupleDepositTypes = PyTuple_New(nRecordNum);
+PyObject* pyTupleDepositThicknesss = PyTuple_New(nRecordNum);
+PyObject* pyTupleDepositGranularitys = PyTuple_New(nRecordNum);
+PyObject* pyTupleLavaDribletSizes = PyTuple_New(nRecordNum);
+PyObject* pyTupleConeStructureProfile_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleConeStructureProfile_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleRockInclusionTypes = PyTuple_New(nRecordNum);
+PyObject* pyTupleRockInclusionNums = PyTuple_New(nRecordNum);
+PyObject* pyTupleRockInclusionGranularitys = PyTuple_New(nRecordNum);
+PyObject* pyTupleRockInclusionShapes = PyTuple_New(nRecordNum);
+PyObject* pyTupleRockInclusionOutputStates = PyTuple_New(nRecordNum);
+PyObject* pyTupleSketch_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSketch_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhotoDesc_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhotographers = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_VolcanicCone));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_VolcanicCone[idx]._baseinfo._polygon.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_VolcanicCone[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolygon = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_VolcanicCone[idx]._baseinfo._polygon[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_VolcanicCone[idx]._baseinfo._polygon[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolygon, nPolylineEleCount, PyFloat_FromDouble(vec_VolcanicCone[idx]._baseinfo._polygon[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolygons, idx, pyTuplePolygon);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_VolcanicCone[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleConeNames, idx, StringToPy(WstringToString(vec_VolcanicCone[idx]._baseinfo._ConeName)));
+PyTuple_SetItem(pyTupleConeTypes, idx, Py_BuildValue("i", vec_VolcanicCone[idx]._ConeType));
+PyTuple_SetItem(pyTupleConeMorphologys, idx, StringToPy(WstringToString(vec_VolcanicCone[idx]._baseinfo._ConeMorphology)));
+PyTuple_SetItem(pyTupleConeHeights, idx, PyFloat_FromDouble(vec_VolcanicCone[idx]._ConeHeight));
+PyTuple_SetItem(pyTupleCraterDepths, idx, PyFloat_FromDouble(vec_VolcanicCone[idx]._CraterDepth));
+PyTuple_SetItem(pyTupleInsideSlopeAngles, idx, PyFloat_FromDouble(vec_VolcanicCone[idx]._InsideSlopeAngle));
+PyTuple_SetItem(pyTupleOutsideSlopeAngles, idx, PyFloat_FromDouble(vec_VolcanicCone[idx]._OutsideSlopeAngle));
+PyTuple_SetItem(pyTupleBottomDiameters, idx, PyFloat_FromDouble(vec_VolcanicCone[idx]._BottomDiameter));
+PyTuple_SetItem(pyTupleCraterWallsDiameters, idx, PyFloat_FromDouble(vec_VolcanicCone[idx]._CraterWallsDiameter));
+PyTuple_SetItem(pyTupleCraterDiameters, idx, PyFloat_FromDouble(vec_VolcanicCone[idx]._CraterDiameter));
+PyTuple_SetItem(pyTupleOverfallDirections, idx, Py_BuildValue("i", vec_VolcanicCone[idx]._OverfallDirection));
+PyTuple_SetItem(pyTupleDepositTypes, idx, StringToPy(WstringToString(vec_VolcanicCone[idx]._baseinfo._DepositType)));
+PyTuple_SetItem(pyTupleDepositThicknesss, idx, PyFloat_FromDouble(vec_VolcanicCone[idx]._DepositThickness));
+PyTuple_SetItem(pyTupleDepositGranularitys, idx, StringToPy(WstringToString(vec_VolcanicCone[idx]._baseinfo._DepositGranularity)));
+PyTuple_SetItem(pyTupleLavaDribletSizes, idx, PyFloat_FromDouble(vec_VolcanicCone[idx]._LavaDribletSize));
+PyTuple_SetItem(pyTupleConeStructureProfile_AIIDs, idx, StringToPy(WstringToString(vec_VolcanicCone[idx]._baseinfo._ConeStructureProfile_AIID)));
+PyTuple_SetItem(pyTupleConeStructureProfile_ARWIDs, idx, StringToPy(WstringToString(vec_VolcanicCone[idx]._baseinfo._ConeStructureProfile_ARWID)));
+PyTuple_SetItem(pyTupleRockInclusionTypes, idx, StringToPy(WstringToString(vec_VolcanicCone[idx]._baseinfo._RockInclusionType)));
+PyTuple_SetItem(pyTupleRockInclusionNums, idx, Py_BuildValue("i", vec_VolcanicCone[idx]._RockInclusionNum));
+PyTuple_SetItem(pyTupleRockInclusionGranularitys, idx, StringToPy(WstringToString(vec_VolcanicCone[idx]._baseinfo._RockInclusionGranularity)));
+PyTuple_SetItem(pyTupleRockInclusionShapes, idx, StringToPy(WstringToString(vec_VolcanicCone[idx]._baseinfo._RockInclusionShape)));
+PyTuple_SetItem(pyTupleRockInclusionOutputStates, idx, StringToPy(WstringToString(vec_VolcanicCone[idx]._baseinfo._RockInclusionOutputState)));
+PyTuple_SetItem(pyTupleSketch_AIIDs, idx, StringToPy(WstringToString(vec_VolcanicCone[idx]._baseinfo._Sketch_AIID)));
+PyTuple_SetItem(pyTupleSketch_ARWIDs, idx, StringToPy(WstringToString(vec_VolcanicCone[idx]._baseinfo._Sketch_ARWID)));
+PyTuple_SetItem(pyTuplePhoto_AIIDs, idx, StringToPy(WstringToString(vec_VolcanicCone[idx]._baseinfo._Photo_AIID)));
+PyTuple_SetItem(pyTuplePhoto_ARWIDs, idx, StringToPy(WstringToString(vec_VolcanicCone[idx]._baseinfo._Photo_ARWID)));
+PyTuple_SetItem(pyTuplePhotoDesc_ARWIDs, idx, StringToPy(WstringToString(vec_VolcanicCone[idx]._baseinfo._PhotoDesc_ARWID)));
+PyTuple_SetItem(pyTuplePhotographers, idx, StringToPy(WstringToString(vec_VolcanicCone[idx]._baseinfo._Photographer)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_VolcanicCone[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolygons);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleConeNames);
+PyTuple_SetItem(args, 5, pyTupleConeTypes);
+PyTuple_SetItem(args, 6, pyTupleConeMorphologys);
+PyTuple_SetItem(args, 7, pyTupleConeHeights);
+PyTuple_SetItem(args, 8, pyTupleCraterDepths);
+PyTuple_SetItem(args, 9, pyTupleInsideSlopeAngles);
+PyTuple_SetItem(args, 10, pyTupleOutsideSlopeAngles);
+PyTuple_SetItem(args, 11, pyTupleBottomDiameters);
+PyTuple_SetItem(args, 12, pyTupleCraterWallsDiameters);
+PyTuple_SetItem(args, 13, pyTupleCraterDiameters);
+PyTuple_SetItem(args, 14, pyTupleOverfallDirections);
+PyTuple_SetItem(args, 15, pyTupleDepositTypes);
+PyTuple_SetItem(args, 16, pyTupleDepositThicknesss);
+PyTuple_SetItem(args, 17, pyTupleDepositGranularitys);
+PyTuple_SetItem(args, 18, pyTupleLavaDribletSizes);
+PyTuple_SetItem(args, 19, pyTupleConeStructureProfile_AIIDs);
+PyTuple_SetItem(args, 20, pyTupleConeStructureProfile_ARWIDs);
+PyTuple_SetItem(args, 21, pyTupleRockInclusionTypes);
+PyTuple_SetItem(args, 22, pyTupleRockInclusionNums);
+PyTuple_SetItem(args, 23, pyTupleRockInclusionGranularitys);
+PyTuple_SetItem(args, 24, pyTupleRockInclusionShapes);
+PyTuple_SetItem(args, 25, pyTupleRockInclusionOutputStates);
+PyTuple_SetItem(args, 26, pyTupleSketch_AIIDs);
+PyTuple_SetItem(args, 27, pyTupleSketch_ARWIDs);
+PyTuple_SetItem(args, 28, pyTuplePhoto_AIIDs);
+PyTuple_SetItem(args, 29, pyTuplePhoto_ARWIDs);
+PyTuple_SetItem(args, 30, pyTuplePhotoDesc_ARWIDs);
+PyTuple_SetItem(args, 31, pyTuplePhotographers);
+PyTuple_SetItem(args, 32, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddVolcanicSvyPointToNetDB(const int nSId, const vector<_VOLCANICSVYPOINT>& vec_VolcanicSvyPoint)
+{
+if(vec_VolcanicSvyPoint.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_VolcanicSvyPoint.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_VolcanicSvyPoint);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(28);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleFieldIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleLocationNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyDates = PyTuple_New(nRecordNum);
+PyObject* pyTuplePurposes = PyTuple_New(nRecordNum);
+PyObject* pyTupleSPCommentInfos = PyTuple_New(nRecordNum);
+PyObject* pyTupleLons = PyTuple_New(nRecordNum);
+PyObject* pyTupleLats = PyTuple_New(nRecordNum);
+PyObject* pyTupleElevations = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyMethodss = PyTuple_New(nRecordNum);
+PyObject* pyTupleCollectedSampleCounts = PyTuple_New(nRecordNum);
+PyObject* pyTupleSampleCounts = PyTuple_New(nRecordNum);
+PyObject* pyTupleDatingSampleCounts = PyTuple_New(nRecordNum);
+PyObject* pyTupleIsVocanicCones = PyTuple_New(nRecordNum);
+PyObject* pyTupleIsLavas = PyTuple_New(nRecordNum);
+PyObject* pyTupleIsCraters = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhoto_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhotoDesc_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTuplePhotographers = PyTuple_New(nRecordNum);
+PyObject* pyTupleTypicalProfile_ACIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleTypicalProfile_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleIsInMaps = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_VolcanicSvyPoint));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_VolcanicSvyPoint[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_VolcanicSvyPoint[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_VolcanicSvyPoint[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_VolcanicSvyPoint[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectIDs, idx, StringToPy(WstringToString(vec_VolcanicSvyPoint[idx]._baseinfo._ProjectID)));
+PyTuple_SetItem(pyTupleFieldIDs, idx, StringToPy(WstringToString(vec_VolcanicSvyPoint[idx]._baseinfo._FieldID)));
+PyTuple_SetItem(pyTupleLocationNames, idx, StringToPy(WstringToString(vec_VolcanicSvyPoint[idx]._baseinfo._LocationName)));
+PyTuple_SetItem(pyTupleSvyDates, idx, StringToPy(WstringToString(vec_VolcanicSvyPoint[idx]._baseinfo._SvyDate)));
+PyTuple_SetItem(pyTuplePurposes, idx, StringToPy(WstringToString(vec_VolcanicSvyPoint[idx]._baseinfo._Purpose)));
+PyTuple_SetItem(pyTupleSPCommentInfos, idx, StringToPy(WstringToString(vec_VolcanicSvyPoint[idx]._baseinfo._SPCommentInfo)));
+PyTuple_SetItem(pyTupleLons, idx, PyFloat_FromDouble(vec_VolcanicSvyPoint[idx]._Lon));
+PyTuple_SetItem(pyTupleLats, idx, PyFloat_FromDouble(vec_VolcanicSvyPoint[idx]._Lat));
+PyTuple_SetItem(pyTupleElevations, idx, Py_BuildValue("i", vec_VolcanicSvyPoint[idx]._Elevation));
+PyTuple_SetItem(pyTupleSvyMethodss, idx, StringToPy(WstringToString(vec_VolcanicSvyPoint[idx]._baseinfo._SvyMethods)));
+PyTuple_SetItem(pyTupleCollectedSampleCounts, idx, Py_BuildValue("i", vec_VolcanicSvyPoint[idx]._CollectedSampleCount));
+PyTuple_SetItem(pyTupleSampleCounts, idx, Py_BuildValue("i", vec_VolcanicSvyPoint[idx]._SampleCount));
+PyTuple_SetItem(pyTupleDatingSampleCounts, idx, Py_BuildValue("i", vec_VolcanicSvyPoint[idx]._DatingSampleCount));
+PyTuple_SetItem(pyTupleIsVocanicCones, idx, Py_BuildValue("i", vec_VolcanicSvyPoint[idx]._IsVocanicCone));
+PyTuple_SetItem(pyTupleIsLavas, idx, Py_BuildValue("i", vec_VolcanicSvyPoint[idx]._IsLava));
+PyTuple_SetItem(pyTupleIsCraters, idx, Py_BuildValue("i", vec_VolcanicSvyPoint[idx]._IsCrater));
+PyTuple_SetItem(pyTuplePhoto_AIIDs, idx, StringToPy(WstringToString(vec_VolcanicSvyPoint[idx]._baseinfo._Photo_AIID)));
+PyTuple_SetItem(pyTuplePhoto_ARWIDs, idx, StringToPy(WstringToString(vec_VolcanicSvyPoint[idx]._baseinfo._Photo_ARWID)));
+PyTuple_SetItem(pyTuplePhotoDesc_ARWIDs, idx, StringToPy(WstringToString(vec_VolcanicSvyPoint[idx]._baseinfo._PhotoDesc_ARWID)));
+PyTuple_SetItem(pyTuplePhotographers, idx, StringToPy(WstringToString(vec_VolcanicSvyPoint[idx]._baseinfo._Photographer)));
+PyTuple_SetItem(pyTupleTypicalProfile_ACIDs, idx, StringToPy(WstringToString(vec_VolcanicSvyPoint[idx]._baseinfo._TypicalProfile_ACID)));
+PyTuple_SetItem(pyTupleTypicalProfile_ARWIDs, idx, StringToPy(WstringToString(vec_VolcanicSvyPoint[idx]._baseinfo._TypicalProfile_ARWID)));
+PyTuple_SetItem(pyTupleIsInMaps, idx, Py_BuildValue("i", vec_VolcanicSvyPoint[idx]._IsInMap));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_VolcanicSvyPoint[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectIDs);
+PyTuple_SetItem(args, 5, pyTupleFieldIDs);
+PyTuple_SetItem(args, 6, pyTupleLocationNames);
+PyTuple_SetItem(args, 7, pyTupleSvyDates);
+PyTuple_SetItem(args, 8, pyTuplePurposes);
+PyTuple_SetItem(args, 9, pyTupleSPCommentInfos);
+PyTuple_SetItem(args, 10, pyTupleLons);
+PyTuple_SetItem(args, 11, pyTupleLats);
+PyTuple_SetItem(args, 12, pyTupleElevations);
+PyTuple_SetItem(args, 13, pyTupleSvyMethodss);
+PyTuple_SetItem(args, 14, pyTupleCollectedSampleCounts);
+PyTuple_SetItem(args, 15, pyTupleSampleCounts);
+PyTuple_SetItem(args, 16, pyTupleDatingSampleCounts);
+PyTuple_SetItem(args, 17, pyTupleIsVocanicCones);
+PyTuple_SetItem(args, 18, pyTupleIsLavas);
+PyTuple_SetItem(args, 19, pyTupleIsCraters);
+PyTuple_SetItem(args, 20, pyTuplePhoto_AIIDs);
+PyTuple_SetItem(args, 21, pyTuplePhoto_ARWIDs);
+PyTuple_SetItem(args, 22, pyTuplePhotoDesc_ARWIDs);
+PyTuple_SetItem(args, 23, pyTuplePhotographers);
+PyTuple_SetItem(args, 24, pyTupleTypicalProfile_ACIDs);
+PyTuple_SetItem(args, 25, pyTupleTypicalProfile_ARWIDs);
+PyTuple_SetItem(args, 26, pyTupleIsInMaps);
+PyTuple_SetItem(args, 27, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+

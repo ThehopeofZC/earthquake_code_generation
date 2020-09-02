@@ -1,0 +1,24 @@
+def api_add_B6_GeochemicalProjectTable(url, sid, IDs, MainAFMRegionIDs, TargetRegionIDs, WorkRegionIDs, Names, SvyMethods, SvyLineCounts, SvyLineLengths, SvyPointCounts, SvyInstitutes, Data_ARWIDs, DB_ARIDs, DB_ARWIDs, CS_ARIDs, CS_ARWIDs, Report_ARIDs, Report_ARWIDs, CommentInfos):
+	data = {'sid':sid, 'IDs':IDs, 'MainAFMRegionIDs':MainAFMRegionIDs, 'TargetRegionIDs':TargetRegionIDs, 'WorkRegionIDs':WorkRegionIDs, 'Names':Names, 'SvyMethods':SvyMethods, 'SvyLineCounts':SvyLineCounts, 'SvyLineLengths':SvyLineLengths, 'SvyPointCounts':SvyPointCounts, 'SvyInstitutes':SvyInstitutes, 'Data_ARWIDs':Data_ARWIDs, 'DB_ARIDs':DB_ARIDs, 'DB_ARWIDs':DB_ARWIDs, 'CS_ARIDs':CS_ARIDs, 'CS_ARWIDs':CS_ARWIDs, 'Report_ARIDs':Report_ARIDs, 'Report_ARWIDs':Report_ARWIDs, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_B6_GeocheSvyDataTable(url, sid, IDs, ProjectIDs, SvyLineIDs, SvyPointIDs, SvyMethods, Survey_ARWIDs, ResultTypes, ResultNames, Result_AIIDs, Result_ARWIDs, CommentInfos):
+	data = {'sid':sid, 'IDs':IDs, 'ProjectIDs':ProjectIDs, 'SvyLineIDs':SvyLineIDs, 'SvyPointIDs':SvyPointIDs, 'SvyMethods':SvyMethods, 'Survey_ARWIDs':Survey_ARWIDs, 'ResultTypes':ResultTypes, 'ResultNames':ResultNames, 'Result_AIIDs':Result_AIIDs, 'Result_ARWIDs':Result_ARWIDs, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_GeochemicalAbnPoint(url, sid, points, IDs, SvyLineIDs, TargetFaultIDs, TargetFaultSources, TargetFaultNames, Distances, AbnormalTypes, ShowCodes, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'SvyLineIDs':SvyLineIDs, 'TargetFaultIDs':TargetFaultIDs, 'TargetFaultSources':TargetFaultSources, 'TargetFaultNames':TargetFaultNames, 'Distances':Distances, 'AbnormalTypes':AbnormalTypes, 'ShowCodes':ShowCodes, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_GeochemicalAbnSegment(url, sid, lines, IDs, SvyLineIDs, TargetFaultIDs, TargetFaultSources, TargetFaultNames, Distance1s, Distance2s, AbnormalTypes, ShowCodes, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'SvyLineIDs':SvyLineIDs, 'TargetFaultIDs':TargetFaultIDs, 'TargetFaultSources':TargetFaultSources, 'TargetFaultNames':TargetFaultNames, 'Distance1s':Distance1s, 'Distance2s':Distance2s, 'AbnormalTypes':AbnormalTypes, 'ShowCodes':ShowCodes, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_GeochemicalSvyLine(url, sid, lines, IDs, ProjectIDs, Names, SvyMethods, Lengths, StartLongitudes, StartLatitudes, EndLongitutdes, EndLatitudes, SvyPointNums, InterpolateNums, AbnPointNums, MeanValues, SlippageValues, AbnormalBottomValues, RM_AIIDs, RM_ARWIDs, ShowCodes, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'ProjectIDs':ProjectIDs, 'Names':Names, 'SvyMethods':SvyMethods, 'Lengths':Lengths, 'StartLongitudes':StartLongitudes, 'StartLatitudes':StartLatitudes, 'EndLongitutdes':EndLongitutdes, 'EndLatitudes':EndLatitudes, 'SvyPointNums':SvyPointNums, 'InterpolateNums':InterpolateNums, 'AbnPointNums':AbnPointNums, 'MeanValues':MeanValues, 'SlippageValues':SlippageValues, 'AbnormalBottomValues':AbnormalBottomValues, 'RM_AIIDs':RM_AIIDs, 'RM_ARWIDs':RM_ARWIDs, 'ShowCodes':ShowCodes, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_GeochemicalSvyPoint(url, sid, points, IDs, FieldIDs, SvyLineIDs, SvyMethods, LabelInfos, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'FieldIDs':FieldIDs, 'SvyLineIDs':SvyLineIDs, 'SvyMethods':SvyMethods, 'LabelInfos':LabelInfos, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+

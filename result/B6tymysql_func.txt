@@ -1,0 +1,562 @@
+bool EsAddB6_GeochemicalProjectTableToNetDB(const int nSId, const vector<_B6_GEOCHEMICALPROJECTTABLE>& vec_B6_GeochemicalProjectTable)
+{
+if(vec_B6_GeochemicalProjectTable.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_B6_GeochemicalProjectTable.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_B6_GeochemicalProjectTable);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(20);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleMainAFMRegionIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleTargetRegionIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleWorkRegionIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyMethods = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyLineCounts = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyLineLengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyPointCounts = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyInstitutes = PyTuple_New(nRecordNum);
+PyObject* pyTupleData_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleDB_ARIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleDB_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCS_ARIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCS_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleReport_ARIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleReport_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_B6_GeochemicalProjectTable));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_B6_GeochemicalProjectTable[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleMainAFMRegionIDs, idx, StringToPy(WstringToString(vec_B6_GeochemicalProjectTable[idx]._baseinfo._MainAFMRegionID)));
+PyTuple_SetItem(pyTupleTargetRegionIDs, idx, StringToPy(WstringToString(vec_B6_GeochemicalProjectTable[idx]._baseinfo._TargetRegionID)));
+PyTuple_SetItem(pyTupleWorkRegionIDs, idx, StringToPy(WstringToString(vec_B6_GeochemicalProjectTable[idx]._baseinfo._WorkRegionID)));
+PyTuple_SetItem(pyTupleNames, idx, StringToPy(WstringToString(vec_B6_GeochemicalProjectTable[idx]._baseinfo._Name)));
+PyTuple_SetItem(pyTupleSvyMethods, idx, Py_BuildValue("i", vec_B6_GeochemicalProjectTable[idx]._SvyMethod));
+PyTuple_SetItem(pyTupleSvyLineCounts, idx, Py_BuildValue("i", vec_B6_GeochemicalProjectTable[idx]._SvyLineCount));
+PyTuple_SetItem(pyTupleSvyLineLengths, idx, PyFloat_FromDouble(vec_B6_GeochemicalProjectTable[idx]._SvyLineLength));
+PyTuple_SetItem(pyTupleSvyPointCounts, idx, Py_BuildValue("i", vec_B6_GeochemicalProjectTable[idx]._SvyPointCount));
+PyTuple_SetItem(pyTupleSvyInstitutes, idx, StringToPy(WstringToString(vec_B6_GeochemicalProjectTable[idx]._baseinfo._SvyInstitute)));
+PyTuple_SetItem(pyTupleData_ARWIDs, idx, StringToPy(WstringToString(vec_B6_GeochemicalProjectTable[idx]._baseinfo._Data_ARWID)));
+PyTuple_SetItem(pyTupleDB_ARIDs, idx, StringToPy(WstringToString(vec_B6_GeochemicalProjectTable[idx]._baseinfo._DB_ARID)));
+PyTuple_SetItem(pyTupleDB_ARWIDs, idx, StringToPy(WstringToString(vec_B6_GeochemicalProjectTable[idx]._baseinfo._DB_ARWID)));
+PyTuple_SetItem(pyTupleCS_ARIDs, idx, StringToPy(WstringToString(vec_B6_GeochemicalProjectTable[idx]._baseinfo._CS_ARID)));
+PyTuple_SetItem(pyTupleCS_ARWIDs, idx, StringToPy(WstringToString(vec_B6_GeochemicalProjectTable[idx]._baseinfo._CS_ARWID)));
+PyTuple_SetItem(pyTupleReport_ARIDs, idx, StringToPy(WstringToString(vec_B6_GeochemicalProjectTable[idx]._baseinfo._Report_ARID)));
+PyTuple_SetItem(pyTupleReport_ARWIDs, idx, StringToPy(WstringToString(vec_B6_GeochemicalProjectTable[idx]._baseinfo._Report_ARWID)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_B6_GeochemicalProjectTable[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTupleIDs);
+PyTuple_SetItem(args, 3, pyTupleMainAFMRegionIDs);
+PyTuple_SetItem(args, 4, pyTupleTargetRegionIDs);
+PyTuple_SetItem(args, 5, pyTupleWorkRegionIDs);
+PyTuple_SetItem(args, 6, pyTupleNames);
+PyTuple_SetItem(args, 7, pyTupleSvyMethods);
+PyTuple_SetItem(args, 8, pyTupleSvyLineCounts);
+PyTuple_SetItem(args, 9, pyTupleSvyLineLengths);
+PyTuple_SetItem(args, 10, pyTupleSvyPointCounts);
+PyTuple_SetItem(args, 11, pyTupleSvyInstitutes);
+PyTuple_SetItem(args, 12, pyTupleData_ARWIDs);
+PyTuple_SetItem(args, 13, pyTupleDB_ARIDs);
+PyTuple_SetItem(args, 14, pyTupleDB_ARWIDs);
+PyTuple_SetItem(args, 15, pyTupleCS_ARIDs);
+PyTuple_SetItem(args, 16, pyTupleCS_ARWIDs);
+PyTuple_SetItem(args, 17, pyTupleReport_ARIDs);
+PyTuple_SetItem(args, 18, pyTupleReport_ARWIDs);
+PyTuple_SetItem(args, 19, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddB6_GeocheSvyDataTableToNetDB(const int nSId, const vector<_B6_GEOCHESVYDATATABLE>& vec_B6_GeocheSvyDataTable)
+{
+if(vec_B6_GeocheSvyDataTable.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_B6_GeocheSvyDataTable.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_B6_GeocheSvyDataTable);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(13);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyLineIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyPointIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyMethods = PyTuple_New(nRecordNum);
+PyObject* pyTupleSurvey_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleResultTypes = PyTuple_New(nRecordNum);
+PyObject* pyTupleResultNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleResult_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleResult_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_B6_GeocheSvyDataTable));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_B6_GeocheSvyDataTable[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectIDs, idx, StringToPy(WstringToString(vec_B6_GeocheSvyDataTable[idx]._baseinfo._ProjectID)));
+PyTuple_SetItem(pyTupleSvyLineIDs, idx, StringToPy(WstringToString(vec_B6_GeocheSvyDataTable[idx]._baseinfo._SvyLineID)));
+PyTuple_SetItem(pyTupleSvyPointIDs, idx, StringToPy(WstringToString(vec_B6_GeocheSvyDataTable[idx]._baseinfo._SvyPointID)));
+PyTuple_SetItem(pyTupleSvyMethods, idx, Py_BuildValue("i", vec_B6_GeocheSvyDataTable[idx]._SvyMethod));
+PyTuple_SetItem(pyTupleSurvey_ARWIDs, idx, StringToPy(WstringToString(vec_B6_GeocheSvyDataTable[idx]._baseinfo._Survey_ARWID)));
+PyTuple_SetItem(pyTupleResultTypes, idx, Py_BuildValue("i", vec_B6_GeocheSvyDataTable[idx]._ResultType));
+PyTuple_SetItem(pyTupleResultNames, idx, StringToPy(WstringToString(vec_B6_GeocheSvyDataTable[idx]._baseinfo._ResultName)));
+PyTuple_SetItem(pyTupleResult_AIIDs, idx, StringToPy(WstringToString(vec_B6_GeocheSvyDataTable[idx]._baseinfo._Result_AIID)));
+PyTuple_SetItem(pyTupleResult_ARWIDs, idx, StringToPy(WstringToString(vec_B6_GeocheSvyDataTable[idx]._baseinfo._Result_ARWID)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_B6_GeocheSvyDataTable[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTupleIDs);
+PyTuple_SetItem(args, 3, pyTupleProjectIDs);
+PyTuple_SetItem(args, 4, pyTupleSvyLineIDs);
+PyTuple_SetItem(args, 5, pyTupleSvyPointIDs);
+PyTuple_SetItem(args, 6, pyTupleSvyMethods);
+PyTuple_SetItem(args, 7, pyTupleSurvey_ARWIDs);
+PyTuple_SetItem(args, 8, pyTupleResultTypes);
+PyTuple_SetItem(args, 9, pyTupleResultNames);
+PyTuple_SetItem(args, 10, pyTupleResult_AIIDs);
+PyTuple_SetItem(args, 11, pyTupleResult_ARWIDs);
+PyTuple_SetItem(args, 12, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddGeochemicalAbnPointToNetDB(const int nSId, const vector<_GEOCHEMICALABNPOINT>& vec_GeochemicalAbnPoint)
+{
+if(vec_GeochemicalAbnPoint.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_GeochemicalAbnPoint.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_GeochemicalAbnPoint);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(12);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyLineIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleTargetFaultIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleTargetFaultSources = PyTuple_New(nRecordNum);
+PyObject* pyTupleTargetFaultNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleDistances = PyTuple_New(nRecordNum);
+PyObject* pyTupleAbnormalTypes = PyTuple_New(nRecordNum);
+PyObject* pyTupleShowCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_GeochemicalAbnPoint));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_GeochemicalAbnPoint[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_GeochemicalAbnPoint[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_GeochemicalAbnPoint[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_GeochemicalAbnPoint[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleSvyLineIDs, idx, StringToPy(WstringToString(vec_GeochemicalAbnPoint[idx]._baseinfo._SvyLineID)));
+PyTuple_SetItem(pyTupleTargetFaultIDs, idx, StringToPy(WstringToString(vec_GeochemicalAbnPoint[idx]._baseinfo._TargetFaultID)));
+PyTuple_SetItem(pyTupleTargetFaultSources, idx, StringToPy(WstringToString(vec_GeochemicalAbnPoint[idx]._baseinfo._TargetFaultSource)));
+PyTuple_SetItem(pyTupleTargetFaultNames, idx, StringToPy(WstringToString(vec_GeochemicalAbnPoint[idx]._baseinfo._TargetFaultName)));
+PyTuple_SetItem(pyTupleDistances, idx, PyFloat_FromDouble(vec_GeochemicalAbnPoint[idx]._Distance));
+PyTuple_SetItem(pyTupleAbnormalTypes, idx, StringToPy(WstringToString(vec_GeochemicalAbnPoint[idx]._baseinfo._AbnormalType)));
+PyTuple_SetItem(pyTupleShowCodes, idx, Py_BuildValue("i", vec_GeochemicalAbnPoint[idx]._ShowCode));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_GeochemicalAbnPoint[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleSvyLineIDs);
+PyTuple_SetItem(args, 5, pyTupleTargetFaultIDs);
+PyTuple_SetItem(args, 6, pyTupleTargetFaultSources);
+PyTuple_SetItem(args, 7, pyTupleTargetFaultNames);
+PyTuple_SetItem(args, 8, pyTupleDistances);
+PyTuple_SetItem(args, 9, pyTupleAbnormalTypes);
+PyTuple_SetItem(args, 10, pyTupleShowCodes);
+PyTuple_SetItem(args, 11, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddGeochemicalAbnSegmentToNetDB(const int nSId, const vector<_GEOCHEMICALABNSEGMENT>& vec_GeochemicalAbnSegment)
+{
+if(vec_GeochemicalAbnSegment.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_GeochemicalAbnSegment.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_GeochemicalAbnSegment);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(13);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyLineIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleTargetFaultIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleTargetFaultSources = PyTuple_New(nRecordNum);
+PyObject* pyTupleTargetFaultNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleDistance1s = PyTuple_New(nRecordNum);
+PyObject* pyTupleDistance2s = PyTuple_New(nRecordNum);
+PyObject* pyTupleAbnormalTypes = PyTuple_New(nRecordNum);
+PyObject* pyTupleShowCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_GeochemicalAbnSegment));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_GeochemicalAbnSegment[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_GeochemicalAbnSegment[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_GeochemicalAbnSegment[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_GeochemicalAbnSegment[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_GeochemicalAbnSegment[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_GeochemicalAbnSegment[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleSvyLineIDs, idx, StringToPy(WstringToString(vec_GeochemicalAbnSegment[idx]._baseinfo._SvyLineID)));
+PyTuple_SetItem(pyTupleTargetFaultIDs, idx, StringToPy(WstringToString(vec_GeochemicalAbnSegment[idx]._baseinfo._TargetFaultID)));
+PyTuple_SetItem(pyTupleTargetFaultSources, idx, StringToPy(WstringToString(vec_GeochemicalAbnSegment[idx]._baseinfo._TargetFaultSource)));
+PyTuple_SetItem(pyTupleTargetFaultNames, idx, StringToPy(WstringToString(vec_GeochemicalAbnSegment[idx]._baseinfo._TargetFaultName)));
+PyTuple_SetItem(pyTupleDistance1s, idx, PyFloat_FromDouble(vec_GeochemicalAbnSegment[idx]._Distance1));
+PyTuple_SetItem(pyTupleDistance2s, idx, PyFloat_FromDouble(vec_GeochemicalAbnSegment[idx]._Distance2));
+PyTuple_SetItem(pyTupleAbnormalTypes, idx, StringToPy(WstringToString(vec_GeochemicalAbnSegment[idx]._baseinfo._AbnormalType)));
+PyTuple_SetItem(pyTupleShowCodes, idx, Py_BuildValue("i", vec_GeochemicalAbnSegment[idx]._ShowCode));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_GeochemicalAbnSegment[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleSvyLineIDs);
+PyTuple_SetItem(args, 5, pyTupleTargetFaultIDs);
+PyTuple_SetItem(args, 6, pyTupleTargetFaultSources);
+PyTuple_SetItem(args, 7, pyTupleTargetFaultNames);
+PyTuple_SetItem(args, 8, pyTupleDistance1s);
+PyTuple_SetItem(args, 9, pyTupleDistance2s);
+PyTuple_SetItem(args, 10, pyTupleAbnormalTypes);
+PyTuple_SetItem(args, 11, pyTupleShowCodes);
+PyTuple_SetItem(args, 12, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddGeochemicalSvyLineToNetDB(const int nSId, const vector<_GEOCHEMICALSVYLINE>& vec_GeochemicalSvyLine)
+{
+if(vec_GeochemicalSvyLine.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_GeochemicalSvyLine.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_GeochemicalSvyLine);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(22);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePolylines = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleProjectIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleNames = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyMethods = PyTuple_New(nRecordNum);
+PyObject* pyTupleLengths = PyTuple_New(nRecordNum);
+PyObject* pyTupleStartLongitudes = PyTuple_New(nRecordNum);
+PyObject* pyTupleStartLatitudes = PyTuple_New(nRecordNum);
+PyObject* pyTupleEndLongitutdes = PyTuple_New(nRecordNum);
+PyObject* pyTupleEndLatitudes = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyPointNums = PyTuple_New(nRecordNum);
+PyObject* pyTupleInterpolateNums = PyTuple_New(nRecordNum);
+PyObject* pyTupleAbnPointNums = PyTuple_New(nRecordNum);
+PyObject* pyTupleMeanValues = PyTuple_New(nRecordNum);
+PyObject* pyTupleSlippageValues = PyTuple_New(nRecordNum);
+PyObject* pyTupleAbnormalBottomValues = PyTuple_New(nRecordNum);
+PyObject* pyTupleRM_AIIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleRM_ARWIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleShowCodes = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_GeochemicalSvyLine));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+int nPolylineNum = int(vec_GeochemicalSvyLine[idx]._baseinfo._polyline.size());
+int nPolylinePtNumTotal = 0;
+int nPolylineEleCount = 0;
+vector<int> vecPolylinePtNum;
+vecPolylinePtNum.resize(nPolylineNum);
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+vecPolylinePtNum[idxLine] = int(vec_GeochemicalSvyLine[idx]._baseinfo._polyline[idxLine].size());
+nPolylinePtNumTotal += vecPolylinePtNum[idxLine];
+}
+PyObject* pyTuplePolyline = PyTuple_New(1+nPolylineNum+3*nPolylinePtNumTotal);
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", nPolylineNum));
+nPolylineEleCount++;
+for(int idxLine=0; idxLine<nPolylineNum; idxLine++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, Py_BuildValue("i", vecPolylinePtNum[idxLine]));
+nPolylineEleCount++;
+}
+for(int idxLine = 0; idxLine<nPolylineNum; idxLine++)
+{
+for(int idxPt = 0; idxPt<vecPolylinePtNum[idxLine]; idxPt++)
+{
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_GeochemicalSvyLine[idx]._baseinfo._polyline[idxLine][idxPt]._x));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_GeochemicalSvyLine[idx]._baseinfo._polyline[idxLine][idxPt]._y));
+nPolylineEleCount++;
+PyTuple_SetItem(pyTuplePolyline, nPolylineEleCount, PyFloat_FromDouble(vec_GeochemicalSvyLine[idx]._baseinfo._polyline[idxLine][idxPt]._z));
+nPolylineEleCount++;
+}
+}
+PyTuple_SetItem(pyTuplePolylines, idx, pyTuplePolyline);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_GeochemicalSvyLine[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleProjectIDs, idx, StringToPy(WstringToString(vec_GeochemicalSvyLine[idx]._baseinfo._ProjectID)));
+PyTuple_SetItem(pyTupleNames, idx, StringToPy(WstringToString(vec_GeochemicalSvyLine[idx]._baseinfo._Name)));
+PyTuple_SetItem(pyTupleSvyMethods, idx, Py_BuildValue("i", vec_GeochemicalSvyLine[idx]._SvyMethod));
+PyTuple_SetItem(pyTupleLengths, idx, PyTuple_SetItem(pyTupleStartLongitudes, idx, PyFloat_FromDouble(vec_GeochemicalSvyLine[idx]._StartLongitude));
+PyTuple_SetItem(pyTupleStartLatitudes, idx, PyFloat_FromDouble(vec_GeochemicalSvyLine[idx]._StartLatitude));
+PyTuple_SetItem(pyTupleEndLongitutdes, idx, PyFloat_FromDouble(vec_GeochemicalSvyLine[idx]._EndLongitutde));
+PyTuple_SetItem(pyTupleEndLatitudes, idx, PyFloat_FromDouble(vec_GeochemicalSvyLine[idx]._EndLatitude));
+PyTuple_SetItem(pyTupleSvyPointNums, idx, Py_BuildValue("i", vec_GeochemicalSvyLine[idx]._SvyPointNum));
+PyTuple_SetItem(pyTupleInterpolateNums, idx, Py_BuildValue("i", vec_GeochemicalSvyLine[idx]._InterpolateNum));
+PyTuple_SetItem(pyTupleAbnPointNums, idx, Py_BuildValue("i", vec_GeochemicalSvyLine[idx]._AbnPointNum));
+PyTuple_SetItem(pyTupleMeanValues, idx, PyFloat_FromDouble(vec_GeochemicalSvyLine[idx]._MeanValue));
+PyTuple_SetItem(pyTupleSlippageValues, idx, PyFloat_FromDouble(vec_GeochemicalSvyLine[idx]._SlippageValue));
+PyTuple_SetItem(pyTupleAbnormalBottomValues, idx, PyFloat_FromDouble(vec_GeochemicalSvyLine[idx]._AbnormalBottomValue));
+PyTuple_SetItem(pyTupleRM_AIIDs, idx, StringToPy(WstringToString(vec_GeochemicalSvyLine[idx]._baseinfo._RM_AIID)));
+PyTuple_SetItem(pyTupleRM_ARWIDs, idx, StringToPy(WstringToString(vec_GeochemicalSvyLine[idx]._baseinfo._RM_ARWID)));
+PyTuple_SetItem(pyTupleShowCodes, idx, Py_BuildValue("i", vec_GeochemicalSvyLine[idx]._ShowCode));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_GeochemicalSvyLine[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePolylines);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleProjectIDs);
+PyTuple_SetItem(args, 5, pyTupleNames);
+PyTuple_SetItem(args, 6, pyTupleSvyMethods);
+PyTuple_SetItem(args, 7, pyTupleLengths);
+PyTuple_SetItem(args, 8, pyTupleStartLongitudes);
+PyTuple_SetItem(args, 9, pyTupleStartLatitudes);
+PyTuple_SetItem(args, 10, pyTupleEndLongitutdes);
+PyTuple_SetItem(args, 11, pyTupleEndLatitudes);
+PyTuple_SetItem(args, 12, pyTupleSvyPointNums);
+PyTuple_SetItem(args, 13, pyTupleInterpolateNums);
+PyTuple_SetItem(args, 14, pyTupleAbnPointNums);
+PyTuple_SetItem(args, 15, pyTupleMeanValues);
+PyTuple_SetItem(args, 16, pyTupleSlippageValues);
+PyTuple_SetItem(args, 17, pyTupleAbnormalBottomValues);
+PyTuple_SetItem(args, 18, pyTupleRM_AIIDs);
+PyTuple_SetItem(args, 19, pyTupleRM_ARWIDs);
+PyTuple_SetItem(args, 20, pyTupleShowCodes);
+PyTuple_SetItem(args, 21, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+
+bool EsAddGeochemicalSvyPointToNetDB(const int nSId, const vector<_GEOCHEMICALSVYPOINT>& vec_GeochemicalSvyPoint)
+{
+if(vec_GeochemicalSvyPoint.empty())
+{
+return false;
+}
+Py_Initialize();
+if (!Py_IsInitialized())
+{
+return false;
+}
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.path.append('./')");
+PyObject* pModule = NULL;
+PyObject* pFunc = NULL;
+pModule = PyImport_ImportModule(module_name);
+if (pModule == NULL)
+{
+return false;
+}
+int nRecordNum = int(vec_GeochemicalSvyPoint.size());
+pFunc = PyObject_GetAttrString(pModule, func_add_GeochemicalSvyPoint);
+if(pFunc == NULL)
+{
+return false;
+}
+PyObject* args = PyTuple_New(9);
+PyObject* pyTupleURL = PyTuple_New(1);
+PyObject* pyTupleSID = PyTuple_New(1);
+PyObject* pyTuplePoints = PyTuple_New(nRecordNum);
+PyObject* pyTupleIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleFieldIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyLineIDs = PyTuple_New(nRecordNum);
+PyObject* pyTupleSvyMethods = PyTuple_New(nRecordNum);
+PyObject* pyTupleLabelInfos = PyTuple_New(nRecordNum);
+PyObject* pyTupleCommentInfos = PyTuple_New(nRecordNum);
+PyTuple_SetItem(pyTupleURL, 0, StringToPy(url_add_GeochemicalSvyPoint));
+PyTuple_SetItem(pyTupleSID, 0, Py_BuildValue("i", nSId));
+for (int idx = 0; idx < nRecordNum; idx++)
+{
+PyObject* pyTuplePoint = PyTuple_New(3);
+PyTuple_SetItem(pyTuplePoint, 0, PyFloat_FromDouble(vec_GeochemicalSvyPoint[idx]._baseinfo._point._x));
+PyTuple_SetItem(pyTuplePoint, 1, PyFloat_FromDouble(vec_GeochemicalSvyPoint[idx]._baseinfo._point._y));
+PyTuple_SetItem(pyTuplePoint, 2, PyFloat_FromDouble(vec_GeochemicalSvyPoint[idx]._baseinfo._point._z));
+PyTuple_SetItem(pyTuplePoints, idx, pyTuplePoint);
+PyTuple_SetItem(pyTupleIDs, idx, StringToPy(WstringToString(vec_GeochemicalSvyPoint[idx]._baseinfo._ID)));
+PyTuple_SetItem(pyTupleFieldIDs, idx, StringToPy(WstringToString(vec_GeochemicalSvyPoint[idx]._baseinfo._FieldID)));
+PyTuple_SetItem(pyTupleSvyLineIDs, idx, StringToPy(WstringToString(vec_GeochemicalSvyPoint[idx]._baseinfo._SvyLineID)));
+PyTuple_SetItem(pyTupleSvyMethods, idx, Py_BuildValue("i", vec_GeochemicalSvyPoint[idx]._SvyMethod));
+PyTuple_SetItem(pyTupleLabelInfos, idx, StringToPy(WstringToString(vec_GeochemicalSvyPoint[idx]._baseinfo._LabelInfo)));
+PyTuple_SetItem(pyTupleCommentInfos, idx, StringToPy(WstringToString(vec_GeochemicalSvyPoint[idx]._baseinfo._CommentInfo)));
+}
+PyTuple_SetItem(args, 0, pyTupleURL);
+PyTuple_SetItem(args, 1, pyTupleSID);
+PyTuple_SetItem(args, 2, pyTuplePoints);
+PyTuple_SetItem(args, 3, pyTupleIDs);
+PyTuple_SetItem(args, 4, pyTupleFieldIDs);
+PyTuple_SetItem(args, 5, pyTupleSvyLineIDs);
+PyTuple_SetItem(args, 6, pyTupleSvyMethods);
+PyTuple_SetItem(args, 7, pyTupleLabelInfos);
+PyTuple_SetItem(args, 8, pyTupleCommentInfos);
+PyObject* pRet = PyEval_CallObject(pFunc, args);
+const char* szRet = pRet->ob_type->tp_name;
+if(*szRet == *err_URLError || *szRet == *err_HTTPError)
+return false;
+Py_Finalize();
+return true;
+}
+

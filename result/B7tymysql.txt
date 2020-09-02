@@ -1,0 +1,23 @@
+bool EXPORTTEMYSQLAPI EsAddB7_VolcanicDataTableToNetDB(const int nSId, const vector<_B7_VOLCANICDATATABLE>& vec_B7_VolcanicDataTable);
+bool EXPORTTEMYSQLAPI EsAddB7_VolcanicSvyProjectTableToNetDB(const int nSId, const vector<_B7_VOLCANICSVYPROJECTTABLE>& vec_B7_VolcanicSvyProjectTable);
+bool EXPORTTEMYSQLAPI EsAddB7_VolSvyPtObservationObjectToNetDB(const int nSId, const vector<_B7_VOLSVYPTOBSERVATIONOBJECT>& vec_B7_VolSvyPtObservationObject);
+bool EXPORTTEMYSQLAPI EsAddCraterToNetDB(const int nSId, const vector<_CRATER>& vec_Crater);
+bool EXPORTTEMYSQLAPI EsAddLavaToNetDB(const int nSId, const vector<_LAVA>& vec_Lava);
+bool EXPORTTEMYSQLAPI EsAddVolcanicConeToNetDB(const int nSId, const vector<_VOLCANICCONE>& vec_VolcanicCone);
+bool EXPORTTEMYSQLAPI EsAddVolcanicSvyPointToNetDB(const int nSId, const vector<_VOLCANICSVYPOINT>& vec_VolcanicSvyPoint);
+
+const char* func_add_B7_VolcanicDataTablet = "api_add_B7_VolcanicDataTable";
+const char* func_add_B7_VolcanicSvyProjectTablet = "api_add_B7_VolcanicSvyProjectTable";
+const char* func_add_B7_VolSvyPtObservationObjectt = "api_add_B7_VolSvyPtObservationObject";
+const char* func_add_Cratert = "api_add_Crater";
+const char* func_add_Lavat = "api_add_Lava";
+const char* func_add_VolcanicConet = "api_add_VolcanicCone";
+const char* func_add_VolcanicSvyPointt = "api_add_VolcanicSvyPoint";
+
+const char* url_add_B7_VolcanicDataTable = "http://localhost:5000/mysql/seismological_bureau/add_B7_VolcanicDataTable/";
+const char* url_add_B7_VolcanicSvyProjectTable = "http://localhost:5000/mysql/seismological_bureau/add_B7_VolcanicSvyProjectTable/";
+const char* url_add_B7_VolSvyPtObservationObject = "http://localhost:5000/mysql/seismological_bureau/add_B7_VolSvyPtObservationObject/";
+const char* url_add_Crater = "http://localhost:5000/mysql/seismological_bureau/add_Crater/";
+const char* url_add_Lava = "http://localhost:5000/mysql/seismological_bureau/add_Lava/";
+const char* url_add_VolcanicCone = "http://localhost:5000/mysql/seismological_bureau/add_VolcanicCone/";
+const char* url_add_VolcanicSvyPoint = "http://localhost:5000/mysql/seismological_bureau/add_VolcanicSvyPoint/";

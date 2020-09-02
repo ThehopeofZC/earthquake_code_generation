@@ -1,0 +1,14 @@
+bool EXPORTTEMYSQLAPI EsAddB3_DrillProjectTableToNetDB(const int nSId, const vector<_B3_DRILLPROJECTTABLE>& vec_B3_DrillProjectTable);
+bool EXPORTTEMYSQLAPI EsAddDrillFaultPointToNetDB(const int nSId, const vector<_DRILLFAULTPOINT>& vec_DrillFaultPoint);
+bool EXPORTTEMYSQLAPI EsAddDrillHoleToNetDB(const int nSId, const vector<_DRILLHOLE>& vec_DrillHole);
+bool EXPORTTEMYSQLAPI EsAddDrillProfileToNetDB(const int nSId, const vector<_DRILLPROFILE>& vec_DrillProfile);
+
+const char* func_add_B3_DrillProjectTablet = "api_add_B3_DrillProjectTable";
+const char* func_add_DrillFaultPointt = "api_add_DrillFaultPoint";
+const char* func_add_DrillHolet = "api_add_DrillHole";
+const char* func_add_DrillProfilet = "api_add_DrillProfile";
+
+const char* url_add_B3_DrillProjectTable = "http://localhost:5000/mysql/seismological_bureau/add_B3_DrillProjectTable/";
+const char* url_add_DrillFaultPoint = "http://localhost:5000/mysql/seismological_bureau/add_DrillFaultPoint/";
+const char* url_add_DrillHole = "http://localhost:5000/mysql/seismological_bureau/add_DrillHole/";
+const char* url_add_DrillProfile = "http://localhost:5000/mysql/seismological_bureau/add_DrillProfile/";

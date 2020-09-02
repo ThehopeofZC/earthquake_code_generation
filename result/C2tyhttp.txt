@@ -1,0 +1,24 @@
+def api_add_CartoAuxLabel(url, sid, points, IDs, LabelInfos, ShowCodes, Ownerships, DataPurposes, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'LabelInfos':LabelInfos, 'ShowCodes':ShowCodes, 'Ownerships':Ownerships, 'DataPurposes':DataPurposes, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_CartoAuxLine(url, sid, lines, IDs, LabelInfos, ShowCodes, Ownerships, DataPurposes, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'LabelInfos':LabelInfos, 'ShowCodes':ShowCodes, 'Ownerships':Ownerships, 'DataPurposes':DataPurposes, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_CartoAuxPoint(url, sid, points, IDs, LabelInfos, ShowCodes, Ownerships, DataPurposes, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'LabelInfos':LabelInfos, 'ShowCodes':ShowCodes, 'Ownerships':Ownerships, 'DataPurposes':DataPurposes, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_CartoAuxPolygon(url, sid, faces, IDs, LabelInfos, ShowCodes, Ownerships, DataPurposes, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'LabelInfos':LabelInfos, 'ShowCodes':ShowCodes, 'Ownerships':Ownerships, 'DataPurposes':DataPurposes, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_GeoProfilePoint(url, sid, points, IDs, ProfileLineIDs, Names, Scales, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'ProfileLineIDs':ProfileLineIDs, 'Names':Names, 'Scales':Scales, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_MapSheet(url, sid, faces, IDs, SheetNumbers, RotationAngles, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'SheetNumbers':SheetNumbers, 'RotationAngles':RotationAngles, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+

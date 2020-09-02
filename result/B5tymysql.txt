@@ -1,0 +1,23 @@
+bool EXPORTTEMYSQLAPI EsAddB5_GeophyRgnHasGeophyPtToNetDB(const int nSId, const vector<_B5_GEOPHYRGNHASGEOPHYPT>& vec_B5_GeophyRgnHasGeophyPt);
+bool EXPORTTEMYSQLAPI EsAddB5_GeophySvyDataTableToNetDB(const int nSId, const vector<_B5_GEOPHYSVYDATATABLE>& vec_B5_GeophySvyDataTable);
+bool EXPORTTEMYSQLAPI EsAddB5_GeophySvyProjectTableToNetDB(const int nSId, const vector<_B5_GEOPHYSVYPROJECTTABLE>& vec_B5_GeophySvyProjectTable);
+bool EXPORTTEMYSQLAPI EsAddGeophySvyFaultPointToNetDB(const int nSId, const vector<_GEOPHYSVYFAULTPOINT>& vec_GeophySvyFaultPoint);
+bool EXPORTTEMYSQLAPI EsAddGeophySvyLineToNetDB(const int nSId, const vector<_GEOPHYSVYLINE>& vec_GeophySvyLine);
+bool EXPORTTEMYSQLAPI EsAddGeophySvyPointToNetDB(const int nSId, const vector<_GEOPHYSVYPOINT>& vec_GeophySvyPoint);
+bool EXPORTTEMYSQLAPI EsAddGeophySvyRegionToNetDB(const int nSId, const vector<_GEOPHYSVYREGION>& vec_GeophySvyRegion);
+
+const char* func_add_B5_GeophyRgnHasGeophyPtt = "api_add_B5_GeophyRgnHasGeophyPt";
+const char* func_add_B5_GeophySvyDataTablet = "api_add_B5_GeophySvyDataTable";
+const char* func_add_B5_GeophySvyProjectTablet = "api_add_B5_GeophySvyProjectTable";
+const char* func_add_GeophySvyFaultPointt = "api_add_GeophySvyFaultPoint";
+const char* func_add_GeophySvyLinet = "api_add_GeophySvyLine";
+const char* func_add_GeophySvyPointt = "api_add_GeophySvyPoint";
+const char* func_add_GeophySvyRegiont = "api_add_GeophySvyRegion";
+
+const char* url_add_B5_GeophyRgnHasGeophyPt = "http://localhost:5000/mysql/seismological_bureau/add_B5_GeophyRgnHasGeophyPt/";
+const char* url_add_B5_GeophySvyDataTable = "http://localhost:5000/mysql/seismological_bureau/add_B5_GeophySvyDataTable/";
+const char* url_add_B5_GeophySvyProjectTable = "http://localhost:5000/mysql/seismological_bureau/add_B5_GeophySvyProjectTable/";
+const char* url_add_GeophySvyFaultPoint = "http://localhost:5000/mysql/seismological_bureau/add_GeophySvyFaultPoint/";
+const char* url_add_GeophySvyLine = "http://localhost:5000/mysql/seismological_bureau/add_GeophySvyLine/";
+const char* url_add_GeophySvyPoint = "http://localhost:5000/mysql/seismological_bureau/add_GeophySvyPoint/";
+const char* url_add_GeophySvyRegion = "http://localhost:5000/mysql/seismological_bureau/add_GeophySvyRegion/";

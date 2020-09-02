@@ -1,0 +1,128 @@
+def api_add_AALL012000(url, sid, lines, IDs, ProjectCodes, GBs, CHK_IDs, Shape_Lengths, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'GBs':GBs, 'CHK_IDs':CHK_IDs, 'Shape_Lengths':Shape_Lengths, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_AALP012000(url, sid, points, IDs, ProjectCodes, NAMEs, PINYINs, GBs, FONT_CODEs, CHK_IDs, CHAR_CODEs, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'NAMEs':NAMEs, 'PINYINs':PINYINs, 'GBs':GBs, 'FONT_CODEs':FONT_CODEs, 'CHK_IDs':CHK_IDs, 'CHAR_CODEs':CHAR_CODEs, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_BOUA012000(url, sid, faces, IDs, ProjectCodes, TNAMEs, GBs, CHK_IDs, CNAMEs, TPACs, CPACs, Shape_Lengths, Shape_Areas, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'TNAMEs':TNAMEs, 'GBs':GBs, 'CHK_IDs':CHK_IDs, 'CNAMEs':CNAMEs, 'TPACs':TPACs, 'CPACs':CPACs, 'Shape_Lengths':Shape_Lengths, 'Shape_Areas':Shape_Areas, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_BOUL012000(url, sid, lines, IDs, ProjectCodes, GBs, CHK_IDs, Shape_Lengths, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'GBs':GBs, 'CHK_IDs':CHK_IDs, 'Shape_Lengths':Shape_Lengths, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_BRGA012000(url, sid, faces, IDs, ProjectCodes, NAMEs, GBs, CHK_IDs, Shape_Lengths, Shape_Areas, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'NAMEs':NAMEs, 'GBs':GBs, 'CHK_IDs':CHK_IDs, 'Shape_Lengths':Shape_Lengths, 'Shape_Areas':Shape_Areas, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_BRGL012000(url, sid, lines, IDs, ProjectCodes, GBs, CHK_IDs, Shape_Lengths, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'GBs':GBs, 'CHK_IDs':CHK_IDs, 'Shape_Lengths':Shape_Lengths, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_CPTL012000(url, sid, lines, IDs, ProjectCodes, GBs, CHK_IDs, Shape_Lengths, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'GBs':GBs, 'CHK_IDs':CHK_IDs, 'Shape_Lengths':Shape_Lengths, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_CPTP012000(url, sid, points, IDs, ProjectCodes, TEGRs, NAMEs, GBs, CHK_IDs, ELEVs, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'TEGRs':TEGRs, 'NAMEs':NAMEs, 'GBs':GBs, 'CHK_IDs':CHK_IDs, 'ELEVs':ELEVs, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_HFCA012000(url, sid, faces, IDs, ProjectCodes, NAMEs, GBs, CHK_IDs, Shape_Lengths, Shape_Areas, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'NAMEs':NAMEs, 'GBs':GBs, 'CHK_IDs':CHK_IDs, 'Shape_Lengths':Shape_Lengths, 'Shape_Areas':Shape_Areas, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_HFCL012000(url, sid, lines, IDs, ProjectCodes, NAMEs, GBs, CHK_IDs, Shape_Lengths, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'NAMEs':NAMEs, 'GBs':GBs, 'CHK_IDs':CHK_IDs, 'Shape_Lengths':Shape_Lengths, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_HFCP012000(url, sid, points, IDs, ProjectCodes, NAMEs, GBs, CHK_IDs, SYM_ANGLEs, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'NAMEs':NAMEs, 'GBs':GBs, 'CHK_IDs':CHK_IDs, 'SYM_ANGLEs':SYM_ANGLEs, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_HYDA012000(url, sid, faces, IDs, ProjectCodes, HYDCs, NAMEs, GBs, CHK_IDs, HYDGs, Shape_Lengths, Shape_Areas, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'HYDCs':HYDCs, 'NAMEs':NAMEs, 'GBs':GBs, 'CHK_IDs':CHK_IDs, 'HYDGs':HYDGs, 'Shape_Lengths':Shape_Lengths, 'Shape_Areas':Shape_Areas, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_HYDL012000(url, sid, lines, IDs, ProjectCodes, HYDCs, NAMEs, GBs, CHK_IDs, HYDGs, Shape_Lengths, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'HYDCs':HYDCs, 'NAMEs':NAMEs, 'GBs':GBs, 'CHK_IDs':CHK_IDs, 'HYDGs':HYDGs, 'Shape_Lengths':Shape_Lengths, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_HYDP012000(url, sid, points, IDs, ProjectCodes, NAMEs, GBs, CHK_IDs, SYM_ANGLEs, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'NAMEs':NAMEs, 'GBs':GBs, 'CHK_IDs':CHK_IDs, 'SYM_ANGLEs':SYM_ANGLEs, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_LFCL012000(url, sid, lines, IDs, ProjectCodes, NAMEs, GBs, CHK_IDs, Shape_Lengths, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'NAMEs':NAMEs, 'GBs':GBs, 'CHK_IDs':CHK_IDs, 'Shape_Lengths':Shape_Lengths, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_LFCP012000(url, sid, points, IDs, ProjectCodes, RNs, NAMEs, GBs, CHK_IDs, SYM_ANGLEs, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'RNs':RNs, 'NAMEs':NAMEs, 'GBs':GBs, 'CHK_IDs':CHK_IDs, 'SYM_ANGLEs':SYM_ANGLEs, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_LRDL012000(url, sid, lines, IDs, ProjectCodes, RNs, NAMEs, GBs, RTEGs, CHK_IDs, Shape_Lengths, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'RNs':RNs, 'NAMEs':NAMEs, 'GBs':GBs, 'RTEGs':RTEGs, 'CHK_IDs':CHK_IDs, 'Shape_Lengths':Shape_Lengths, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_LRRL012000(url, sid, lines, IDs, ProjectCodes, RNs, NAMEs, GBs, CHK_IDs, Shape_Lengths, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'RNs':RNs, 'NAMEs':NAMEs, 'GBs':GBs, 'CHK_IDs':CHK_IDs, 'Shape_Lengths':Shape_Lengths, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_PIPL012000(url, sid, lines, IDs, ProjectCodes, NAMEs, GBs, CHK_IDs, Shape_Lengths, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'NAMEs':NAMEs, 'GBs':GBs, 'CHK_IDs':CHK_IDs, 'Shape_Lengths':Shape_Lengths, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_PIPP012000(url, sid, points, IDs, ProjectCodes, NAMEs, CHK_IDs, GBs, SYM_ANGLEs, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'NAMEs':NAMEs, 'CHK_IDs':CHK_IDs, 'GBs':GBs, 'SYM_ANGLEs':SYM_ANGLEs, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_RESA012000(url, sid, faces, IDs, ProjectCodes, GBs, CHK_IDs, Shape_Lengths, Shape_Areas, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'GBs':GBs, 'CHK_IDs':CHK_IDs, 'Shape_Lengths':Shape_Lengths, 'Shape_Areas':Shape_Areas, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_RESL012000(url, sid, lines, IDs, ProjectCodes, CHK_IDs, GBs, Shape_Lengths, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'CHK_IDs':CHK_IDs, 'GBs':GBs, 'Shape_Lengths':Shape_Lengths, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_RESP012000(url, sid, points, IDs, ProjectCodes, NAMEs, CHK_IDs, GBs, SYM_ANGLEs, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'NAMEs':NAMEs, 'CHK_IDs':CHK_IDs, 'GBs':GBs, 'SYM_ANGLEs':SYM_ANGLEs, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_RFCA012000(url, sid, faces, IDs, ProjectCodes, NAMEs, CHK_IDs, GBs, Shape_Lengths, Shape_Areas, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'NAMEs':NAMEs, 'CHK_IDs':CHK_IDs, 'GBs':GBs, 'Shape_Lengths':Shape_Lengths, 'Shape_Areas':Shape_Areas, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_RFCL012000(url, sid, lines, IDs, ProjectCodes, NAMEs, CHK_IDs, GBs, Shape_Lengths, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'NAMEs':NAMEs, 'CHK_IDs':CHK_IDs, 'GBs':GBs, 'Shape_Lengths':Shape_Lengths, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_RFCP012000(url, sid, points, IDs, ProjectCodes, NAMEs, CHK_IDs, GBs, SYM_ANGLEs, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'NAMEs':NAMEs, 'CHK_IDs':CHK_IDs, 'GBs':GBs, 'SYM_ANGLEs':SYM_ANGLEs, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_TERA012000(url, sid, faces, IDs, ProjectCodes, CHK_IDs, NAMEs, GBs, Shape_Lengths, Shape_Areas, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'CHK_IDs':CHK_IDs, 'NAMEs':NAMEs, 'GBs':GBs, 'Shape_Lengths':Shape_Lengths, 'Shape_Areas':Shape_Areas, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_TERL012000(url, sid, lines, IDs, ProjectCodes, NAMEs, CHK_IDs, GBs, ELEVs, Shape_Lengths, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'NAMEs':NAMEs, 'CHK_IDs':CHK_IDs, 'GBs':GBs, 'ELEVs':ELEVs, 'Shape_Lengths':Shape_Lengths, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_TERP012000(url, sid, points, IDs, ProjectCodes, NAMEs, CHK_IDs, GBs, ELEVs, SYM_ANGLEs, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'NAMEs':NAMEs, 'CHK_IDs':CHK_IDs, 'GBs':GBs, 'ELEVs':ELEVs, 'SYM_ANGLEs':SYM_ANGLEs, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_VEGA012000(url, sid, faces, IDs, ProjectCodes, CHK_IDs, GBs, Shape_Lengths, Shape_Areas, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'CHK_IDs':CHK_IDs, 'GBs':GBs, 'Shape_Lengths':Shape_Lengths, 'Shape_Areas':Shape_Areas, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_VEGL012000(url, sid, lines, IDs, ProjectCodes, CHK_IDs, GBs, Shape_Lengths, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'CHK_IDs':CHK_IDs, 'GBs':GBs, 'Shape_Lengths':Shape_Lengths, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_VEGP012000(url, sid, points, IDs, ProjectCodes, CHK_IDs, GBs, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'ProjectCodes':ProjectCodes, 'CHK_IDs':CHK_IDs, 'GBs':GBs, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+

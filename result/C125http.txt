@@ -1,0 +1,64 @@
+def api_add_Basin25(url, sid, faces, IDs, BasinNames, FormationAges, MaxDepths, Features, Photo_AIIDs, Photo_ARWIDs, ViewTos, Photographers, SymbolMains, SymbolLows, SymbolUps, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'BasinNames':BasinNames, 'FormationAges':FormationAges, 'MaxDepths':MaxDepths, 'Features':Features, 'Photo_AIIDs':Photo_AIIDs, 'Photo_ARWIDs':Photo_ARWIDs, 'ViewTos':ViewTos, 'Photographers':Photographers, 'SymbolMains':SymbolMains, 'SymbolLows':SymbolLows, 'SymbolUps':SymbolUps, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_Fault25(url, sid, lines, IDs, FractureZoneNames, FaultNames, FaultSegmentNames, Features, StrikeOrientations, Strikes, Dips, DipAngles, Lengths, Widths, TopDepths, DeformationBeltWidths, Ages, Photo_AIIDs, Photo_ARWIDs, ViewTos, Photographers, StartTimeEsts, VDisplaceEsts, VDisplaceErs, HDisplaceEsts, HDisplaceErs, TDisplaceEsts, TDisplaceErs, AveVRates, AveVRateErs, AveHRates, AveHRateErs, StartTimeLatestRates, LatestVRates, LatestVRateErs, LatestHRates, LatestHRateErs, MaxVRates, MaxVRateErs, MaxHRates, MaxHRateErs, EQEventCounts, MinEQEventRIs, MaxEQEventRIs, Methods, MaxRuptureLengths, AverageRuptureLengths, ElapseTimeForLatestEQs, SlipDepthEsts, SlipDepthErs, AverageSlipRateEsts, AverageSlipRateErs, CreepRateEsts, CreepRateErs, CoSeismicMaxSlipEsts, CoSeismicMaxSlipErs, CoSeismicAverageSlipEsts, CoSeismicAverageSlipErs, LatestCoSeismicSlipEsts, LatestCoSeismicSlipErs, SymbolMains, SymbolLows, SymbolUps, ShowCodes, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'FractureZoneNames':FractureZoneNames, 'FaultNames':FaultNames, 'FaultSegmentNames':FaultSegmentNames, 'Features':Features, 'StrikeOrientations':StrikeOrientations, 'Strikes':Strikes, 'Dips':Dips, 'DipAngles':DipAngles, 'Lengths':Lengths, 'Widths':Widths, 'TopDepths':TopDepths, 'DeformationBeltWidths':DeformationBeltWidths, 'Ages':Ages, 'Photo_AIIDs':Photo_AIIDs, 'Photo_ARWIDs':Photo_ARWIDs, 'ViewTos':ViewTos, 'Photographers':Photographers, 'StartTimeEsts':StartTimeEsts, 'VDisplaceEsts':VDisplaceEsts, 'VDisplaceErs':VDisplaceErs, 'HDisplaceEsts':HDisplaceEsts, 'HDisplaceErs':HDisplaceErs, 'TDisplaceEsts':TDisplaceEsts, 'TDisplaceErs':TDisplaceErs, 'AveVRates':AveVRates, 'AveVRateErs':AveVRateErs, 'AveHRates':AveHRates, 'AveHRateErs':AveHRateErs, 'StartTimeLatestRates':StartTimeLatestRates, 'LatestVRates':LatestVRates, 'LatestVRateErs':LatestVRateErs, 'LatestHRates':LatestHRates, 'LatestHRateErs':LatestHRateErs, 'MaxVRates':MaxVRates, 'MaxVRateErs':MaxVRateErs, 'MaxHRates':MaxHRates, 'MaxHRateErs':MaxHRateErs, 'EQEventCounts':EQEventCounts, 'MinEQEventRIs':MinEQEventRIs, 'MaxEQEventRIs':MaxEQEventRIs, 'Methods':Methods, 'MaxRuptureLengths':MaxRuptureLengths, 'AverageRuptureLengths':AverageRuptureLengths, 'ElapseTimeForLatestEQs':ElapseTimeForLatestEQs, 'SlipDepthEsts':SlipDepthEsts, 'SlipDepthErs':SlipDepthErs, 'AverageSlipRateEsts':AverageSlipRateEsts, 'AverageSlipRateErs':AverageSlipRateErs, 'CreepRateEsts':CreepRateEsts, 'CreepRateErs':CreepRateErs, 'CoSeismicMaxSlipEsts':CoSeismicMaxSlipEsts, 'CoSeismicMaxSlipErs':CoSeismicMaxSlipErs, 'CoSeismicAverageSlipEsts':CoSeismicAverageSlipEsts, 'CoSeismicAverageSlipErs':CoSeismicAverageSlipErs, 'LatestCoSeismicSlipEsts':LatestCoSeismicSlipEsts, 'LatestCoSeismicSlipErs':LatestCoSeismicSlipErs, 'SymbolMains':SymbolMains, 'SymbolLows':SymbolLows, 'SymbolUps':SymbolUps, 'ShowCodes':ShowCodes, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_FaultAttitude25(url, sid, points, IDs, FaultIDs, FaultSvyIDs, Features, FaultDips, FaultDipAngles, LastAngles, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'FaultIDs':FaultIDs, 'FaultSvyIDs':FaultSvyIDs, 'Features':Features, 'FaultDips':FaultDips, 'FaultDipAngles':FaultDipAngles, 'LastAngles':LastAngles, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_Fold25(url, sid, lines, IDs, FoldNames, FoldTypes, Lengths, Widths, FronWingWidths, BackWingWidths, IsReverseds, IsExposeds, AllStratigraphys, LatestStratigraphys, AxisDirections, MaxShotenRates, AveShotenRates, MaxUpliftRates, AveUpliftRates, FoldDescriptions, Photo_AIIDs, Photo_ARWIDs, ViewTos, Photographers, SymbolMains, SymbolLows, SymbolUps, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'FoldNames':FoldNames, 'FoldTypes':FoldTypes, 'Lengths':Lengths, 'Widths':Widths, 'FronWingWidths':FronWingWidths, 'BackWingWidths':BackWingWidths, 'IsReverseds':IsReverseds, 'IsExposeds':IsExposeds, 'AllStratigraphys':AllStratigraphys, 'LatestStratigraphys':LatestStratigraphys, 'AxisDirections':AxisDirections, 'MaxShotenRates':MaxShotenRates, 'AveShotenRates':AveShotenRates, 'MaxUpliftRates':MaxUpliftRates, 'AveUpliftRates':AveUpliftRates, 'FoldDescriptions':FoldDescriptions, 'Photo_AIIDs':Photo_AIIDs, 'Photo_ARWIDs':Photo_ARWIDs, 'ViewTos':ViewTos, 'Photographers':Photographers, 'SymbolMains':SymbolMains, 'SymbolLows':SymbolLows, 'SymbolUps':SymbolUps, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_FractureBelt25(url, sid, lines, IDs, Names, FormationAges, Features, Lengths, MaxWidths, StartLongitudes, StartLatitudes, EndLongitudes, EndLatitudes, MaxVOffsets, MaxHOffsets, MaxTOffsets, Photo_AIIDs, Photo_ARWIDs, ViewTos, Photographers, ShowCodes, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'Names':Names, 'FormationAges':FormationAges, 'Features':Features, 'Lengths':Lengths, 'MaxWidths':MaxWidths, 'StartLongitudes':StartLongitudes, 'StartLatitudes':StartLatitudes, 'EndLongitudes':EndLongitudes, 'EndLatitudes':EndLatitudes, 'MaxVOffsets':MaxVOffsets, 'MaxHOffsets':MaxHOffsets, 'MaxTOffsets':MaxTOffsets, 'Photo_AIIDs':Photo_AIIDs, 'Photo_ARWIDs':Photo_ARWIDs, 'ViewTos':ViewTos, 'Photographers':Photographers, 'ShowCodes':ShowCodes, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_GeoBoundaryLine25(url, sid, lines, IDs, GeologyBoundaryLines, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'GeologyBoundaryLines':GeologyBoundaryLines, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_GeomorphyLine25(url, sid, lines, IDs, GeomorphyCodes, GeomorphyNames, GeomorphyTypes, GeomorphyDescriptions, Lengths, Widths, Heights, MaxVerticalOffsets, MaxHorizontalOffsets, MaxTensionalOffsets, Features, FormationAges, IsSurfaceRuptureBelts, FractureBeltIDs, FractureTypes, Photo_AIIDs, Photo_ARWIDs, ViewTos, Photographers, SymbolMains, SymbolLows, SymbolUps, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'GeomorphyCodes':GeomorphyCodes, 'GeomorphyNames':GeomorphyNames, 'GeomorphyTypes':GeomorphyTypes, 'GeomorphyDescriptions':GeomorphyDescriptions, 'Lengths':Lengths, 'Widths':Widths, 'Heights':Heights, 'MaxVerticalOffsets':MaxVerticalOffsets, 'MaxHorizontalOffsets':MaxHorizontalOffsets, 'MaxTensionalOffsets':MaxTensionalOffsets, 'Features':Features, 'FormationAges':FormationAges, 'IsSurfaceRuptureBelts':IsSurfaceRuptureBelts, 'FractureBeltIDs':FractureBeltIDs, 'FractureTypes':FractureTypes, 'Photo_AIIDs':Photo_AIIDs, 'Photo_ARWIDs':Photo_ARWIDs, 'ViewTos':ViewTos, 'Photographers':Photographers, 'SymbolMains':SymbolMains, 'SymbolLows':SymbolLows, 'SymbolUps':SymbolUps, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_GeomorphyPoint25(url, sid, points, IDs, GeomorSvyPtIDs, GeomorphyCodes, GeomorphyNames, GeomorphyTypes, Lengths, widths, Heights, VerticalOffsets, HorizontalOffsets, TensionalOffsets, Features, GeomorphyLnDirections, FormationAges, IsSurfaceRuptureBelts, FractureBeltIDs, FractureTypes, Photo_AIIDs, Photo_ARWIDs, ViewTos, Photographers, TypicalProfile_AIIDs, TypicalProfile_ARWIDs, Sketch_AIIDs, Sketch_ARWIDs, SymbolMains, SymbolLows, SymbolUps, LastAngles, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'GeomorSvyPtIDs':GeomorSvyPtIDs, 'GeomorphyCodes':GeomorphyCodes, 'GeomorphyNames':GeomorphyNames, 'GeomorphyTypes':GeomorphyTypes, 'Lengths':Lengths, 'widths':widths, 'Heights':Heights, 'VerticalOffsets':VerticalOffsets, 'HorizontalOffsets':HorizontalOffsets, 'TensionalOffsets':TensionalOffsets, 'Features':Features, 'GeomorphyLnDirections':GeomorphyLnDirections, 'FormationAges':FormationAges, 'IsSurfaceRuptureBelts':IsSurfaceRuptureBelts, 'FractureBeltIDs':FractureBeltIDs, 'FractureTypes':FractureTypes, 'Photo_AIIDs':Photo_AIIDs, 'Photo_ARWIDs':Photo_ARWIDs, 'ViewTos':ViewTos, 'Photographers':Photographers, 'TypicalProfile_AIIDs':TypicalProfile_AIIDs, 'TypicalProfile_ARWIDs':TypicalProfile_ARWIDs, 'Sketch_AIIDs':Sketch_AIIDs, 'Sketch_ARWIDs':Sketch_ARWIDs, 'SymbolMains':SymbolMains, 'SymbolLows':SymbolLows, 'SymbolUps':SymbolUps, 'LastAngles':LastAngles, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_GeomorphyPolygon25(url, sid, faces, IDs, GeomorphyCodes, GeomorphyNames, GeomorphyTypes, GeomorphyDescriptions, Lengths, widths, Heights, MaxVerticalOffsets, MaxHorizontalOffsets, MaxTensionalOffsets, Features, FormationAges, IsSurfaceRuptureBelts, FractureBeltIDs, FractureTypes, Photo_AIIDs, Photo_ARWIDs, ViewTos, Photographers, SymbolMains, SymbolLows, SymbolUps, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'GeomorphyCodes':GeomorphyCodes, 'GeomorphyNames':GeomorphyNames, 'GeomorphyTypes':GeomorphyTypes, 'GeomorphyDescriptions':GeomorphyDescriptions, 'Lengths':Lengths, 'widths':widths, 'Heights':Heights, 'MaxVerticalOffsets':MaxVerticalOffsets, 'MaxHorizontalOffsets':MaxHorizontalOffsets, 'MaxTensionalOffsets':MaxTensionalOffsets, 'Features':Features, 'FormationAges':FormationAges, 'IsSurfaceRuptureBelts':IsSurfaceRuptureBelts, 'FractureBeltIDs':FractureBeltIDs, 'FractureTypes':FractureTypes, 'Photo_AIIDs':Photo_AIIDs, 'Photo_ARWIDs':Photo_ARWIDs, 'ViewTos':ViewTos, 'Photographers':Photographers, 'SymbolMains':SymbolMains, 'SymbolLows':SymbolLows, 'SymbolUps':SymbolUps, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_GeotectonicUnit25(url, sid, faces, IDs, Names, TectonicLevels, nsb1s, nsb2s, nsb3s, ShowCodes, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'Names':Names, 'TectonicLevels':TectonicLevels, 'nsb1s':nsb1s, 'nsb2s':nsb2s, 'nsb3s':nsb3s, 'ShowCodes':ShowCodes, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_NeotectonicUnit25(url, sid, faces, IDs, Names, TectonicLevels, nsb1s, nsb2s, nsb3s, ShowCodes, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'Names':Names, 'TectonicLevels':TectonicLevels, 'nsb1s':nsb1s, 'nsb2s':nsb2s, 'nsb3s':nsb3s, 'ShowCodes':ShowCodes, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_Rock25(url, sid, faces, IDs, RockNames, Symbols, QDHOs, Descriptions, SymbolMains, SymbolUps, SymbolLows, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'RockNames':RockNames, 'Symbols':Symbols, 'QDHOs':QDHOs, 'Descriptions':Descriptions, 'SymbolMains':SymbolMains, 'SymbolUps':SymbolUps, 'SymbolLows':SymbolLows, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_StraAttitude25(url, sid, points, IDs, ColStraAttiIDs, StraSvyPtIDs, StraDips, StraDipAngles, IsReverseds, LastAngles, CommentInfos):
+	data = {'sid':sid, 'points':points, 'IDs':IDs, 'ColStraAttiIDs':ColStraAttiIDs, 'StraSvyPtIDs':StraSvyPtIDs, 'StraDips':StraDips, 'StraDipAngles':StraDipAngles, 'IsReverseds':IsReverseds, 'LastAngles':LastAngles, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_StraIsoline25(url, sid, lines, IDs, StraiNames, StraiValues, ShowCodes, CommentInfos):
+	data = {'sid':sid, 'lines':lines, 'IDs':IDs, 'StraiNames':StraiNames, 'StraiValues':StraiValues, 'ShowCodes':ShowCodes, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_Stratigraphy25(url, sid, faces, IDs, StratigraphyNames, Symbols, SedimentaryFaciess, Thicknesss, Descriptions, SymbolMains, SymbolUps, SymbolLows, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'StratigraphyNames':StratigraphyNames, 'Symbols':Symbols, 'SedimentaryFaciess':SedimentaryFaciess, 'Thicknesss':Thicknesss, 'Descriptions':Descriptions, 'SymbolMains':SymbolMains, 'SymbolUps':SymbolUps, 'SymbolLows':SymbolLows, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+
+def api_add_Uplift25(url, sid, faces, IDs, UpliftNames, FormationAges, Heights, Features, Photo_AIIDs, Photo_ARWIDs, ViewTos, Photographers, SymbolMains, SymbolLows, SymbolUps, CommentInfos):
+	data = {'sid':sid, 'faces':faces, 'IDs':IDs, 'UpliftNames':UpliftNames, 'FormationAges':FormationAges, 'Heights':Heights, 'Features':Features, 'Photo_AIIDs':Photo_AIIDs, 'Photo_ARWIDs':Photo_ARWIDs, 'ViewTos':ViewTos, 'Photographers':Photographers, 'SymbolMains':SymbolMains, 'SymbolLows':SymbolLows, 'SymbolUps':SymbolUps, 'CommentInfos':CommentInfos}
+	return(common_fun(url, data))
+

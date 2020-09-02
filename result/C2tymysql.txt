@@ -1,0 +1,20 @@
+bool EXPORTTEMYSQLAPI EsAddCartoAuxLabelToNetDB(const int nSId, const vector<_CARTOAUXLABEL>& vec_CartoAuxLabel);
+bool EXPORTTEMYSQLAPI EsAddCartoAuxLineToNetDB(const int nSId, const vector<_CARTOAUXLINE>& vec_CartoAuxLine);
+bool EXPORTTEMYSQLAPI EsAddCartoAuxPointToNetDB(const int nSId, const vector<_CARTOAUXPOINT>& vec_CartoAuxPoint);
+bool EXPORTTEMYSQLAPI EsAddCartoAuxPolygonToNetDB(const int nSId, const vector<_CARTOAUXPOLYGON>& vec_CartoAuxPolygon);
+bool EXPORTTEMYSQLAPI EsAddGeoProfilePointToNetDB(const int nSId, const vector<_GEOPROFILEPOINT>& vec_GeoProfilePoint);
+bool EXPORTTEMYSQLAPI EsAddMapSheetToNetDB(const int nSId, const vector<_MAPSHEET>& vec_MapSheet);
+
+const char* func_add_CartoAuxLabelt = "api_add_CartoAuxLabel";
+const char* func_add_CartoAuxLinet = "api_add_CartoAuxLine";
+const char* func_add_CartoAuxPointt = "api_add_CartoAuxPoint";
+const char* func_add_CartoAuxPolygont = "api_add_CartoAuxPolygon";
+const char* func_add_GeoProfilePointt = "api_add_GeoProfilePoint";
+const char* func_add_MapSheett = "api_add_MapSheet";
+
+const char* url_add_CartoAuxLabel = "http://localhost:5000/mysql/seismological_bureau/add_CartoAuxLabel/";
+const char* url_add_CartoAuxLine = "http://localhost:5000/mysql/seismological_bureau/add_CartoAuxLine/";
+const char* url_add_CartoAuxPoint = "http://localhost:5000/mysql/seismological_bureau/add_CartoAuxPoint/";
+const char* url_add_CartoAuxPolygon = "http://localhost:5000/mysql/seismological_bureau/add_CartoAuxPolygon/";
+const char* url_add_GeoProfilePoint = "http://localhost:5000/mysql/seismological_bureau/add_GeoProfilePoint/";
+const char* url_add_MapSheet = "http://localhost:5000/mysql/seismological_bureau/add_MapSheet/";
