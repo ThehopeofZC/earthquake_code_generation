@@ -1,4 +1,4 @@
-B7_VolcanicDataTable
+VolcanicDataTable
 table
 wstring ID
 wstring ProjectID
@@ -15,7 +15,7 @@ wstring Photo_ARWID
 wstring PhotoDesc_ARWID
 wstring CommentInfo
 
-B7_VolcanicSvyProjectTable
+VolcanicSvyProjectTable
 table
 wstring ID
 wstring MainAFMRegionID
@@ -39,7 +39,7 @@ wstring ResultReport_ARID
 wstring ResultReport_ARWID
 wstring CommentInfo
 
-B7_VolSvyPtObservationObject
+VolSvyPtObservationObject
 table
 wstring ID
 wstring VolcanicSvyPtID

@@ -1,4 +1,4 @@
-B6_GeochemicalProjectTable
+GeochemicalProjectTable
 table
 wstring ID
 wstring MainAFMRegionID
@@ -19,7 +19,7 @@ wstring Report_ARID
 wstring Report_ARWID
 wstring CommentInfo
 
-B6_GeocheSvyDataTable
+GeocheSvyDataTable
 table
 wstring ID
 wstring ProjectID
