@@ -21,7 +21,7 @@ for line in infile.readlines():
         strforwrite+='((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传'
         strforwrite+=tbname+'...\\r\\n");\n\tif(!EsAdd'+tbname+'ToNetDB(m_nSId, vec_'+tbname+'))\n\t{\n\t\t((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("'
         strforwrite+=tbname+'上传失败！");\n\t\t((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());\n\t\t'
-        strforwrite+='((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\\r\\n");\n\t\treturn false\n\t}\n\t'
+        strforwrite+='((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\\r\\n");\n\t\treturn false;\n\t}\n\t'
         strforwrite+='((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("'+tbname+'上传成功！\\r\\n");\n\treturn true;\n}\n'
 
     fc.write(strforwrite)

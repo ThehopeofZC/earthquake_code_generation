@@ -31,7 +31,7 @@ for t in filedir:
         strforwrite+='((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("正在上传'
         strforwrite+=temp[1]+'...\\r\\n");\n\tif(!EsAdd'+tbname+'ToNetDB(m_nSId, vec_'+tbname+'))\n\t{\n\t\t((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("'
         strforwrite+=temp[1]+'上传失败!");\n\t\t((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel(obReader.EsGetError());\n\t\t'
-        strforwrite+='((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\\r\\n");\n\t\treturn false\n\t}\n\t'
+        strforwrite+='((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("\\r\\n");\n\t\treturn false;\n\t}\n\t'
         strforwrite+='((CEdit*)GetDlgItem(IDC_EDIT_PROCESS_INFO))->ReplaceSel("'+temp[1]+'上传成功！\\r\\n");\n\treturn true;\n}\n'
         fc.write(strforwrite)
 
