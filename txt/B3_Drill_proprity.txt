@@ -101,4 +101,4 @@ int FaultPointCount
 wstring HoleSection_AIID
 wstring HoleSection_ARWID
 wstring CommentInfo
-
+double Shape_Length

@@ -13,6 +13,8 @@ wstring SymbolMain
 wstring SymbolLow
 wstring SymbolUp
 wstring CommentInfo
+double Shape_Length
+double Shape_Area
 
 Fault1
 line
@@ -78,6 +80,7 @@ wstring SymbolLow
 wstring SymbolUp
 int ShowCode
 wstring CommentInfo
+double Shape_Length
 
 FaultAttitude1
 point
@@ -117,6 +120,7 @@ wstring SymbolMain
 wstring SymbolLow
 wstring SymbolUp
 wstring CommentInfo
+double Shape_Length
 
 FractureBelt1
 line
@@ -139,12 +143,14 @@ int ViewTo
 wstring Photographer
 int ShowCode
 wstring CommentInfo
+double Shape_Length
 
 GeoBoundaryLine1
 line
 wstring ID
 int GeologyBoundaryLine
 wstring CommentInfo
+double SHAPE_Length
 
 GeomorphyLine1
 line
@@ -172,6 +178,7 @@ wstring SymbolMain
 wstring SymbolLow
 wstring SymbolUp
 wstring CommentInfo
+double SHAPE_Length 
 
 GeomorphyPoint1
 point
@@ -232,6 +239,8 @@ wstring SymbolMain
 wstring SymbolLow
 wstring SymbolUp
 wstring CommentInfo
+double SHAPE_Length 
+double SHAPE_Area 
 
 Rock1
 face
@@ -244,6 +253,8 @@ wstring SymbolMain
 wstring SymbolUp
 wstring SymbolLow
 wstring CommentInfo
+double Shape_Length 
+double Shape_Area 
 
 StraAttitude1
 point
@@ -263,6 +274,7 @@ wstring StraiName
 int StraiValue
 int ShowCode
 wstring CommentInfo
+double Shape_Length 
 
 Stratigraphy1
 face
@@ -276,6 +288,8 @@ wstring SymbolMain
 wstring SymbolUp
 wstring SymbolLow
 wstring CommentInfo
+double Shape_Length 
+double Shape_Area 
 
 Uplift1
 face
@@ -292,4 +306,5 @@ wstring SymbolMain
 wstring SymbolLow
 wstring SymbolUp
 wstring CommentInfo
-
+double Shape_Length 
+double Shape_Area 
