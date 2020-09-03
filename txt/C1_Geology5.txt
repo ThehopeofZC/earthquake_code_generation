@@ -1,4 +1,4 @@
-Basin1
+Basin5
 face
 wstring ID
 wstring BasinName
@@ -16,7 +16,7 @@ wstring CommentInfo
 double Shape_Length
 double Shape_Area
 
-Fault1
+Fault5
 line
 wstring ID
 wstring FractureZoneName
@@ -82,7 +82,7 @@ int ShowCode
 wstring CommentInfo
 double Shape_Length
 
-FaultAttitude1
+FaultAttitude5
 point
 wstring ID
 wstring FaultID
@@ -93,7 +93,7 @@ int FaultDipAngle
 double LastAngle
 wstring CommentInfo
 
-Fold1
+Fold5
 line
 wstring ID
 wstring FoldName
@@ -122,7 +122,7 @@ wstring SymbolUp
 wstring CommentInfo
 double Shape_Length
 
-FractureBelt1
+FractureBelt5
 line
 wstring ID
 wstring Name
@@ -145,14 +145,14 @@ int ShowCode
 wstring CommentInfo
 double Shape_Length
 
-GeoBoundaryLine1
+GeoBoundaryLine5
 line
 wstring ID
 int GeologyBoundaryLine
 wstring CommentInfo
 double SHAPE_Length
 
-GeomorphyLine1
+GeomorphyLine5
 line
 wstring ID
 wstring GeomorphyCode
@@ -178,9 +178,9 @@ wstring SymbolMain
 wstring SymbolLow
 wstring SymbolUp
 wstring CommentInfo
-double SHAPE_Length 
+double SHAPE_Length
 
-GeomorphyPoint1
+GeomorphyPoint5
 point
 wstring ID
 wstring GeomorSvyPtID
@@ -213,7 +213,7 @@ wstring SymbolUp
 double LastAngle
 wstring CommentInfo
 
-GeomorphyPolygon1
+GeomorphyPolygon5
 face
 wstring ID
 wstring GeomorphyCode
@@ -239,10 +239,10 @@ wstring SymbolMain
 wstring SymbolLow
 wstring SymbolUp
 wstring CommentInfo
-double SHAPE_Length 
-double SHAPE_Area 
+double SHAPE_Length
+double SHAPE_Area
 
-Rock1
+Rock5
 face
 wstring ID
 wstring RockName
@@ -253,10 +253,10 @@ wstring SymbolMain
 wstring SymbolUp
 wstring SymbolLow
 wstring CommentInfo
-double Shape_Length 
-double Shape_Area 
+double Shape_Length
+double Shape_Area
 
-StraAttitude1
+StraAttitude5
 point
 wstring ID
 wstring ColStraAttiID
@@ -267,16 +267,16 @@ int IsReversed
 double LastAngle
 wstring CommentInfo
 
-StraIsoline1
+StraIsoline5
 line
 wstring ID
 wstring StraiName
 int StraiValue
 int ShowCode
 wstring CommentInfo
-double Shape_Length 
+double Shape_Length
 
-Stratigraphy1
+Stratigraphy5
 face
 wstring ID
 wstring StratigraphyName
@@ -288,10 +288,10 @@ wstring SymbolMain
 wstring SymbolUp
 wstring SymbolLow
 wstring CommentInfo
-double Shape_Length 
-double Shape_Area 
+double Shape_Length
+double Shape_Area
 
-Uplift1
+Uplift5
 face
 wstring ID
 wstring UpliftName
@@ -306,5 +306,6 @@ wstring SymbolMain
 wstring SymbolLow
 wstring SymbolUp
 wstring CommentInfo
-double Shape_Length 
-double Shape_Area 
+double Shape_Length
+double Shape_Area
+

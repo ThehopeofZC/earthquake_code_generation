@@ -178,7 +178,7 @@ wstring SymbolMain
 wstring SymbolLow
 wstring SymbolUp
 wstring CommentInfo
-double SHAPE_Length 
+double SHAPE_Length
 
 GeomorphyPoint1
 point
@@ -239,8 +239,8 @@ wstring SymbolMain
 wstring SymbolLow
 wstring SymbolUp
 wstring CommentInfo
-double SHAPE_Length 
-double SHAPE_Area 
+double SHAPE_Length
+double SHAPE_Area
 
 Rock1
 face
@@ -253,8 +253,8 @@ wstring SymbolMain
 wstring SymbolUp
 wstring SymbolLow
 wstring CommentInfo
-double Shape_Length 
-double Shape_Area 
+double Shape_Length
+double Shape_Area
 
 StraAttitude1
 point
@@ -274,7 +274,7 @@ wstring StraiName
 int StraiValue
 int ShowCode
 wstring CommentInfo
-double Shape_Length 
+double Shape_Length
 
 Stratigraphy1
 face
@@ -288,8 +288,8 @@ wstring SymbolMain
 wstring SymbolUp
 wstring SymbolLow
 wstring CommentInfo
-double Shape_Length 
-double Shape_Area 
+double Shape_Length
+double Shape_Area
 
 Uplift1
 face
@@ -306,5 +306,6 @@ wstring SymbolMain
 wstring SymbolLow
 wstring SymbolUp
 wstring CommentInfo
-double Shape_Length 
-double Shape_Area 
+double Shape_Length
+double Shape_Area
+

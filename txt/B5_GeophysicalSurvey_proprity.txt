@@ -84,6 +84,7 @@ wstring FaultPtProfile_AIID
 wstring FaultPtProfile_ARWID
 int ShowCode
 wstring CommentInfo
+double SHAPE_Length
 
 GeophySvyPoint
 point
@@ -117,4 +118,7 @@ wstring FaultInterpreResult_AIID
 wstring FaultInterpreResult_ARWID
 int ShowCode
 wstring CommentInfo
+double Shape_Length
+double Shape_Area
+
 
