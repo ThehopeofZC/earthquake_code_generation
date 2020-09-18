@@ -12,6 +12,7 @@ for t in fileList:
     http = open(os.path.join(dstName,fname+'http.txt'),'w',encoding='utf-8')
     mysql = open(os.path.join(dstName,fname+'mysql.txt'),'w',encoding='utf-8')
     mysql_func = open(os.path.join(dstName,fname+'mysql_func.txt'),'w',encoding='utf-8')
+    test = open(os.path.join(dstName,fname+'test.txt'),'w',encoding='utf-8')
 
     tableName=[]
     shape=[]
@@ -210,3 +211,28 @@ for t in fileList:
         output += "Py_Finalize();\nreturn true;\n}\n\n"
     mysql_func.write(output)
     mysql_func.close()
+
+    #生成测试代码
+    output=''
+    number=["124124124","7548458","52266262","14515","266435643"]
+    letter=["系统","数据库","sgagagasg","nothing is more","制图"]
+    dou = ["1234.567","12321.12312","76575.3423","12123.12312","346346.43"]
+    k=0
+    for i in range(len(tableName)):
+        output += '_'+tableName[i].upper()+" _"+tableName[i]+";\n"
+        for attribute in attrs[i]:
+            output += '_'+tableName[i]
+            if attribute[1]=="ID" or attribute[1]=="CommentInfo":
+                output += "._baseinfo"
+            output += "._"+attribute[1]+" = "
+            if attribute[0]=="wstring":
+                output += "L\""+letter[k]+"\";\n"
+            elif attribute[0]=='double':
+                output += dou[k]+";\n"
+            elif attribute[0]=="int":
+                output += number[k]+";\n"
+            k = (k+1)%5
+        output += "vec_"+tableName[i]+".push_back(_"+tableName[i]+");\n\n"
+
+    test.write(output)
+    test.close()
